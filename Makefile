@@ -12,4 +12,4 @@ app_image:
 	docker build -f Dockerfile.app -t minimal-mistakes .
 
 run:
-	 docker run --volume="$(PWD):/usr/src/app" -P -t minimal-mistakes
+	 docker run --volume="$(PWD):/usr/src/app" -p 4000:4000 -t minimal-mistakes
