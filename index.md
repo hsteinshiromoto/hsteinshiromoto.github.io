@@ -1,6 +1,6 @@
 ---
 permalink: /
-layout: home
+layout: single
 title: "About me"
 author_profile: true
 redirect_from:
