@@ -9,14 +9,3 @@ redirect_from:
 ---
 Welcome to my blog. Here, I post texts about topics of my interest. The posts are dynamic: they might be modified in the
 future.
-
-<!-- <ul>
-    {% for post in site.posts %}
-    <li>
-        <a href="{{ post.url }}">{{ post.title }}</a>
-        {{ post.excerpt }}
-    </li>
-    {% endfor %}
-</ul> -->
-
-<!-- See settings here: https://jekyllrb.com/docs/posts/ -->
