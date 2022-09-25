@@ -145,7 +145,7 @@ footer:
       # url:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/hsteinshiromoto"
+      # url: "https://github.com/hsteinshiromoto"
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
       # url:
@@ -157,7 +157,7 @@ footer:
       # url:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
-      url: "https://linkedin.com/in/hsteinshiromoto"
+      # url: "https://linkedin.com/in/hsteinshiromoto"
 
 
 # Reading Files
