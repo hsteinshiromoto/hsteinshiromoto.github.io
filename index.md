@@ -1,11 +1,15 @@
 ---
 permalink: /
-layout: home
+layout: single
 title: "About me"
 author_profile: true
 redirect_from:
 - /about/
 - /about.html
+- /home/
+- /home.html
+- /index/
+- /index.html
 ---
 
 Hi!
@@ -28,3 +32,9 @@ aspect of my life.
 
 When I’m not doing those things, I am probably baking bread or walking my dog. Before moving to Australia, I lived in
 Europe (Italy, France, and The Netherlands), and Brazil.
+
+# Latest Posts
+
+{% for post in site.posts limit:3 %}
+  {% include archive-single.html type=entries_layout %}
+{% endfor %}
