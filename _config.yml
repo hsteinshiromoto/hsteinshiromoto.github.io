@@ -59,8 +59,8 @@ reCaptcha:
   siteKey                :
   secret                 :
 atom_feed:
-  path                   : # blank (default) uses feed.xml
-  hide                   : # true, false (default)
+  path                   : feed.xml # blank (default) uses feed.xml
+  hide                   : false # true, false (default)
 search                   : # true, false (default)
 search_full_content      : # true, false (default)
 search_provider          : # lunr (default), algolia, google
@@ -133,6 +133,9 @@ author:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://linkedin.com/in/hsteinshiromoto"
+    - label: "Feed"
+      icon: "fas fa-fw fa-rss-square"
+      url: "/feed.xml"
 
 # Site Footer
 footer:
