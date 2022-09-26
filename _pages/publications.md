@@ -1,10 +1,11 @@
 ---
-layout: home
+layout: single
 title: "List of Publications"
 permalink: /publications/
 author_profile: true
 redirect_from:
   - /publications
+  - /publications.html
 ---
 
 - [1. Books](#1-books)
