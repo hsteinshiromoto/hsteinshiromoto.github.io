@@ -1,3 +1,5 @@
+[![CI](https://github.com/hsteinshiromoto/hsteinshiromoto.github.io/actions/workflows/ci.yml/badge.svg)](https://github.com/hsteinshiromoto/tex.beamer/actions/workflows/ci.yml) ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/hsteinshiromoto/hsteinshiromoto.github.io?style=flat)
+
 # [Humberto STEIN SHIROMOTO](https://hsteinshiromoto.github.io/)
 
 **If you enjoy my website, please consider sponsoring:**
