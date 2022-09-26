@@ -1,0 +1,11 @@
+---
+layout: posts
+permalink: /blog/
+title: "Blog"
+author_profile: true
+redirect_from:
+- /year-archive/
+- /critical_point/
+---
+Welcome to my blog. Here, I post texts about topics of my interest. The posts are dynamic: they might be modified in the
+future.
