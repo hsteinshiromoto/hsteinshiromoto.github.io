@@ -133,10 +133,7 @@ author:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://linkedin.com/in/hsteinshiromoto"
-    - label: "Feed"
-      icon: "fas fa-fw fa-rss-square"
-      url: "/feed.xml"
-
+    
 # Site Footer
 footer:
   links:
@@ -155,13 +152,12 @@ footer:
     - label: "Bitbucket"
       icon: "fab fa-fw fa-bitbucket"
       # url:
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      # url:
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
-      # url: "https://linkedin.com/in/hsteinshiromoto"
-
+    - label: "Site tags"
+      icon: "fas fa-tags"
+      url: "/tags/"
+    - label: "Sitemap"
+      icon: "fas fa-sitemap"
+      url: "/sitemap/"
 
 # Reading Files
 include:
