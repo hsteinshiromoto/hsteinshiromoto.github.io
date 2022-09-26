@@ -33,7 +33,7 @@ base_image:
 	docker build -f Dockerfile.base -t ${DOCKER_IMAGE_TAG} .
 	@echo "Done"
 
-	docker run --volume="$(PWD):/usr/src/app" -it ${DOCKER_IMAGE_TAG} bundle install
+	docker run --volume="$(PWD):/usr/src/app" -t ${DOCKER_IMAGE_TAG} bundle install
 
 ## Build application Docker image
 app_image:
