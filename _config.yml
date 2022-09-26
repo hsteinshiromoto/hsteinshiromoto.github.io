@@ -98,9 +98,9 @@ social:
 
 # Analytics
 analytics:
-  provider               : false # false (default), "google", "google-universal", "google-gtag", "custom"
+  provider               : "google" # false (default), "google", "google-universal", "google-gtag", "custom"
   google:
-    tracking_id          :
+    tracking_id          : "UA-163488035-1"
     anonymize_ip         : # true, false (default)
 
 
@@ -108,7 +108,7 @@ analytics:
 author:
   name             : "Humberto STEIN SHIROMOTO"
   avatar           : "/assets/images/profile.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
+  bio              : "Cybernetician: Data Scientist, Mathematician, Engineer + Baker"
   location         : "Sydney, Australia"
   email            :
   links:
@@ -133,10 +133,7 @@ author:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://linkedin.com/in/hsteinshiromoto"
-    - label: "Feed"
-      icon: "fas fa-fw fa-rss-square"
-      url: "/feed.xml"
-
+    
 # Site Footer
 footer:
   links:
@@ -155,13 +152,12 @@ footer:
     - label: "Bitbucket"
       icon: "fab fa-fw fa-bitbucket"
       # url:
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      # url:
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
-      # url: "https://linkedin.com/in/hsteinshiromoto"
-
+    - label: "Site tags"
+      icon: "fas fa-tags"
+      url: "/tags/"
+    - label: "Sitemap"
+      icon: "fas fa-sitemap"
+      url: "/sitemap/"
 
 # Reading Files
 include:

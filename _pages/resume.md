@@ -15,12 +15,12 @@ redirect_from:
 - [4. Other](#4-other)
 
 
-# 1. Education
+## 1. Education
 * Oct 11 - Jun 14: PhD in Applied Mathematics, Université Grenoble Alpes, France
 * Oct 08 - Sep 10: Master of Science in Applied Mathematics, Politecnico di Torino, Italy
 * Jan 05 - Oct 11: Bachelor of Electrical Engineer, Escola Politécnica da Universidade de São Paulo, Brazil
 
-# 2. Honour and Awards
+## 2. Honour and Awards
 
 * 2015: French National Best Thesis Award, on Modelling, Automation, Control and Optimisation. Read
 [media](https://docsend.com/view/xst3fduh78rusfxb) announcement (in French).
@@ -31,7 +31,7 @@ redirect_from:
 * 2008: MSc Scholarship, Politecnico di Torino.
 * 2008: Scholarship, Brazilian Technological and Scientific Development Council.
 
-# 3. Work Experience
+## 3. Work Experience
 
 * May 22 - Now: Senior Manager, Macquarie Group, Australia
 * Jan 21 - Apr 22: Scrum Master, Telstra, Australia
@@ -40,7 +40,7 @@ redirect_from:
 * Aug 17 - Aug 19: Data Scientist, QBE, Australia
 * Aug 15 - Aug 17: Research Associate, The University of Sydney, Australia
 
-# 4. Other
+## 4. Other
 
 * My mathematical genealogy:
 [https://genealogy.math.ndsu.nodak.edu/id.php?id=185045](https://genealogy.math.ndsu.nodak.edu/id.php?id=185045)
