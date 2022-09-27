@@ -15,12 +15,14 @@ This is how I found out how to add a switcher to toggle between light and dark m
 I followed the instructions posted by sohamsaha99 in [this Github thread](https://github.com/mmistakes/minimal-mistakes/discussions/2033) and copied here:
 
 1. Edit `_config.yml`: There are going to be two themes. The first one is declared as usual. And for the second one, we create a new entry caled minimal_mistakes_skin2. So, add the following lines:
+   
 ```yml
 minimal_mistakes_skin: "default"
 minimal_mistakes_skin2: "dark"
 ```
 
 2. Create a file in your project directory in the location `assets/css/theme2.scss` and insert the following lines in the file:
+
 ```scss
 ---
 # Only the main Sass file needs front matter (the dashes are enough)
@@ -33,10 +35,12 @@ minimal_mistakes_skin2: "dark"
 ```
 
 3. Modify the following line in file `_includes/head.html` from:
+   
 ```html
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 ```
 to
+
 ```html
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" id="theme_source">
 ```
@@ -64,7 +68,8 @@ and just after that line, add the code:
 
 The names `light` and `dark` are generics of `skin1` and `skin2`. These strings have nothing to do with the actual skin names.
 
-4. Add an icon next to navigation. In `_includes/masterhead.html` find `{% if site.search == true %}` and above that add:
+4. Add an icon next to navigation. In `_includes/masterhead.html` find  `{ % if site.search == true % }` and above that add:
+   
 ```html
 {% if site.minimal_mistakes_skin2 %}
   <i class="fas fa-fw fa-sun" aria-hidden="true" onclick="node1=document.getElementById('theme_source');node2=document.getElementById('theme_source_2');if(node1.getAttribute('rel')=='stylesheet'){node1.setAttribute('rel', 'stylesheet alternate'); node2.setAttribute('rel', 'stylesheet');sessionStorage.setItem('theme', 'dark');}else{node2.setAttribute('rel', 'stylesheet alternate'); node1.setAttribute('rel', 'stylesheet');sessionStorage.setItem('theme', 'light');} return false;"></i>
