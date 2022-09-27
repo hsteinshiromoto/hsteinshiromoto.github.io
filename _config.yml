@@ -160,7 +160,7 @@ footer:
       icon: "fas fa-sitemap"
       url: "/sitemap/"
     - label: "Archive"
-      # icon: "fas fa-sitemap"
+      icon: "fas fa-archive"
       url: "/year-archive/"
 
 # Reading Files
