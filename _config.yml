@@ -159,6 +159,9 @@ footer:
     - label: "Sitemap"
       icon: "fas fa-sitemap"
       url: "/sitemap/"
+    - label: "Archive"
+      # icon: "fas fa-sitemap"
+      url: "/year-archive/"
 
 # Reading Files
 include:
