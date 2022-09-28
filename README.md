@@ -17,3 +17,4 @@
 # References:
 
 * https://www.cross-validated.com/Personal-website-with-Minimal-Mistakes-Jekyll-Theme-HOWTO-Part-I/
+* Icons list: https://gist.github.com/mohamdio/982653e3a8ae35f892f13c5ef0ef9b58
