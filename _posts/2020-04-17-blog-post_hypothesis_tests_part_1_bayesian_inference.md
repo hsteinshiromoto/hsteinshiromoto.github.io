@@ -1,6 +1,7 @@
 ---
 title: 'Hypothesis Tests Part 1: Bayesian Inference'
 date: 2020-04-17
+layout: posts
 permalink: /posts/2020/04/17/hypothesis_tests_part_1_bayesian_inference
 categories:
   - statistics

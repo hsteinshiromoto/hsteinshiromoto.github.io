@@ -1,6 +1,7 @@
 ---
 title: "Querying the Latest Record"
 date: 2020-08-13
+layout: posts
 permalink: posts/2020/08/13/querying_the_latest_record
 categories: 
   - coding

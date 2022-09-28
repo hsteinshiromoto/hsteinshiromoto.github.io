@@ -1,6 +1,7 @@
 ---
 title: "Find Row Closest to a Value"
 date: 2020-06-25
+layout: posts
 permalink: /posts/2020/06/25/find_row_closest_value_to_input
 categories: 
   - coding

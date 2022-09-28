@@ -1,6 +1,7 @@
 ---
 title: "A Digression on the Cantor Set"
 date: 2021-01-21
+layout: posts
 permalink: posts/2021/01/21/a_digression_on_the_cantor_set
 categories: 
   - mathematics

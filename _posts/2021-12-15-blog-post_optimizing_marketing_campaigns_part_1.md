@@ -1,6 +1,7 @@
 ---
 title: 'Optimizing Marketing Campaigns Part 1: Clustering'
 date: 2021-12-15
+layout: posts
 permalink: posts/2021/12/15/blog-post_optimizing_marketing_campaigns_part_1
 tags: 
   - marketing

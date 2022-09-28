@@ -1,6 +1,7 @@
 ---
 title: 'Estimate Number of Observations Using Power Analysis'
 date: 2021-07-19
+layout: posts
 permalink: posts/2021/07/19/estimate_number_of_observations_using_power_analysis
 categories: 
   - coding

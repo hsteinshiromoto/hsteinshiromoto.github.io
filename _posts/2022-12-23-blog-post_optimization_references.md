@@ -1,6 +1,7 @@
 ---
 title: 'Optimization References'
 date: 2021-12-23
+layout: posts
 permalink: posts/2021/12/23/optimization_references
 categories:
   - mathematics

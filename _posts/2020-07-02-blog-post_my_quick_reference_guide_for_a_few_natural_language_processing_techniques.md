@@ -1,6 +1,7 @@
 ---
 title: "My Quick Reference Guide For A Few Natural Language Processing Techniques"
 date: 2020-07-02
+layout: posts
 permalink: /posts/2020/07/02/my_quick_reference_guide_for_a_few_natural_language_processing_techniques
 tags:
   - Natural Language Processing

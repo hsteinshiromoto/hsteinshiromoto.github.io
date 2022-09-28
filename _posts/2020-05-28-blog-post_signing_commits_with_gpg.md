@@ -2,6 +2,7 @@
 title: 'Signing git commits with gpg'
 date: 2020-05-28
 permalink: /posts/2020/05/28/signing_commits_with_gpg
+layout: posts
 categories:
   - coding
 tags:

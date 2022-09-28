@@ -1,6 +1,7 @@
 ---
 title: 'Soft Maximum'
 date: 2021-11-28
+layout: posts
 permalink: posts/2021/11/28/soft_maximum
 categories: 
   - mathematics

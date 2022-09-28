@@ -1,6 +1,7 @@
 ---
 title: 'A Control Theoretical Formulation of Hyperparameter Tunning'
 date: 2022-12-16
+layout: posts
 permalink: posts/2022/12/16/blog-post_a_control_theoretical_formulation_of_hyperparameter_tunning
 tags: 
   - control theory

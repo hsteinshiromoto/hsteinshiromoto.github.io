@@ -1,6 +1,7 @@
 ---
 title: 'Mixed Integer Programming'
 date: 2021-12-08
+layout: posts
 permalink: posts/2021/12/08/blog-post_mixed_integer_programming
 categories: 
   - mathematics
