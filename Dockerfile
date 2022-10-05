@@ -6,6 +6,7 @@ FROM $DOCKER_PARENT_IMAGE
 
 # NB: Arguments should come after FROM otherwise they're deleted
 ARG BUILD_DATE
+ARG PROJECT_NAME
 
 # Silence debconf
 ARG DEBIAN_FRONTEND=noninteractive
@@ -28,7 +29,8 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 
 RUN bundle config --global frozen 1
 
-WORKDIR /usr/src/app
+RUN mkdir -p $HOME
+WORKDIR $HOME
 
 # prepare to install ruby packages into container
 COPY Gemfile Gemfile.lock minimal-mistakes-jekyll.gemspec ./

@@ -27,6 +27,7 @@ image:
 
 	@echo "Building docker image ${DOCKER_IMAGE_TAG}"
 	docker build --build-arg BUILD_DATE=${BUILD_DATE} \
+				--build-arg PROJECT_NAME=${PROJECT_NAME} \
 				-t ${DOCKER_IMAGE_TAG} .
 	@echo "Done"
 
@@ -34,7 +35,7 @@ image:
 run:
 	$(eval DOCKER_IMAGE_TAG=${DOCKER_IMAGE_NAME}:${DOCKER_TAG})
 
-	 docker run --volume="$(PWD):/usr/src/app" -p 4000:4000 -t ${DOCKER_IMAGE_TAG}
+	 docker run --volume="$(PWD):/home/${PROJECT_NAME}" -p 4000:4000 -t ${DOCKER_IMAGE_TAG}
 
 # ---
 # Self Documenting Commands
