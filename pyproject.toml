@@ -5,7 +5,6 @@ description = "Humberto's website"
 authors = ["Humberto STEIN SHIROMOTO <h.stein.shiromoto@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-packages = [{include = "hsteinshiromoto"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
