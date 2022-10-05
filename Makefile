@@ -12,7 +12,6 @@ DOCKER_IMAGE_NAME=hsteinshiromoto/${PROJECT_NAME}
 
 BUILD_DATE = $(shell date +%Y%m%d-%H:%M:%S)
 
-BASE_IMAGE_TAG=$(shell git ls-files -s Dockerfile.base | awk '{print $$2}' | cut -c1-16)
 DOCKER_TAG=$(shell git ls-files -s Dockerfile.app | awk '{print $$2}' | cut -c1-16)
 
 # ---
@@ -22,26 +21,12 @@ DOCKER_TAG=$(shell git ls-files -s Dockerfile.app | awk '{print $$2}' | cut -c1-
 # Refences:
 #	[1] https://www.cross-validated.com/Personal-website-with-Minimal-Mistakes-Jekyll-Theme-HOWTO-Part-I/
 
-## Builds base and app Docker images
-image: base_image app_image
-
-## Build base Docker image
-base_image:
-	$(eval DOCKER_IMAGE_TAG=${DOCKER_IMAGE_NAME}.base:${BASE_IMAGE_TAG})
-
-	@echo "Building docker image ${DOCKER_IMAGE_TAG}"
-	docker build -f Dockerfile.base -t ${DOCKER_IMAGE_TAG} .
-	@echo "Done"
-
-	docker run --volume="$(PWD):/usr/src/app" -t ${DOCKER_IMAGE_TAG} bundle install
-
 ## Build application Docker image
-app_image:
-	$(eval DOCKER_PARENT_IMAGE=${DOCKER_IMAGE_NAME}.base:${BASE_IMAGE_TAG})
+image:
 	$(eval DOCKER_IMAGE_TAG=${DOCKER_IMAGE_NAME}:${DOCKER_TAG})
 
 	@echo "Building docker image ${DOCKER_IMAGE_TAG}"
-	docker build -f Dockerfile.app -t ${DOCKER_IMAGE_TAG} .
+	docker build -t ${DOCKER_IMAGE_TAG} .
 	@echo "Done"
 
 ## Run container based on application image
