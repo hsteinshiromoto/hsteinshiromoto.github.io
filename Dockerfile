@@ -62,9 +62,11 @@ RUN curl -sSL https://install.python-poetry.org | python3 -
 ENV PATH="${PATH}:$HOME/.poetry/bin"
 ENV PATH="${PATH}:$HOME/.local/bin"
 
-# RUN poetry config virtualenvs.create false \
-#     && cd /usr/local \
-#     && poetry install --no-interaction --no-ansi
+COPY pyproject.toml poetry.lock /usr/local/
+
+RUN poetry config virtualenvs.create false \
+    && cd /usr/local \
+    && poetry install --no-interaction --no-ansi
 
 # ---
 # Install Gems
