@@ -4,6 +4,7 @@ SHELL:=/bin/bash
 # ---
 # Variables
 # ---
+PYTHON_VERSION="3.10.7"
 PROJECT_PATH := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 GIT_REMOTE=$(shell basename $(shell git remote get-url origin))
 PROJECT_NAME=$(shell basename $(PWD))
@@ -28,6 +29,7 @@ image:
 	@echo "Building docker image ${DOCKER_IMAGE_TAG}"
 	docker build --build-arg BUILD_DATE=${BUILD_DATE} \
 				--build-arg PROJECT_NAME=${PROJECT_NAME} \
+				--build-arg PYTHON_VERSION=${PYTHON_VERSION} \
 				-t ${DOCKER_IMAGE_TAG} .
 	@echo "Done"
 
