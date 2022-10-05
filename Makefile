@@ -6,13 +6,13 @@ SHELL:=/bin/bash
 # ---
 PROJECT_PATH := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 GIT_REMOTE=$(shell basename $(shell git remote get-url origin))
-PROJECT_NAME=$(shell echo $(GIT_REMOTE:.git=))
+PROJECT_NAME=$(shell basename $(PWD))
 
 DOCKER_IMAGE_NAME=hsteinshiromoto/${PROJECT_NAME}
 
 BUILD_DATE = $(shell date +%Y%m%d-%H:%M:%S)
 
-DOCKER_TAG=$(shell git ls-files -s Dockerfile.app | awk '{print $$2}' | cut -c1-16)
+DOCKER_TAG=$(shell git ls-files -s Dockerfile | awk '{print $$2}' | cut -c1-16)
 
 # ---
 # Targets
