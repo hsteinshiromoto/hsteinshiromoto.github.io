@@ -52,6 +52,19 @@ ENV PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${PATH}"
 # Install Python and set the correct version
 # ---
 RUN pyenv install $PYTHON_VERSION && pyenv global $PYTHON_VERSION
+ENV PATH="${PATH}:${PYENV_ROOT}/versions/$PYTHON_VERSION/bin"
+
+# ---
+# Install poetry
+# ---
+RUN curl -sSL https://install.python-poetry.org | python3 -
+
+ENV PATH="${PATH}:$HOME/.poetry/bin"
+ENV PATH="${PATH}:$HOME/.local/bin"
+
+# RUN poetry config virtualenvs.create false \
+#     && cd /usr/local \
+#     && poetry install --no-interaction --no-ansi
 
 # ---
 # Install Gems
