@@ -31,7 +31,6 @@ image:
 
 ## Run container based on application image
 run:
-	$(eval DOCKER_PARENT_IMAGE=${DOCKER_IMAGE_NAME}.base:${BASE_IMAGE_TAG})
 	$(eval DOCKER_IMAGE_TAG=${DOCKER_IMAGE_NAME}:${DOCKER_TAG})
 
 	 docker run --volume="$(PWD):/usr/src/app" -p 4000:4000 -t ${DOCKER_IMAGE_TAG}
