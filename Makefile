@@ -33,6 +33,10 @@ image:
 				-t ${DOCKER_IMAGE_TAG} .
 	@echo "Done"
 
+## Pull container from github registry
+pull:
+	docker pull ghcr.io/${DOCKER_IMAGE_NAME}/${PROJECT_NAME}:latest
+
 ## Run container based on application image
 run:
 	$(eval DOCKER_IMAGE_TAG=${DOCKER_IMAGE_NAME}:${DOCKER_TAG})
