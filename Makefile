@@ -4,16 +4,16 @@ SHELL:=/bin/bash
 # ---
 # Variables
 # ---
+PYTHON_VERSION="3.10.7"
 PROJECT_PATH := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 GIT_REMOTE=$(shell basename $(shell git remote get-url origin))
-PROJECT_NAME=$(shell echo $(GIT_REMOTE:.git=))
+PROJECT_NAME=$(shell basename $(PWD))
 
 DOCKER_IMAGE_NAME=hsteinshiromoto/${PROJECT_NAME}
 
 BUILD_DATE = $(shell date +%Y%m%d-%H:%M:%S)
 
-BASE_IMAGE_TAG=$(shell git ls-files -s Dockerfile.base | awk '{print $$2}' | cut -c1-16)
-DOCKER_TAG=$(shell git ls-files -s Dockerfile.app | awk '{print $$2}' | cut -c1-16)
+DOCKER_TAG=$(shell git ls-files -s Dockerfile | awk '{print $$2}' | cut -c1-16)
 
 # ---
 # Targets
@@ -22,34 +22,26 @@ DOCKER_TAG=$(shell git ls-files -s Dockerfile.app | awk '{print $$2}' | cut -c1-
 # Refences:
 #	[1] https://www.cross-validated.com/Personal-website-with-Minimal-Mistakes-Jekyll-Theme-HOWTO-Part-I/
 
-## Builds base and app Docker images
-image: base_image app_image
-
-## Build base Docker image
-base_image:
-	$(eval DOCKER_IMAGE_TAG=${DOCKER_IMAGE_NAME}.base:${BASE_IMAGE_TAG})
-
-	@echo "Building docker image ${DOCKER_IMAGE_TAG}"
-	docker build -f Dockerfile.base -t ${DOCKER_IMAGE_TAG} .
-	@echo "Done"
-
-	docker run --volume="$(PWD):/usr/src/app" -t ${DOCKER_IMAGE_TAG} bundle install
-
 ## Build application Docker image
-app_image:
-	$(eval DOCKER_PARENT_IMAGE=${DOCKER_IMAGE_NAME}.base:${BASE_IMAGE_TAG})
+image:
 	$(eval DOCKER_IMAGE_TAG=${DOCKER_IMAGE_NAME}:${DOCKER_TAG})
 
 	@echo "Building docker image ${DOCKER_IMAGE_TAG}"
-	docker build -f Dockerfile.app -t ${DOCKER_IMAGE_TAG} .
+	docker build --build-arg BUILD_DATE=${BUILD_DATE} \
+				--build-arg PROJECT_NAME=${PROJECT_NAME} \
+				--build-arg PYTHON_VERSION=${PYTHON_VERSION} \
+				-t ${DOCKER_IMAGE_TAG} .
 	@echo "Done"
+
+## Pull container from github registry
+pull:
+	docker pull ghcr.io/${DOCKER_IMAGE_NAME}/${PROJECT_NAME}:latest
 
 ## Run container based on application image
 run:
-	$(eval DOCKER_PARENT_IMAGE=${DOCKER_IMAGE_NAME}.base:${BASE_IMAGE_TAG})
-	$(eval DOCKER_IMAGE_TAG=${DOCKER_IMAGE_NAME}:${DOCKER_TAG})
+	$(eval DOCKER_IMAGE_TAG=ghcr.io/${DOCKER_IMAGE_NAME}/${PROJECT_NAME}:latest)
 
-	 docker run --volume="$(PWD):/usr/src/app" -p 4000:4000 -t ${DOCKER_IMAGE_TAG}
+	 docker run --volume="$(PWD):/home/${PROJECT_NAME}" -p 4000:4000 -t ${DOCKER_IMAGE_TAG}
 
 # ---
 # Self Documenting Commands

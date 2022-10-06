@@ -1,6 +1,7 @@
 ---
 title: "Datetime Resample"
 date: 2020-06-11
+layout: posts
 permalink: /posts/2020/06/11/datetime_resample
 categories: 
   - coding

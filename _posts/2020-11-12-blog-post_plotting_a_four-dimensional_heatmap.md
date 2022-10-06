@@ -1,6 +1,7 @@
 ---
 title: 'Plotting a Four-Dimensional Heatmap'
 date: 2020-11-12
+layout: posts
 permalink: posts/2020/11/12/plotting_a_four-dimensional_heatmap
 categories: 
   - coding

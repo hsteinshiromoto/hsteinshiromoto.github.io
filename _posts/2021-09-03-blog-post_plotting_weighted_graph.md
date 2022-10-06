@@ -1,6 +1,7 @@
 ---
 title: 'Plotting a weighted graph using networkx'
 date: 2021-09-03
+layout: posts
 permalink: posts/2021/09/03/plotting_weighted_graph
 categories: 
   - coding

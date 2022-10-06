@@ -1,6 +1,7 @@
 ---
 title: "Hypothesis Test Canvas"
 date: 2021-07-19
+layout: posts
 permalink: posts/2021/07/19/hypothesis_test_canvas
 categories: 
   - statistics

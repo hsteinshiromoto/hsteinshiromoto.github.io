@@ -1,6 +1,7 @@
 ---
 title: 'Hypothesis Tests Part 2: Statistical Inference'
 date: 2020-05-21
+layout: posts
 permalink: /posts/2020/05/21/statistical_tests_part_2_statistical_inference
 categories:
   - statistics

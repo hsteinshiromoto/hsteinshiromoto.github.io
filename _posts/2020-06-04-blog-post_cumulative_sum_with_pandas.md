@@ -1,6 +1,7 @@
 ---
 title: "Cumulative Sum with Pandas"
 date: 2020-06-04
+layout: posts
 permalink: /posts/2020/06/04/cumulative_sum_with_pandas
 categories: 
   - coding

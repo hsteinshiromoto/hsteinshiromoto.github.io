@@ -1,6 +1,7 @@
 ---
 title: "Are Model Performance Metrics Enough?"
 date: 2021-10-31
+layout: posts
 permalink: posts/2021/10/31/are_model_performance_metrics_enough
 categories: 
   - management
