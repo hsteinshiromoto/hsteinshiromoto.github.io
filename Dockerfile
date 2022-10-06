@@ -36,7 +36,7 @@ WORKDIR $HOME
 # Install Debian Packages
 # ---
 RUN apt update & \
-    apt install -y git
+    apt install -y git git-flow
 
 # ---
 # Install pyenv
