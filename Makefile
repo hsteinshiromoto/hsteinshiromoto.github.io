@@ -41,7 +41,12 @@ pull:
 run:
 	$(eval DOCKER_IMAGE_TAG=ghcr.io/${DOCKER_IMAGE_NAME}/${PROJECT_NAME}:latest)
 
-	 docker run --volume="$(PWD):/home/${PROJECT_NAME}" -p 4000:4000 -t ${DOCKER_IMAGE_TAG}
+	docker run --volume="$(PWD):/home/${PROJECT_NAME}" -p 4000:4000 -t ${DOCKER_IMAGE_TAG}
+
+## Git hooks
+hooks:
+	cp bin/post-checkout .git/hooks/post-checkout
+
 
 # ---
 # Self Documenting Commands
