@@ -29,14 +29,14 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 LABEL org.label-schema.build-date=$BUILD_DATE \
     maintainer="Humberto STEIN SHIROMOTO <h.stein.shiromoto@gmail.com>"
 
-RUN mkdir -p $HOME
+RUN mkdir -p $HOME && mkdir -p $HOME/gems
 WORKDIR $HOME
 
 # ---
 # Install Debian Packages
 # ---
-RUN apt update & \
-    apt install -y git git-flow
+RUN apt-get update & \
+    apt-get install -y git
 
 # ---
 # Install pyenv
@@ -74,9 +74,9 @@ RUN poetry config virtualenvs.create false \
 RUN bundle config --global frozen 1
 
 # prepare to install ruby packages into container
-COPY Gemfile Gemfile.lock minimal-mistakes-jekyll.gemspec ./
+COPY Gemfile Gemfile.lock minimal-mistakes-jekyll.gemspec $HOME/gems/
 
-RUN bundle install
+RUN cd $HOME/gems && bundle install
 
 EXPOSE 4000
 
