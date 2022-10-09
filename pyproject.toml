@@ -11,6 +11,7 @@ python = "^3.10"
 Deprecated = "^1.2.13"
 cartorio = "^2.0.5"
 sumy = "^0.10.0"
+spacy = "^3.4.1"
 
 
 [tool.poetry.group.dev.dependencies]
