@@ -52,7 +52,6 @@ ENV PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${PATH}"
 # Install Python and set the correct version
 # ---
 RUN pyenv install $PYTHON_VERSION && pyenv global $PYTHON_VERSION
-ENV PATH="${PATH}:${PYENV_ROOT}/versions/$PYTHON_VERSION/bin"
 
 # ---
 # Install poetry
@@ -67,6 +66,10 @@ COPY pyproject.toml poetry.lock /usr/local/
 RUN poetry config virtualenvs.create false \
     && cd /usr/local \
     && poetry install --no-interaction --no-ansi
+
+ENV PATH="${PATH}:$HOME/.local/bin"
+# Need for Pytest
+ENV PATH="${PATH}:${PYENV_ROOT}/versions/$PYTHON_VERSION/bin"
 
 # ---
 # Install Gems
