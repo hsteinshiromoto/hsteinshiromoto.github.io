@@ -1,8 +1,9 @@
 from importlib.resources import contents
 from pathlib import Path
-import pandas as pd
 
 import nltk
+import pandas as pd
+import yaml
 
 nltk.download("stopwords")
 from nltk.corpus import stopwords
@@ -66,6 +67,19 @@ def process_content(
     return word_list
 
 
+def get_front_page(post: str) -> dict:
+    """Gets yaml front page of blog post.
+
+    Args:
+        post (str): The blog post containing the yaml front page.
+
+    Returns:
+        dict: Front page
+    """
+    front_page = post.split("---")[1]
+    return yaml.safe_load(front_page)
+
+
 def get_word_counts(word_list: list) -> pd.DataFrame:
     """_summary_
 
@@ -90,6 +104,7 @@ def get_word_counts(word_list: list) -> pd.DataFrame:
 
 def main(blog_post: str):
     content = get_post(filename=blog_post)
+    front_page = get_front_page(content)
     word_list = process_content(content)
     word_count_df = get_word_counts(word_list)
 
