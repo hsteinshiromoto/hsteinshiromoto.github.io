@@ -25,21 +25,23 @@ def get_post(filename: str, path: Path = PROJECT_ROOT / "_posts") -> str:
         return file.read()
 
 
-def get_word_counts(content: str) -> pd.DataFrame:
-    """_summary_
+def process_content(
+    content: str,
+    stop_words: set = set(stopwords.words("english")),
+    lem=WordNetLemmatizer(),
+) -> list:
+    """Pre process post content.
 
     Args:
-        content (str): _description_
-
-    References:
-        [1] https://medium.com/a-layman/pre-process-data-with-nltk-and-create-a-tag-cloud-for-blog-posts-in-react-a69025f4507c
+        content (str): Blog post content.
+        stop_words (set, optional): Stop words to be removed. Defaults to set(stopwords.words("english")).
+        lem (_type_, optional): Lemmatizer. Defaults to WordNetLemmatizer().
 
     Returns:
-        pd.DataFrame: _description_
+        list: List of words of post content.
     """
 
-    stop_words = set(stopwords.words("english"))
-    res = []
+    word_list = []
 
     # 3.1 Remove the non-word alphabets from the sentence
     text = re.sub("[^a-zA-Z]", " ", content)
@@ -56,17 +58,29 @@ def get_word_counts(content: str) -> pd.DataFrame:
     # 3.5 Convert to list from string
     text = text.split()
 
-    # 3.6 Stemming
-    ps = PorterStemmer()
-
     # 3.7 Lemmatisation
-    lem = WordNetLemmatizer()
     text = [lem.lemmatize(word) for word in text if not word in stop_words]
     text = " ".join(text)
-    res.append(text)
+    word_list.append(text)
+
+    return word_list
+
+
+def get_word_counts(word_list: list) -> pd.DataFrame:
+    """_summary_
+
+    Args:
+        word_list (list): List of words.
+
+    References:
+        [1] https://medium.com/a-layman/pre-process-data-with-nltk-and-create-a-tag-cloud-for-blog-posts-in-react-a69025f4507c
+
+    Returns:
+        pd.DataFrame: Frequency of each word.
+    """
 
     # 4. Caculate the number of occurrences
-    freq = pd.Series(" ".join(res).split()).value_counts()
+    freq = pd.Series(" ".join(word_list).split()).value_counts()
     freq.index.name = "Word"
     freq = freq.to_frame(name="Count").reset_index()
     freq["Proportion"] = 100 * freq["Count"] / freq["Count"].sum()
@@ -76,7 +90,8 @@ def get_word_counts(content: str) -> pd.DataFrame:
 
 def main(blog_post: str):
     content = get_post(filename=blog_post)
-    word_count_df = get_word_counts(content)
+    word_list = process_content(content)
+    word_count_df = get_word_counts(word_list)
 
     return word_count_df
 
