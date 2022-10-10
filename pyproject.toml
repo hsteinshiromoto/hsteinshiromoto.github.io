@@ -12,6 +12,8 @@ Deprecated = "^1.2.13"
 cartorio = "^2.0.5"
 sumy = "^0.10.0"
 spacy = "^3.4.1"
+nltk = "^3.7"
+pandas = "^1.5.0"
 
 
 [tool.poetry.group.dev.dependencies]
