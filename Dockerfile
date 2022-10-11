@@ -34,9 +34,11 @@ WORKDIR $HOME
 
 # ---
 # Install Debian Packages
+#
+# References:
+#   [1] https://unix.stackexchange.com/questions/336392/e-unable-to-locate-package-vim-on-debian-jessie-simplified-docker-container
 # ---
-RUN apt-get update & \
-    apt-get install -y git
+RUN apt-get update && apt-get install apt-file -y && apt-file update && apt-get install -y git-flow vim
 
 # ---
 # Install pyenv
