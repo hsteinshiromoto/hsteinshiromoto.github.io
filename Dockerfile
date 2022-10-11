@@ -35,8 +35,7 @@ WORKDIR $HOME
 # ---
 # Install Debian Packages
 # ---
-RUN apt-get update & \
-    apt-get install -y git vim
+RUN apt-get update & apt-get install -y git-flow vim
 
 # ---
 # Install pyenv
