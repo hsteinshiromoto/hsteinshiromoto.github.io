@@ -1,5 +1,6 @@
 from importlib.resources import contents
 from pathlib import Path
+from typing import Union
 
 import click
 import nltk
@@ -68,17 +69,27 @@ def process_content(
     return word_list
 
 
-def get_front_page(post: str) -> dict:
+def get_content_and_meta(post: str) -> tuple[dict, str]:
     """Gets yaml front page of blog post.
 
     Args:
         post (str): The blog post containing the yaml front page.
 
     Returns:
-        dict: Front page
+        Union[dict, str]: Yaml Front page and post content
+
+    Example:
+        >>> post = "---\ntitle: test\n---\nTest"
+        >>> front_page, content = get_content_and_meta(post)
+        >>> content == "Test"
+        True
+        # >>> front_page
+        # {'title': 'test'}
     """
-    front_page = post.split("---")[1]
-    return yaml.safe_load(front_page)
+    content = post.split("---")
+    metadata = content[1]
+    content = content[-1]
+    return yaml.safe_load(metadata), content
 
 
 def get_word_counts(word_list: list) -> pd.DataFrame:
@@ -109,7 +120,7 @@ def get_word_counts(word_list: list) -> pd.DataFrame:
 )
 def main(filename: str):
     content = get_post(filename=filename)
-    front_page = get_front_page(content)
+    front_page, content = get_content_and_meta(content)
     word_list = process_content(content)
     word_count_df = get_word_counts(word_list)
 
