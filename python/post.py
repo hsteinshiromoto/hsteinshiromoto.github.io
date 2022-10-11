@@ -69,7 +69,7 @@ def process_content(
     return word_list
 
 
-def get_content_and_meta(post: str) -> Union[dict, str]:
+def get_content_and_meta(post: str) -> tuple[dict, str]:
     """Gets yaml front page of blog post.
 
     Args:
@@ -77,6 +77,14 @@ def get_content_and_meta(post: str) -> Union[dict, str]:
 
     Returns:
         Union[dict, str]: Yaml Front page and post content
+
+    Example:
+        >>> post = "---\ntitle: test\n---\nTest"
+        >>> front_page, content = get_content_and_meta(post)
+        >>> content == "Test"
+        True
+        # >>> front_page
+        # {'title': 'test'}
     """
     content = post.split("---")
     metadata = content[1]
