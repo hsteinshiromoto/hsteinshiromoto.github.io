@@ -1,0 +1,25 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Python: post.py",
+            "type": "python",
+            "request": "launch",
+            "program": "python/post.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["-f", "22022-10-31-blog-post_are_model_performance_metrics_enough.md"],
+        }
+    ]
+}
