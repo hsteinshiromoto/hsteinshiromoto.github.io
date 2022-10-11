@@ -11,6 +11,15 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "justMyCode": true
+        },
+        {
+            "name": "Python: post.py",
+            "type": "python",
+            "request": "launch",
+            "program": "python/post.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["-f", "22022-10-31-blog-post_are_model_performance_metrics_enough.md"],
         }
     ]
 }
