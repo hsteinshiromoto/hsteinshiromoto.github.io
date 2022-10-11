@@ -30,14 +30,14 @@ def get_post(filename: str, path: Path = PROJECT_ROOT / "_posts") -> str:
 def process_content(
     content: str,
     stop_words: set = set(stopwords.words("english")),
-    lem=WordNetLemmatizer(),
+    lem: WordNetLemmatizer = WordNetLemmatizer(),
 ) -> list:
     """Pre process post content.
 
     Args:
         content (str): Blog post content.
         stop_words (set, optional): Stop words to be removed. Defaults to set(stopwords.words("english")).
-        lem (_type_, optional): Lemmatizer. Defaults to WordNetLemmatizer().
+        lem (WordNetLemmatizer, optional): Lemmatizer. Defaults to WordNetLemmatizer().
 
     Returns:
         list: List of words of post content.
