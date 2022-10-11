@@ -1,6 +1,7 @@
 from importlib.resources import contents
 from pathlib import Path
 
+import click
 import nltk
 import pandas as pd
 import yaml
@@ -102,18 +103,21 @@ def get_word_counts(word_list: list) -> pd.DataFrame:
     return freq
 
 
-def main(blog_post: str):
-    content = get_post(filename=blog_post)
+@click.command()
+@click.option(
+    "--filename", "-f", help="Markdown file name to be loaded", type=str, default=None
+)
+def main(filename: str):
+    content = get_post(filename=filename)
     front_page = get_front_page(content)
     word_list = process_content(content)
     word_count_df = get_word_counts(word_list)
 
-    return word_count_df
+    print(front_page)
+    print(word_count_df)
+
+    return word_count_df, front_page
 
 
 if __name__ == "__main__":
-    word_count_df = main(
-        "22022-10-31-blog-post_are_model_performance_metrics_enough.md"
-    )
-
-    print(word_count_df)
+    main()
