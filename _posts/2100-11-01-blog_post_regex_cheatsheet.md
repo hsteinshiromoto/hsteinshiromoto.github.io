@@ -8,9 +8,13 @@ Start: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod t
 
 Malesuada fames ac turpis egestas integer eget. Cras semper auctor neque vitae tempus. Sed adipiscing diam donec adipiscing tristique risus nec. Adipiscing tristique risus nec feugiat in fermentum. Diam quam nulla porttitor massa. Vestibulum rhoncus est pellentesque elit ullamcorper. Orci porta non pulvinar neque. Cras tincidunt lobortis feugiat vivamus. Felis eget nunc lobortis mattis aliquam faucibus. Volutpat diam ut venenatis tellus in. Nibh nisl condimentum id venenatis a condimentum vitae. end
 
-and we want to select everything between the keywods `start` and `end`. We can use the following pattern
+### Select everything between the keywods `start` and `end`
 
 `(?<=Start)((.|\n)*)(?=end)`
+
+### Select everything between the keywods `start` and `end` including these
+
+`Start((.|\n)*)end`
 
 ## References:
 
