@@ -103,6 +103,14 @@ def get_word_counts(word_list: list) -> pd.DataFrame:
 
     Returns:
         pd.DataFrame: Frequency of each word.
+
+    Example:
+        >>> word_list = ['A', 'B', 'C', 'D']
+        >>> freq = get_word_counts(word_list)
+        >>> freq["Count"].values.tolist()
+        [1, 1, 1, 1]
+        >>> freq["Proportion"].values.tolist()
+        [25.0, 25.0, 25.0, 25.0]
     """
 
     # 4. Caculate the number of occurrences
