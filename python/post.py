@@ -79,16 +79,16 @@ def get_content_and_meta(post: str) -> tuple[dict, str]:
         Union[dict, str]: Yaml Front page and post content
 
     Example:
-        >>> post = "---\ntitle: test\n---\nTest"
+        >>> post = "--- title: test --- Test"
         >>> front_page, content = get_content_and_meta(post)
         >>> content == "Test"
         True
-        # >>> front_page
-        # {'title': 'test'}
+        >>> front_page
+        {'title': 'test'}
     """
     content = post.split("---")
-    metadata = content[1]
-    content = content[-1]
+    metadata = content[1].strip()
+    content = content[-1].strip()
     return yaml.safe_load(metadata), content
 
 
@@ -103,6 +103,14 @@ def get_word_counts(word_list: list) -> pd.DataFrame:
 
     Returns:
         pd.DataFrame: Frequency of each word.
+
+    Example:
+        >>> word_list = ['A', 'B', 'C', 'D']
+        >>> freq = get_word_counts(word_list)
+        >>> freq["Count"].values.tolist()
+        [1, 1, 1, 1]
+        >>> freq["Proportion"].values.tolist()
+        [25.0, 25.0, 25.0, 25.0]
     """
 
     # 4. Caculate the number of occurrences

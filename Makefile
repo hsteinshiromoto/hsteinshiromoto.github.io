@@ -47,6 +47,10 @@ run:
 hooks:
 	cp bin/post-checkout .git/hooks/post-checkout
 
+## Run Pytest doctest
+doctest:
+	pytest --doctest-modules
+
 
 # ---
 # Self Documenting Commands
