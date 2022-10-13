@@ -1,6 +1,5 @@
 from importlib.resources import contents
 from pathlib import Path
-from typing import Union
 
 import click
 import nltk
