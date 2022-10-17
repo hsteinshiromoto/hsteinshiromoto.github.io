@@ -19,6 +19,27 @@ Suppose we have two paragraphs as such
 
 `Start((.|\n)*)end`
 
+## Character Classes
+
+| Character Class 	| Same as 	                            | Meaning |
+| ----------------- | ------------------------------------- | ------- |
+| `[[:alnum:]]` 	| `[0-9A-Za-z]` 	                    | Letters and digits |
+| `[[:alpha:]]` 	| `[A-Za-z]` 	                        | Letters |
+| `[[:ascii:]]` 	| `[\x00-\x7F]` 	                    | ASCII codes 0-127 |
+| `[[:blank:]]` 	| `[\t ] `	                            | Space or tab only |
+| `[[:cntrl:]]` 	| `[\x00-\x1F\x7F]` 	                | Control characters |
+| `[[:digit:]]` 	| `[0-9]` 	                            | Decimal digits |
+| `[[:graph:]]` 	| `[[:alnum:][:punct:]] `	            | Visible characters (not space) |
+| `[[:lower:]]` 	| `[a-z]` 	                            | Lowercase letters |
+| `[[:print:]]` 	| `[ -~] == [ [:graph:]] `              | Visible characters |
+| `[[:punct:]]`     | ``[!"#$%&’()*+,-./:;<=>?@[]^_`{\|}~]``| Visible punctuation c haracters |
+| `[[:space:]]` 	| `[\t\n\v\f\r ] `	                    | Whitespace |
+| `[[:upper:]]` 	| `[A-Z]` 	                            | Uppercase letters |
+| `[[:word:]]` 	    | `[0-9A-Za-z_]` 	                    | Word characters |
+| `[[:xdigit:]]`    | `[0-9A-Fa-f]` 	                    | Hexadecimal digits |
+| `[[:<:]]` 	    | `[\b(?=\w)] `	                        | Start of word |
+| `[[:>:]]` 	    | `[\b(?<=\w)] `	                    | End of word |
+
 ## Regex with Python
 
 Import the regular expressions module
@@ -27,51 +48,45 @@ Import the regular expressions module
 import re
 ```
 
-### Functions
+### `re.findall`
 
 Returns a list containing all matches:
 ```python
-re.findall
-
 >>> re.findall(r'\bs?pare?\b', 'par spar apparent spare part pare')
 ['par', 'spar', 'spare', 'pare']
 >>> re.findall(r'\b0*[1-9]\d{2,}\b', '0501 035 154 12 26 98234')
 ['0501', '154', '98234']
 ```
 
+### `re.finditer` 
+
 Returns an iterable of match objects (one for each match):
 ```python
-re.finditer
-
 >>> m_iter = re.finditer(r'[0-9]+', '45 349 651 593 4 204')
 >>> [m[0] for m in m_iter if int(m[0]) < 350]
 ['45', '349', '4', '204']
 ```
 
+### `re.search`
 Returns a Match object if there is a match anywhere in the string:
 ```python
-re.search 
-
 >>> sentence = 'This is a sample string'
 >>> bool(re.search(r'this', sentence, flags=re.I))
 True
 >>> bool(re.search(r'xyz', sentence))
 False
-
 ```
 
+### `re.split`
 Returns a list where the string has been split at each match:
 ```python
-re.split
-
 >>> re.split(r'\d+', 'Sample123string42with777numbers')
 ['Sample', 'string', 'with', 'numbers']
 ```
 
+### `re.sub`
 Replaces one or many matches with a string:
 ```python
-re.sub
-
 >>> ip_lines = "catapults\nconcatenate\ncat"
 >>> print(re.sub(r'^', r'* ', ip_lines, flags=re.M))
 * catapults
@@ -79,10 +94,9 @@ re.sub
 * cat
 ```
 
+### `re.compile`
 Compiles a regular expression pattern for later use:
 ```python
-re.compile
-
 >>> pet = re.compile(r'dog')
 >>> type(pet)
 <class '_sre.SRE_Pattern'>
@@ -92,19 +106,19 @@ True
 False
 ```
 
-Returns string with all non-alphanumerics backslashed:
-```python
-re.escape
-```
+### `re.escape`
 
-### Tags
 
-re.I 	re.IGNORECASE 	Ignore case
-re.M 	re.MULTILINE 	Multiline
-re.L 	re.LOCALE 	Make \w,\b,\s locale dependent
-re.S 	re.DOTALL 	Dot matches all (including newline)
-re.U 	re.UNICODE 	Make \w,\b,\d,\s unicode dependent
-re.X 	re.VERBOSE 	Readable style
+### Flags
+
+|code (short)|code (long)|Description|
+|------------|-----------|-----------|
+| `re.I` | `re.IGNORECASE` |	Ignore case |
+| `re.M` | `re.MULTILINE`  |	Multiline |
+| `re.L` | `re.LOCALE`     |	Make `\w`, `\b`, `\s` locale dependent |
+| `re.S` | `re.DOTALL`     |	Dot matches all (including newline) |
+| `re.U` | `re.UNICODE`    |	Make `\w`, `\b`, `\d`,`\s` unicode dependent |
+| `re.X` | `re.VERBOSE`    |	Readable style |
 
 ## References:
 
