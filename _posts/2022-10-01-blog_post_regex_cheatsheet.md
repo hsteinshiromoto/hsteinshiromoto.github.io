@@ -4,7 +4,7 @@ In this post, I compile a cheatsheet of the main regexes that I use in my projec
 
 Digital communication relies heavily on regular expressions to make it work. These are sequences of characters that specify a search pattern in the text. It is usually these types of patterns that are used by string-searching algorithms when they are attempting to "find" and/or "replace" strings or when they are attempting to validate input. Regular expression techniques are developed in theoretical computer science and formal language theory.
 
-It is common to use regular expressions and other text processing utilities, for example sed and AWK, to search and replace in text processors, as well as in lexical analysis and in text processing. The majority of general-purpose programming languages support regex capabilities either natively or with the aid of libraries. Examples of such languages include Python, C, C++, Java, and JavaScript.
+It is common to use regular expressions and other text processing utilities, for example `sed` and `AWK`, to search and replace in text processors, as well as in lexical analysis and in text processing. The majority of general-purpose programming languages support regex capabilities either natively or with the aid of libraries. Examples of such languages include Python, C, C++, Java, and JavaScript.
 
 An example of a regular expression is to locate a word spelled two different ways in a text editor, the regular expression `seriali[sz]e` matches both "serialise" and "serialize".
 
