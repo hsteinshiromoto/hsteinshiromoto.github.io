@@ -236,15 +236,8 @@ def get_word_counts(word_list: list) -> pd.DataFrame:
     return freq
 
 
-def make_front_page(
-    filename: str,
-    path: Path,
-    title: str,
-    categories: list[str],
-    tags: list[str],
-    date: str,
-    permalink: str,
-) -> None:
+def make_tags(word_count: Iterable[str], n_tags: int) -> Iterable[str]:
+    return word_count[:n_tags]
 
     front_page = {
         "title": title,
