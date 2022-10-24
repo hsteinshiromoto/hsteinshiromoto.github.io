@@ -1,5 +1,7 @@
+from dataclasses import dataclass
 from importlib.resources import contents
 from pathlib import Path
+from datetime import datetime
 
 import click
 import nltk
@@ -79,6 +81,7 @@ class Post:
     date: datetime
     categories: list[str]
     tags: list[str]
+    content: str
 
     def make_filename_from_title(self) -> None:
         self.formatted_title = self.title.lower().replace(" ", "_")
