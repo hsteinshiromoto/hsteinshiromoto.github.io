@@ -97,6 +97,13 @@ class Post:
 
         Returns:
             None:
+
+        Example:
+            >>> date = datetime.strptime('2022-10-24', "%Y-%m-%d")
+            >>> post = Post("title", date, ['category_1', 'category_2'], 'Content', ['tag_1', 'tag_2'])
+            >>> post.make_front_page()
+            >>> post.front_page
+            {'title': 'title', 'categories': ['category_1', 'category_2'], 'tags': ['tag_1', 'tag_2'], 'date': '2022-10-24', 'permalink': 'posts/2022/10/24/blog-post_title'}
         """
 
         permalink = (
