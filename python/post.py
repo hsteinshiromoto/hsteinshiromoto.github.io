@@ -93,7 +93,7 @@ class Post:
         """Makes post front page yaml.
 
         Args:
-            path (Path, optional): Path to posts. Defaults to PROJECT_ROOT / "_posts".
+            None:
 
         Returns:
             None:
@@ -105,6 +105,7 @@ class Post:
             >>> post.front_page
             {'title': 'title', 'categories': ['category_1', 'category_2'], 'tags': ['tag_1', 'tag_2'], 'date': '2022-10-24', 'permalink': 'posts/2022/10/24/blog-post_title'}
         """
+        self.make_filename_from_title()
 
         permalink = (
             f"posts/{self.date.strftime('%Y/%m/%d')}/blog-post_{self.formatted_title}"
