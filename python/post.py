@@ -21,6 +21,58 @@ nltk.download("omw-1.4")
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
+class Prepender:
+    """Prepend string to file
+
+    Returns:
+        None:
+
+    Example:
+        >>> with Prepender('test_d.out') as f:
+        ...     f.write('string 1\n')
+        ...     f.write('string 2\n')
+        ...     f.write('string 3\n')
+
+    References:
+        [1] https://stackoverflow.com/questions/2677617/write-at-beginning-of-file
+    """
+
+    def __init__(self, fname: str, mode="w") -> None:
+        """_summary_
+
+        Args:
+            fname (str): Filename to be prepended.
+            mode (str, optional): Open file mode. Defaults to "w".
+
+        Returns:
+            None:
+        """
+        self.__write_queue = []
+        self.__f = open(fname, mode)
+
+    def write(self, s: str) -> None:
+        """Write string to file
+
+        Args:
+            s (str): String to be written to file
+
+        Returns:
+            None:
+        """
+        self.__write_queue.insert(0, s)
+
+    def close(self):
+        self.__exit__(None, None, None)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, type, value, traceback):
+        if self.__write_queue:
+            self.__f.writelines(self.__write_queue)
+        self.__f.close()
+
+
 def get_post(filename: str, path: Path = PROJECT_ROOT / "_posts") -> str:
 
     with open(str(path / filename)) as file:
@@ -119,6 +171,30 @@ def get_word_counts(word_list: list) -> pd.DataFrame:
     freq["Proportion"] = 100 * freq["Count"] / freq["Count"].sum()
 
     return freq
+
+
+def make_front_page(
+    filename: str,
+    path: Path,
+    title: str,
+    categories: list[str],
+    tags: list[str],
+    date: str,
+    permalink: str,
+) -> None:
+
+    front_page = {
+        "title": title,
+        "categories": categories,
+        "tags": tags,
+        "date": date,
+        "permalink": permalink,
+    }
+
+    with open(str(path / filename), "r+") as f:
+        content = f.read()
+        f.seek(0, 0)
+        f.write(line.rstrip("\r\n") + "\n" + content)
 
 
 @click.command()
