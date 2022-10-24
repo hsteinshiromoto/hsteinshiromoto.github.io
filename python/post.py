@@ -1,7 +1,8 @@
 from collections.abc import Iterable
+from dataclasses import dataclass, field
 from importlib.resources import contents
 from pathlib import Path
-from datetime import datetime
+from typing import Dict
 
 import click
 import nltk
@@ -82,6 +83,7 @@ class Post:
     categories: Iterable[str]
     content: str
     tags: Iterable[str]
+    front_page: dict = field(default_factory=lambda: {})
 
     def make_filename_from_title(self) -> None:
         self.formatted_title = self.title.lower().replace(" ", "_")
