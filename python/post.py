@@ -73,6 +73,39 @@ class Prepender:
         self.__f.close()
 
 
+@dataclass
+class Post:
+    title: str
+    date: datetime
+    categories: list[str]
+    tags: list[str]
+
+    def make_filename_from_title(self) -> None:
+        self.formatted_title = self.title.lower().replace(" ", "_")
+
+    def make_front_page(self, path: Path = PROJECT_ROOT / "_posts") -> None:
+        """Makes post front page yaml.
+
+        Args:
+            path (Path, optional): Path to posts. Defaults to PROJECT_ROOT / "_posts".
+
+        Returns:
+            None:
+        """
+
+        permalink = (
+            f"posts/{self.date.strftime('%Y/%m/%d')}/blog-post_{self.formatted_title}"
+        )
+
+        self.front_page = {
+            "title": self.title,
+            "categories": self.categories,
+            "tags": self.tags,
+            "date": str(self.date()),
+            "permalink": permalink,
+        }
+
+
 def get_post(filename: str, path: Path = PROJECT_ROOT / "_posts") -> str:
 
     with open(str(path / filename)) as file:
