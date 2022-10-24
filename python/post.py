@@ -82,6 +82,7 @@ class Post:
     categories: list[str]
     tags: list[str]
     content: str
+    front_page: dict
 
     def make_filename_from_title(self) -> None:
         self.formatted_title = self.title.lower().replace(" ", "_")
