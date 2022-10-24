@@ -25,24 +25,24 @@ In this post, I compile a cheatsheet of the main regexes that I use in my projec
 
 All characters used in digital communication can be categorized the classes shown in the table below.
 
-| Character Class 	| Same as 	                            | Meaning |
-| ----------------- | ------------------------------------- | ------- |
-| `[[:alnum:]]` 	| `[0-9A-Za-z]` 	                    | Letters and digits |
-| `[[:alpha:]]` 	| `[A-Za-z]` 	                        | Letters |
-| `[[:ascii:]]` 	| `[\x00-\x7F]` 	                    | ASCII codes 0-127 |
-| `[[:blank:]]` 	| `[\t ] `	                            | Space or tab only |
-| `[[:cntrl:]]` 	| `[\x00-\x1F\x7F]` 	                | Control characters |
-| `[[:digit:]]` 	| `[0-9]` 	                            | Decimal digits |
-| `[[:graph:]]` 	| `[[:alnum:][:punct:]] `	            | Visible characters (not space) |
-| `[[:lower:]]` 	| `[a-z]` 	                            | Lowercase letters |
-| `[[:print:]]` 	| `[ -~] == [ [:graph:]] `              | Visible characters |
-| `[[:punct:]]`     | ``[!"#$%&’()*+,-./:;<=>?@[]^_`{\|}~]``| Visible punctuation c haracters |
-| `[[:space:]]` 	| `[\t\n\v\f\r ] `	                    | Whitespace |
-| `[[:upper:]]` 	| `[A-Z]` 	                            | Uppercase letters |
-| `[[:word:]]` 	    | `[0-9A-Za-z_]` 	                    | Word characters |
-| `[[:xdigit:]]`    | `[0-9A-Fa-f]` 	                    | Hexadecimal digits |
-| `[[:<:]]` 	    | `[\b(?=\w)] `	                        | Start of word |
-| `[[:>:]]` 	    | `[\b(?<=\w)] `	                    | End of word |
+| Character Class 	| Same as 	                            | Meaning                        |
+| ----------------- | ------------------------------------- | ------------------------------ |
+| `[[:alnum:]]` 	  | `[0-9A-Za-z]` 	                      | Letters and digits             |
+| `[[:alpha:]]` 	  | `[A-Za-z]` 	                          | Letters                        |
+| `[[:ascii:]]` 	  | `[\x00-\x7F]` 	                      | ASCII codes 0-127              |
+| `[[:blank:]]` 	  | `[\t ] `	                            | Space or tab only              |
+| `[[:cntrl:]]` 	  | `[\x00-\x1F\x7F]` 	                  | Control characters             |
+| `[[:digit:]]` 	  | `[0-9]` 	                            | Decimal digits                 |
+| `[[:graph:]]` 	  | `[[:alnum:][:punct:]] `	              | Visible characters (not space) |
+| `[[:lower:]]` 	  | `[a-z]` 	                            | Lowercase letters              |
+| `[[:print:]]` 	  | `[ -~] == [ [:graph:]] `              | Visible characters             |
+| `[[:punct:]]`     | ``[!"#$%&’()*+,-./:;<=>?@[]^_`{\|}~]``| Visible punctuation characters |
+| `[[:space:]]` 	  | `[\t\n\v\f\r ] `	                    | Whitespace                     |
+| `[[:upper:]]` 	  | `[A-Z]` 	                            | Uppercase letters              |
+| `[[:word:]]` 	    | `[0-9A-Za-z_]` 	                      | Word characters                |
+| `[[:xdigit:]]`    | `[0-9A-Fa-f]` 	                      | Hexadecimal digits             |
+| `[[:<:]]` 	      | `[\b(?=\w)] `	                        | Start of word                  |
+| `[[:>:]]` 	      | `[\b(?<=\w)] `	                      | End of word                    |
 
 ## Python's regex module
 
@@ -118,14 +118,14 @@ False
 
 ### Flags
 
-|code (short)|code (long)|Description|
-|------------|-----------|-----------|
-| `re.I`  | `re.IGNORECASE` |	Ignore case |
-| `re.M` | `re.MULTILINE`  |	Multiline |
-| `re.L` | `re.LOCALE`     |	Make `\w`, `\b`, `\s` locale dependent |
-| `re.S` | `re.DOTALL`     |	Dot matches all (including newline) |
-| `re.U` | `re.UNICODE`    |	Make `\w`, `\b`, `\d`,`\s` unicode dependent |
-| `re.X` | `re.VERBOSE`    |	Readable style |
+|code (short)|code (long)      |Description                                   |
+|------------|-----------------|----------------------------------------------|
+| `re.I`     | `re.IGNORECASE` | Ignore case                                  |
+| `re.M`     | `re.MULTILINE`  | Multiline                                    |
+| `re.L`     | `re.LOCALE`     | Make `\w`, `\b`, `\s` locale dependent       |
+| `re.S`     | `re.DOTALL`     | Dot matches all (including newline)          |
+| `re.U`     | `re.UNICODE`    | Make `\w`, `\b`, `\d`,`\s` unicode dependent |
+| `re.X`     | `re.VERBOSE`    | Readable style                               |
 
 ## Cookbook
 
