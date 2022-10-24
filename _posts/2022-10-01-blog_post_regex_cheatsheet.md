@@ -118,14 +118,14 @@ False
 
 ### Flags
 
-|code (short)|code (long)      |Description                                   |
-|------------|-----------------|----------------------------------------------|
-| `re.I`     | `re.IGNORECASE` | Ignore case                                  |
-| `re.M`     | `re.MULTILINE`  | Multiline                                    |
-| `re.L`     | `re.LOCALE`     | Make `\w`, `\b`, `\s` locale dependent       |
-| `re.S`     | `re.DOTALL`     | Dot matches all (including newline)          |
-| `re.U`     | `re.UNICODE`    | Make `\w`, `\b`, `\d`,`\s` unicode dependent |
-| `re.X`     | `re.VERBOSE`    | Readable style                               |
+|code (short)|code (long)      |Description                                    |
+|------------|-----------------|---------------------------------------------- |
+| `re.I`     | `re.IGNORECASE` | Ignore case                                   |
+| `re.M`     | `re.MULTILINE`  | Multiline                                     |
+| `re.L`     | `re.LOCALE`     | Make `\w`, `\b`, `\s` locale dependent        |
+| `re.S`     | `re.DOTALL`     | Dot matches all (including newline)           |
+| `re.U`     | `re.UNICODE`    | Make `\w`, `\b`, `\d`, `\s` unicode dependent |
+| `re.X`     | `re.VERBOSE`    | Readable style                                |
 
 ## Cookbook
 
