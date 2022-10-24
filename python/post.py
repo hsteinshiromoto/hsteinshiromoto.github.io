@@ -120,7 +120,7 @@ def process_content(
     return word_list
 
 
-def get_content_and_meta(post: str) -> tuple[dict, str]:
+def get_content_and_metadata(post: str) -> tuple[dict, str]:
     """Gets yaml front page of blog post.
 
     Args:
@@ -131,16 +131,31 @@ def get_content_and_meta(post: str) -> tuple[dict, str]:
 
     Example:
         >>> post = "--- title: test --- Test"
-        >>> front_page, content = get_content_and_meta(post)
+        >>> front_page, content = get_content_and_metadata(post)
         >>> content == "Test"
         True
         >>> front_page
         {'title': 'test'}
+        >>> post = "Just a test string"
+        >>> front_page, content = get_content_and_metadata(post)
+        >>> content == post
+        True
+        >>> front_page
+        {}
     """
-    content = post.split("---")
-    metadata = content[1].strip()
-    content = content[-1].strip()
-    return yaml.safe_load(metadata), content
+    if "---" in post:
+        content = post.split("---")
+
+        metadata = content[1].strip()
+        metadata = yaml.safe_load(metadata)
+
+        content = content[-1].strip()
+
+    else:
+        content = post
+        metadata = {}
+
+    return metadata, content
 
 
 def get_word_counts(word_list: list) -> pd.DataFrame:
