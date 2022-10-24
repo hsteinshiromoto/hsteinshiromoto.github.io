@@ -231,6 +231,7 @@ def get_word_counts(word_list: list) -> pd.DataFrame:
     freq.index.name = "Word"
     freq = freq.to_frame(name="Count").reset_index()
     freq["Proportion"] = 100 * freq["Count"] / freq["Count"].sum()
+    freq.sort_values(by="Count", inplace=True)
 
     return freq
 
