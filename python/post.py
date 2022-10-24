@@ -89,7 +89,7 @@ class Post:
     def make_filename_from_title(self) -> None:
         self.formatted_title = self.title.lower().replace(" ", "_")
 
-    def make_front_page(self, path: Path = PROJECT_ROOT / "_posts") -> None:
+    def make_front_page(self) -> None:
         """Makes post front page yaml.
 
         Args:
