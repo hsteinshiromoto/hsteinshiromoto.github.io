@@ -114,7 +114,7 @@ class Post:
             "title": self.title,
             "categories": self.categories,
             "tags": self.tags,
-            "date": str(self.date()),
+            "date": self.date.strftime("%Y-%m-%d"),
             "permalink": permalink,
         }
 
