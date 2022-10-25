@@ -209,13 +209,13 @@ def get_content_and_metadata(post: str) -> tuple[dict, str]:
         >>> front_page
         {}
     """
-    if "---" in post:
-        content = post.split("---")
+    regex = r"-{3}\n{1}((.|\n)*)-{3}\n{1}"
+    result = re.search(regex, post, re.MULTILINE)
 
-        metadata = content[1].strip()
+    if result:
+        content = re.sub(regex, "", post)
+        metadata = result.group()
         metadata = yaml.safe_load(metadata)
-
-        content = content[-1].strip()
 
     else:
         content = post
