@@ -280,13 +280,17 @@ def get_title(post: str) -> str:
 
 
 @click.command()
-@click.option("--filename", "-f", help="Markdown file name to be loaded", type=str)
-@click.option("--date", "-d", help="Blog post date", type=datetime)
-@click.option("--categories", "-c", help="Post categories", type=Iterable[str])
-@click.option("--n_tags", "-n", help="Number of tags", type=int)
+@click.option(
+    "--filename", "-f", help="Markdown file name to be loaded", type=str, required=True
+)
+@click.option("--date", "-d", help="Blog post date", type=datetime, required=False)
+@click.option(
+    "--categories", "-c", help="Post categories", type=Iterable[str], required=False
+)
+@click.option("--n_tags", "-n", help="Number of tags", type=int, required=False)
 def main(
     filename: str,
-    date: datetime = None,
+    date: datetime = None,  # type: ignore
     categories: Iterable[str] = [],
     n_tags: int = 5,
 ):
