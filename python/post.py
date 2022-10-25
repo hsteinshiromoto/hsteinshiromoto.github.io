@@ -104,35 +104,39 @@ def make_filename_from_title(date: datetime, title: str) -> str:
     """
     return f"{date.strftime('%Y-%m-%d')}-blog-post_{title.lower().replace(' ', '_')}"
 
-    def make_front_page(self) -> None:
-        """Makes post front page yaml.
 
-        Args:
-            None:
+def make_front_page(
+    date: datetime, title: str, categories: list[str], tags: list[str]
+) -> dict:
+    """Makes post front page yaml.
 
-        Returns:
-            None:
+    Args:
+        date (datetime): Post date.
+        title (str): Post title.
+        categories (list[str]): Post categories.
+        tags (list[str]): Post tags.
 
-        Example:
-            >>> date = datetime.strptime('2022-10-24', "%Y-%m-%d")
-            >>> post = Post("title", date, ['category_1', 'category_2'], 'Content', ['tag_1', 'tag_2'])
-            >>> post.make_front_page()
-            >>> post.front_page
-            {'title': 'title', 'categories': ['category_1', 'category_2'], 'tags': ['tag_1', 'tag_2'], 'date': '2022-10-24', 'permalink': 'posts/2022/10/24/blog-post_title'}
-        """
-        self.make_filename_from_title()
+    Returns:
+        None:
 
-        permalink = (
-            f"posts/{self.date.strftime('%Y/%m/%d')}/blog-post_{self.formatted_title}"
-        )
+    Example:
+        >>> title = "The Title"
+        >>> date = datetime.strptime('2022-10-24', "%Y-%m-%d")
+        >>> make_front_page(date, title, ['category_1', 'category_2'], ['tag_1', 'tag_2'])
+        {'title': 'The Title', 'categories': ['category_1', 'category_2'], 'tags': ['tag_1', 'tag_2'], 'date': '2022-10-24', 'permalink': 'posts/2022/10/24/blog-post_the_title'}
+    """
 
-        self.front_page = {
-            "title": self.title,
-            "categories": self.categories,
-            "tags": self.tags,
-            "date": self.date.strftime("%Y-%m-%d"),
-            "permalink": permalink,
-        }
+    formatted_title = title.lower().replace(" ", "_")
+
+    permalink = f"posts/{date.strftime('%Y/%m/%d')}/blog-post_{formatted_title}"
+
+    return {
+        "title": title,
+        "categories": categories,
+        "tags": tags,
+        "date": date.strftime("%Y-%m-%d"),
+        "permalink": permalink,
+    }
 
 
 def get_post(filename: str, path: Path = PROJECT_ROOT / "_posts") -> str:
