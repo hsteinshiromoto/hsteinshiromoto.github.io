@@ -84,6 +84,7 @@ class Post:
     categories: Iterable[str]
     content: str
     tags: Iterable[str]
+    filename: str = ""
     front_page: dict = field(default_factory=lambda: {})
 
 def make_filename_from_title(date: datetime, title: str) -> str:
