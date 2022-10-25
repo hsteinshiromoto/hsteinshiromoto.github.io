@@ -267,12 +267,21 @@ def make_tags(word_count: Iterable[str], n_tags: int) -> Iterable[str]:
 
 
 @click.command()
-@click.option(
-    "--filename", "-f", help="Markdown file name to be loaded", type=str, default=None
-)
-def main(filename: str):
-    content = get_post(filename=filename)
-    front_page, content = get_content_and_meta(content)
+@click.option("--filename", "-f", help="Markdown file name to be loaded", type=str)
+@click.option("--title", "-t", help="Blog post title", type=str, default="")
+@click.option("--date", "-d", help="Blog post date", type=datetime)
+@click.option("--categories", "-c", help="Post categories", type=Iterable[str])
+@click.option("--n_tags", "-n", help="Number of tags", type=int)
+def main(
+    filename: str,
+    title: str,
+    date: datetime = datetime.now(),
+    categories: Iterable[str] = [],
+    n_tags: int = 5,
+):
+
+    post = get_post(filename=filename)
+    front_page, content = get_content_and_metadata(post)
     word_list = process_content(content)
     word_count_df = get_word_counts(word_list)
 
