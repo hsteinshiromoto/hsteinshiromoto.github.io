@@ -259,13 +259,20 @@ def get_word_counts(word_list: list) -> pd.DataFrame:
 def make_tags(word_count: Iterable[str], n_tags: int) -> Iterable[str]:
     return word_count[:n_tags]
 
-    front_page = {
-        "title": title,
-        "categories": categories,
-        "tags": tags,
-        "date": date,
-        "permalink": permalink,
-    }
+
+def get_title(post: str) -> str:
+    """Get title of post. Where it is assumed to be the first line.
+
+    Args:
+        post (str): Blog post content.
+
+    Returns:
+        str: Post title.
+    """
+    raw_title = post.partition("\n")[0]
+    return raw_title.replace("#", "").strip()
+
+
 
     with open(str(path / filename), "r+") as f:
         content = f.read()
