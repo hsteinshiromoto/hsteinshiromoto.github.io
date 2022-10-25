@@ -287,9 +287,22 @@ def main(
     date = date or datetime.now().date()
 
     post = get_post(filename=filename)
+    title = get_title(post)
     front_page, content = get_content_and_metadata(post)
+
     word_list = process_content(content)
     word_count_df = get_word_counts(word_list)
+    tags = make_tags(word_count_df["Word"].tolist(), n_tags)
+
+    front_page = front_page or make_front_page(date, title, categories, tags)
+
+    post = Post(
+        title=title,
+        date=date,
+        categories=categories,
+        content=content,
+        tags=tags,
+    )
 
     print(front_page)
     print(word_count_df)
