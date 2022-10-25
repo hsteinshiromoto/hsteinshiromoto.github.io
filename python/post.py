@@ -163,17 +163,19 @@ def process_content(
 
     word_list = []
 
-    # 3.1 Remove the non-word alphabets from the sentence
-    text = re.sub("[^a-zA-Z]", " ", content)
+    regex_apply_dict = {
+        r"http\S+": "",  # Remove website links
+        r"(`{1}(\w+)`{1})": "",  # Remove inline code
+        r"`{3}((.|\n|\r)*)`{3}": "",  # Remove code blocks
+        "[^a-zA-Z]": " ",  # Remove the non-word alphabets from the sentence
+        "</?.*?>": " <> ",  # Remove HTML tags
+        "(\d|\W)+": " ",  # Remove non-word characters and digits
+    }
 
-    # 3.2 Convert to lowercase
-    text = text.lower()
+    text = content
 
-    # 3.3 Remove HTML tags
-    text = re.sub("</?.*?>", " <> ", text)
-
-    # 3.4 remove non-word characters and digits
-    text = re.sub("(\d|\W)+", " ", text)
+    for pattern, substitution in regex_apply_dict.items():
+        text = re.sub(pattern, substitution, text)
 
     # 3.5 Convert to list from string
     text = text.split()
