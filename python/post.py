@@ -280,10 +280,11 @@ def make_tags(word_count: Iterable[str], n_tags: int) -> Iterable[str]:
 @click.option("--n_tags", "-n", help="Number of tags", type=int)
 def main(
     filename: str,
-    date: datetime = datetime.now(),
+    date: datetime = None,
     categories: Iterable[str] = [],
     n_tags: int = 5,
 ):
+    date = date or datetime.now().date()
 
     post = get_post(filename=filename)
     front_page, content = get_content_and_metadata(post)
