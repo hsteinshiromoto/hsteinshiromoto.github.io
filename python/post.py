@@ -86,21 +86,23 @@ class Post:
     tags: Iterable[str]
     front_page: dict = field(default_factory=lambda: {})
 
-    def make_filename_from_title(self) -> None:
-        """Adjust title to filename.
+def make_filename_from_title(date: datetime, title: str) -> str:
+    """Adjust title to filename.
 
-        Returns:
-            None:
+    Args:
+        date (datetime):
+        title (str):
 
-        Example:
-            >>> title = "The Blog Post"
-            >>> date = datetime.strptime('2022-10-24', "%Y-%m-%d")
-            >>> post = Post(title, date, [], 'Content', [])
-            >>> post.make_filename_from_title()
-            >>> post.formatted_title
-            'the_blog_post'
-        """
-        self.formatted_title = self.title.lower().replace(" ", "_")
+    Returns:
+        str: filename
+
+    Example:
+        >>> title = "The Title"
+        >>> date = datetime.strptime('2022-10-24', "%Y-%m-%d")
+        >>> make_filename_from_title(date, title)
+        '2022-10-24-blog-post_the_title'
+    """
+    return f"{date.strftime('%Y-%m-%d')}-blog-post_{title.lower().replace(' ', '_')}"
 
     def make_front_page(self) -> None:
         """Makes post front page yaml.
