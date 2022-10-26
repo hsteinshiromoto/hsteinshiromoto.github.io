@@ -1,3 +1,4 @@
+import re
 from collections.abc import Iterable
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -8,19 +9,12 @@ import click
 import nltk
 import pandas as pd
 import yaml
-
-nltk.download("stopwords")
+from nltk import RegexpTokenizer
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
-
-nltk.download("wordnet")
-import re
-
 from nltk.stem.wordnet import WordNetLemmatizer
-from nltk import RegexpTokenizer
 
-nltk.download("genesis")
-nltk.download("omw-1.4")
+nltk.download("stopwords", "wordnet", "genesis", "omw-1.4")
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
