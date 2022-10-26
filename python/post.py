@@ -17,6 +17,7 @@ nltk.download("wordnet")
 import re
 
 from nltk.stem.wordnet import WordNetLemmatizer
+from nltk import RegexpTokenizer
 
 nltk.download("genesis")
 nltk.download("omw-1.4")
