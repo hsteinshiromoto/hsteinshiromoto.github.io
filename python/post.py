@@ -355,8 +355,28 @@ def get_word_counts(word_list: list) -> pd.DataFrame:
     return freq
 
 
-def make_tags(word_count: Iterable[str], n_tags: int) -> Iterable[str]:
-    return word_count[:n_tags]
+def make_tags(word_count: Iterable) -> Iterable[str]:
+    """_summary_
+
+    Args:
+        word_count (Iterable): _description_
+
+    Returns:
+        Iterable[str]: _description_
+
+    Example:
+        >>> word_count = [("word_1"), ("word_2")]
+        >>> make_tags(word_count)
+        ['word_1', 'word_2']
+        >>> word_count = [("word_1", "word_2"), ("word_3", "word_4")]
+        >>> make_tags(word_count)
+        ['word_1 word_2', 'word_3 word_4']
+    """
+    if isinstance(word_count[0], str):
+        return word_count
+
+    else:
+        return [" ".join(item) for item in word_count]
 
 
 def get_title(post: str) -> str:
