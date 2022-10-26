@@ -255,19 +255,27 @@ def process_content(
 
     word_list = []
 
-    regex_apply_dict = {
-        r"http\S+": "",  # Remove website links
-        r"(`{1}(\w+)`{1})": "",  # Remove inline code
-        r"`{3}((.|\n|\r)*)`{3}": "",  # Remove code blocks
-        "[^a-zA-Z]": " ",  # Remove the non-word alphabets from the sentence
-        "</?.*?>": " <> ",  # Remove HTML tags
-        "(\d|\W)+": " ",  # Remove non-word characters and digits
-    }
+    regex_apply_list = [
+        (r"http\S+", "", re.MULTILINE),  # Match website links
+        (r"(`{1}(\w+|.+)\b`{1})", "", re.MULTILINE),  # Match inline code blocks
+        (r"`{3}\w+((.*|\n|\r)*)(\n|\r)`{3}", "", re.MULTILINE),  # Match code blocks
+        (
+            r"-\s{1}\[{1}.+\]{1}\({1}.+\){1}",
+            "",
+            re.MULTILINE,
+        ),  # Match table of contents
+        (
+            r"((\d|\W)+|[^a-zA-Z])",
+            " ",
+            re.MULTILINE,
+        ),  # Match non-word characters and digits
+        (r"</?.*?>", " ", re.MULTILINE),  # Match HTML tags
+    ]
 
     text = content
 
-    for pattern, substitution in regex_apply_dict.items():
-        text = re.sub(pattern, substitution, text)
+    for pattern, substitution, flag in regex_apply_list:
+        text = re.sub(pattern, substitution, text, flag)
 
     # 3.5 Convert to list from string
     text = text.split()
