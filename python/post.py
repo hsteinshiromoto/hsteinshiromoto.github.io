@@ -318,37 +318,6 @@ def get_content_and_metadata(post: str) -> tuple[dict, str]:
     return metadata, content
 
 
-def get_word_counts(word_list: list) -> pd.DataFrame:
-    """_summary_
-
-    Args:
-        word_list (list): List of words.
-
-    References:
-        [1] https://medium.com/a-layman/pre-process-data-with-nltk-and-create-a-tag-cloud-for-blog-posts-in-react-a69025f4507c
-
-    Returns:
-        pd.DataFrame: Frequency of each word.
-
-    Example:
-        >>> word_list = ['A', 'B', 'C', 'D']
-        >>> freq = get_word_counts(word_list)
-        >>> freq["Count"].values.tolist()
-        [1, 1, 1, 1]
-        >>> freq["Proportion"].values.tolist()
-        [25.0, 25.0, 25.0, 25.0]
-    """
-
-    # 4. Caculate the number of occurrences
-    freq = pd.Series(" ".join(word_list).split()).value_counts()
-    freq.index.name = "Word"
-    freq = freq.to_frame(name="Count").reset_index()
-    freq["Proportion"] = 100 * freq["Count"] / freq["Count"].sum()
-    freq.sort_values(by="Count", inplace=True)
-
-    return freq
-
-
 def make_tags(word_count: Iterable) -> Iterable[str]:
     """_summary_
 
