@@ -2,6 +2,11 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=vim,sublimetext,visualstudiocode,ruby,macos,windows,linux,latex,jekyll,jupyternotebooks,pycharm+all,python
 
 # ---
+# NLTK
+# ---
+wordnet/*
+
+# ---
 # Node.js and NPM
 # ---
 node_modules
