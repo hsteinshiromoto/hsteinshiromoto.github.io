@@ -237,55 +237,56 @@ def get_post(filename: str, path: Path = PROJECT_ROOT / "_posts") -> str:
         return file.read()
 
 
-def process_content(
-    content: str,
-    stop_words: set = set(stopwords.words("english")),
-    lem: WordNetLemmatizer = WordNetLemmatizer(),
-) -> list:
-    """Pre process post content.
+@dataclass
+class CleanContent:
+    #! TODO: Continue from here
+    content: str
+    stop_words: set = field(default_factory=set)
+    regex_rules: list = field(default_factory=list)
 
-    Args:
-        content (str): Blog post content.
-        stop_words (set, optional): Stop words to be removed. Defaults to set(stopwords.words("english")).
-        lem (WordNetLemmatizer, optional): Lemmatizer. Defaults to WordNetLemmatizer().
+    def _make_regex_rules(self):
+        default_list = [
+            (r"http\S+", "", re.MULTILINE),  # Match website links
+            (r"(`{1}(\w+|.+)\b`{1})", "", re.MULTILINE),  # Match inline code blocks
+            (r"`{3}\w+((.*|\n|\r)*)(\n|\r)`{3}", "", re.MULTILINE),  # Match code blocks
+            (
+                r"-\s{1}\[{1}.+\]{1}\({1}.+\){1}",
+                "",
+                re.MULTILINE,
+            ),  # Match table of contents
+            (
+                r"((\d|\W)+|[^a-zA-Z])",
+                " ",
+                re.MULTILINE,
+            ),  # Match non-word characters and digits
+            (r"</?.*?>", " ", re.MULTILINE),  # Match HTML tags
+        ]
 
-    Returns:
-        list: List of words of post content.
-    """
+        self.regex_rules = (
+            self.regex_rules.extend(default_list) if self.regex_rules else default_list
+        )
 
-    word_list = []
+    def get_clear_content(self) -> str:
+        text = self.content
 
-    regex_apply_list = [
-        (r"http\S+", "", re.MULTILINE),  # Match website links
-        (r"(`{1}(\w+|.+)\b`{1})", "", re.MULTILINE),  # Match inline code blocks
-        (r"`{3}\w+((.*|\n|\r)*)(\n|\r)`{3}", "", re.MULTILINE),  # Match code blocks
-        (
-            r"-\s{1}\[{1}.+\]{1}\({1}.+\){1}",
-            "",
-            re.MULTILINE,
-        ),  # Match table of contents
-        (
-            r"((\d|\W)+|[^a-zA-Z])",
-            " ",
-            re.MULTILINE,
-        ),  # Match non-word characters and digits
-        (r"</?.*?>", " ", re.MULTILINE),  # Match HTML tags
-    ]
+        self._make_regex_rules()
 
-    text = content
+        for pattern, substitution, flag in self.regex_rules:
+            text = re.sub(pattern, substitution, text, flag)
 
-    for pattern, substitution, flag in regex_apply_list:
-        text = re.sub(pattern, substitution, text, flag)
+        return text
 
-    # 3.5 Convert to list from string
-    text = text.split()
+    def preprocess_content(
+        self, text: str, lem: WordNetLemmatizer = WordNetLemmatizer()
+    ) -> str:
+        # 3.5 Convert to list from string
+        self.stop_words = self.stop_words or set(stopwords.words("english"))
 
-    # 3.7 Lemmatisation
-    text = [lem.lemmatize(word) for word in text if not word in stop_words]
-    text = " ".join(text)
-    word_list.append(text)
+        text = text.split()
 
-    return word_list
+        # 3.7 Lemmatisation
+        text = [lem.lemmatize(word) for word in text if not word in self.stop_words]
+        return " ".join(text)
 
 
 def get_content_and_metadata(post: str) -> tuple[dict, str]:
