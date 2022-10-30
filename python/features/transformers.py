@@ -50,7 +50,7 @@ class WordList(Meta):
         self.stop_words = stop_words
 
     def make(self, filter_words: list[str] = []) -> WordList:
-        """Make list of words from text.
+        """Makes list of words from text.
 
         Args:
             filter_words (list[str], optional): Words to be excluded. Defaults to [].
@@ -70,7 +70,7 @@ class WordList(Meta):
         return self
 
     def get(self) -> list[str]:
-        """_summary_
+        """Returns list of words
 
         Args:
             WordList:
