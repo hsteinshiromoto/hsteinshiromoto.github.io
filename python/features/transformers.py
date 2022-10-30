@@ -145,7 +145,7 @@ class CleanContent:
 
         return text
 
-    def preprocess_content(
+    def lemmatize_content(
         self, text: str, lem: WordNetLemmatizer = WordNetLemmatizer()
     ) -> str:
         # 3.5 Convert to list from string
