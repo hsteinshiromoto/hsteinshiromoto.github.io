@@ -25,11 +25,11 @@ class Prepender:
     Returns:
         None:
 
-    Example:
-        >>> with Prepender('test_d.out') as f:
-        ...     f.write('string 1\n')
-        ...     f.write('string 2\n')
-        ...     f.write('string 3\n')
+    # Example:
+    #     >>> with Prepender('test_d.out') as f:
+    #     ...     f.write('string 1\n')
+    #     ...     f.write('string 2\n')
+    #     ...     f.write('string 3\n')
 
     References:
         [1] https://stackoverflow.com/questions/2677617/write-at-beginning-of-file
@@ -140,7 +140,6 @@ class Grams:
             [('Lorem', 'ipsum'), ('ipsum', 'dolor'), ('dolor', 'sit')]
         """
         return nltk.ngrams(words_list, n_grams)
-
 
     def get_most_frequent_ngram(
         self, n_grams: zip, top_frequent: int = 20
@@ -364,11 +363,14 @@ def get_title(post: str) -> str:
     return raw_title.replace("#", "").strip()
 
 
+def make_post(frontpage: dict):
 
-    with open(str(path / filename), "r+") as f:
-        content = f.read()
-        f.seek(0, 0)
-        f.write(line.rstrip("\r\n") + "\n" + content)
+    filename = f"{str(date)}_blog_post_{filename_title}.md"
+
+    with Prepender(str(path / filename)) as f:
+        f.write("---")
+        f.write(yaml.dump(front_page))
+        f.write("---")
 
 
 @click.command()

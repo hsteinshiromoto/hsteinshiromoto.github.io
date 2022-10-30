@@ -19,7 +19,9 @@
             "program": "python/post.py",
             "console": "integratedTerminal",
             "justMyCode": true,
-            "args": ["-f", "22022-10-31-blog-post_are_model_performance_metrics_enough.md"],
+            "args": [
+                "-f", "2022-10-01-blog_post_regex_cheatsheet.md"
+            ],
         }
     ]
 }
