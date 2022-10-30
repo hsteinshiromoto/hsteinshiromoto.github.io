@@ -122,30 +122,37 @@ class NGrams(Meta):
         return self.ngrams
 
 
-@dataclass
-class Tags:
-    n_grams: zip
+class Tags(Meta):
+    """Create post tags.
 
-    def get_most_frequent_ngram(self, top_frequent: int = 10) -> pd.DataFrame:
+    Args:
+        n_grams (zip): N-grams generator.
+
+    Example:
+        >>> text = "Lorem ipsum dolor sit. Lorem ipsum, dolor sit."
+        >>> grams = [('Lorem', 'ipsum'), ('ipsum', 'dolor'), ('dolor', 'sit')]
+        >>> tags = Tags(grams)
+        >>> _ = tags.make(2)
+        >>> tags.get()
+        ['Lorem ipsum', 'ipsum dolor']
+        >>> grams = [("word_1"), ("word_2")]
+        >>> tags = Tags(grams)
+        >>> _ = tags.make(2)
+        >>> tags.get()
+        ['word_1', 'word_2']
+    """
+
+    def __init__(self, n_grams: zip):
+        self.n_grams = n_grams
+
+    def make(self, top_frequent: int = 5) -> Tags:
         """Get most frequent n-grams
 
         Args:
-            n_grams (zip): N-grams generator.
-            top_frequent (int, optional): Select top n_grams. Defaults to 20.
+            top_frequent (int, optional): Select top n_grams. Defaults to 5.
 
         Returns:
-            pd.DataFrame: Top n_grams
-
-        #! TODO: Redo this example
-        Example:
-            >>> text = "Lorem ipsum dolor sit. Lorem ipsum, dolor sit."
-            >>> gram = Grams(text=text)
-            >>> words_list = gram.make_word_list()
-            >>> ngrams = gram.make_grams(words_list, n_grams=2)
-            >>> ngrams_df = gram.get_most_frequent_ngram(ngrams, 2)
-            >>> output = pd.DataFrame.from_dict({'ngrams': [('Lorem', 'ipsum'), ('ipsum', 'dolor')], 'count': [2]*2, 'proportion': [50.0]*2})
-            >>> ngrams_df.equals(output)
-            True
+            Tags:
         """
         ngrams_freq_dist = nltk.FreqDist(self.n_grams)
         ngrams_count_dict = {"ngrams": [], "count": []}
@@ -158,30 +165,21 @@ class Tags:
         grams_df["proportion"] = 100 * grams_df["count"] / grams_df["count"].sum()
         grams_df.sort_values(by="count", inplace=True)
 
-        return grams_df
+        self.grams_df = grams_df
 
-    def make_tags(self, word_count: Iterable) -> Iterable[str]:
-        """_summary_
+        return self
 
-        Args:
-            word_count (Iterable): _description_
+    def get(self) -> Iterable[str]:
+        """Returns n tags according to frequency.
 
         Returns:
-            Iterable[str]: _description_
-
-        Example:
-            >>> word_count = [("word_1"), ("word_2")]
-            >>> make_tags(word_count)
-            ['word_1', 'word_2']
-            >>> word_count = [("word_1", "word_2"), ("word_3", "word_4")]
-            >>> make_tags(word_count)
-            ['word_1 word_2', 'word_3 word_4']
+            Iterable[str]: n tags.
         """
-        if isinstance(word_count[0], str):
-            return word_count
+        if isinstance(self.grams_df.loc[0, "ngrams"], str):
+            return self.grams_df["ngrams"].tolist()
 
         else:
-            return [" ".join(item) for item in word_count]
+            return [" ".join(item) for item in self.grams_df["ngrams"].tolist()]
 
 
 @dataclass
