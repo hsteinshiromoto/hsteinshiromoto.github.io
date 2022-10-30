@@ -33,23 +33,21 @@ class WordList(Meta):
 
     Example:
         >>> text = "Lorem ipsum dolor sit."
-        >>> word_list = WordList(text=text)
-        >>> _ = word_list.make()
+        >>> word_list = WordList()
+        >>> _ = word_list.make(text=text)
         >>> word_list.get() == ['Lorem', 'ipsum', 'dolor', 'sit']
         True
     """
 
     def __init__(
         self,
-        text: str,
         tokenizer: RegexpTokenizer = RegexpTokenizer(r"\w+"),
         stop_words: list[str] = stopwords.words("english"),
     ):
-        self.text = text
         self.tokenizer = tokenizer
         self.stop_words = stop_words
 
-    def make(self, filter_words: list[str] = []) -> WordList:
+    def make(self, text: str, filter_words: list[str] = []) -> WordList:
         """Makes list of words from text.
 
         Args:
@@ -58,7 +56,7 @@ class WordList(Meta):
         Returns:
             WordList:
         """
-        tokens = self.tokenizer.tokenize(self.text)
+        tokens = self.tokenizer.tokenize(text)
         words_list = [w for w in tokens if (w.lower() not in self.stop_words)]
 
         if filter_words:
