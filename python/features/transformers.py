@@ -1,4 +1,5 @@
 import re
+from collections.abc import Iterable
 from dataclasses import dataclass, field
 
 import nltk
@@ -68,9 +69,12 @@ class Grams:
         """
         return nltk.ngrams(words_list, n_grams)
 
-    def get_most_frequent_ngram(
-        self, n_grams: zip, top_frequent: int = 20
-    ) -> pd.DataFrame:
+
+@dataclass
+class Tags:
+    n_grams: zip
+
+    def get_most_frequent_ngram(self, top_frequent: int = 10) -> pd.DataFrame:
         """Get most frequent n-grams
 
         Args:
@@ -80,6 +84,7 @@ class Grams:
         Returns:
             pd.DataFrame: Top n_grams
 
+        #! TODO: Redo this example
         Example:
             >>> text = "Lorem ipsum dolor sit. Lorem ipsum, dolor sit."
             >>> gram = Grams(text=text)
@@ -90,7 +95,7 @@ class Grams:
             >>> ngrams_df.equals(output)
             True
         """
-        ngrams_freq_dist = nltk.FreqDist(n_grams)
+        ngrams_freq_dist = nltk.FreqDist(self.n_grams)
         ngrams_count_dict = {"ngrams": [], "count": []}
 
         for gram, count in ngrams_freq_dist.most_common(top_frequent):
@@ -102,6 +107,29 @@ class Grams:
         grams_df.sort_values(by="count", inplace=True)
 
         return grams_df
+
+    def make_tags(self, word_count: Iterable) -> Iterable[str]:
+        """_summary_
+
+        Args:
+            word_count (Iterable): _description_
+
+        Returns:
+            Iterable[str]: _description_
+
+        Example:
+            >>> word_count = [("word_1"), ("word_2")]
+            >>> make_tags(word_count)
+            ['word_1', 'word_2']
+            >>> word_count = [("word_1", "word_2"), ("word_3", "word_4")]
+            >>> make_tags(word_count)
+            ['word_1 word_2', 'word_3 word_4']
+        """
+        if isinstance(word_count[0], str):
+            return word_count
+
+        else:
+            return [" ".join(item) for item in word_count]
 
 
 @dataclass

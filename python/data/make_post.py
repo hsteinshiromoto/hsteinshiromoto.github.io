@@ -178,30 +178,6 @@ def get_content_and_metadata(post: str) -> tuple[dict, str]:
     return metadata, content
 
 
-def make_tags(word_count: Iterable) -> Iterable[str]:
-    """_summary_
-
-    Args:
-        word_count (Iterable): _description_
-
-    Returns:
-        Iterable[str]: _description_
-
-    Example:
-        >>> word_count = [("word_1"), ("word_2")]
-        >>> make_tags(word_count)
-        ['word_1', 'word_2']
-        >>> word_count = [("word_1", "word_2"), ("word_3", "word_4")]
-        >>> make_tags(word_count)
-        ['word_1 word_2', 'word_3 word_4']
-    """
-    if isinstance(word_count[0], str):
-        return word_count
-
-    else:
-        return [" ".join(item) for item in word_count]
-
-
 def get_title(post: str) -> str:
     """Get title of post. Where it is assumed to be the first line.
 
