@@ -27,7 +27,6 @@ class WordList(Meta):
     """_summary_
 
     Args:
-        text (str): Text to get words list from.
         tokenizer (RegexpTokenizer, optional): Word tokenizer. Defaults to RegexpTokenizer(r"\w+").
         stop_words (list[str], optional): List of English stop words. Defaults to stopwords.words("english").
 
@@ -43,14 +42,17 @@ class WordList(Meta):
         self,
         tokenizer: RegexpTokenizer = RegexpTokenizer(r"\w+"),
         stop_words: list[str] = stopwords.words("english"),
+        filter_words: list[str] = [],
     ):
         self.tokenizer = tokenizer
         self.stop_words = stop_words
+        self.filter_words = filter_words
 
-    def make(self, text: str, filter_words: list[str] = []) -> WordList:
+    def make(self, text: str) -> WordList:
         """Makes list of words from text.
 
         Args:
+            text (str): Text to get words list from.
             filter_words (list[str], optional): Words to be excluded. Defaults to [].
 
         Returns:
@@ -59,8 +61,10 @@ class WordList(Meta):
         tokens = self.tokenizer.tokenize(text)
         words_list = [w for w in tokens if (w.lower() not in self.stop_words)]
 
-        if filter_words:
-            filtered_words = [w for w in words_list if (w.lower() not in filter_words)]
+        if self.filter_words:
+            filtered_words = [
+                w for w in words_list if (w.lower() not in self.filter_words)
+            ]
             words_list = filtered_words
 
         self.words_list = words_list
