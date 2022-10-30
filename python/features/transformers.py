@@ -120,36 +120,31 @@ class NGrams(Meta):
 class Tags(Meta):
     """Create post tags.
 
-    Args:
-        n_grams (zip): N-grams generator.
-
     Example:
         >>> text = "Lorem ipsum dolor sit. Lorem ipsum, dolor sit."
         >>> grams = [('Lorem', 'ipsum'), ('ipsum', 'dolor'), ('dolor', 'sit')]
-        >>> tags = Tags(grams)
-        >>> _ = tags.make(2)
+        >>> tags = Tags()
+        >>> _ = tags.make(grams, 2)
         >>> tags.get()
         ['Lorem ipsum', 'ipsum dolor']
         >>> grams = [("word_1"), ("word_2")]
-        >>> tags = Tags(grams)
-        >>> _ = tags.make(2)
+        >>> tags = Tags()
+        >>> _ = tags.make(grams, 2)
         >>> tags.get()
         ['word_1', 'word_2']
     """
 
-    def __init__(self, n_grams: zip):
-        self.n_grams = n_grams
-
-    def make(self, top_frequent: int = 5) -> Tags:
+    def make(self, n_grams: zip, top_frequent: int = 5) -> Tags:
         """Get most frequent n-grams
 
         Args:
+            n_grams (zip): N-grams generator.
             top_frequent (int, optional): Select top n_grams. Defaults to 5.
 
         Returns:
             Tags:
         """
-        ngrams_freq_dist = nltk.FreqDist(self.n_grams)
+        ngrams_freq_dist = nltk.FreqDist(n_grams)
         ngrams_count_dict = {"ngrams": [], "count": []}
 
         for gram, count in ngrams_freq_dist.most_common(top_frequent):
