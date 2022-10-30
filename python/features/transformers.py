@@ -22,7 +22,7 @@ class Meta(ABC):
 
 
 class WordList(Meta):
-    """_summary_
+    """Makes list of words from text using regex tokenizer.
 
     Args:
         tokenizer (RegexpTokenizer, optional): Word tokenizer. Defaults to RegexpTokenizer(r"\w+").
