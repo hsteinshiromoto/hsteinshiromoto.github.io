@@ -1,9 +1,12 @@
+import re
 from dataclasses import dataclass, field
 
 import nltk
 import pandas as pd
 from nltk import RegexpTokenizer
 from nltk.corpus import stopwords
+from nltk.stem.porter import PorterStemmer
+from nltk.stem.wordnet import WordNetLemmatizer
 
 
 @dataclass
@@ -99,3 +102,57 @@ class Grams:
         grams_df.sort_values(by="count", inplace=True)
 
         return grams_df
+
+
+@dataclass
+class CleanContent:
+    #! TODO: Continue from here
+    content: str
+    stop_words: set = field(default_factory=set)
+    regex_rules: list = field(default_factory=list[tuple])
+
+    def _make_regex_rules(self):
+        default_list = [
+            (r"http\S+", "", re.MULTILINE),  # Match website links
+            (r"(`{1}(\w+|.+)\b`{1})", "", re.MULTILINE),  # Match inline code blocks
+            (r"`{3}\w+((.*|\n|\r)*)(\n|\r)`{3}", "", re.MULTILINE),  # Match code blocks
+            (
+                r"-\s{1}\[{1}.+\]{1}\({1}.+\){1}",
+                "",
+                re.MULTILINE,
+            ),  # Match table of contents
+            (
+                r"((\d|\W)+|[^a-zA-Z])",
+                " ",
+                re.MULTILINE,
+            ),  # Match non-word characters and digits
+            (r"</?.*?>", " ", re.MULTILINE),  # Match HTML tags
+        ]
+
+        if self.regex_rules:
+            self.regex_rules = self.regex_rules.extend(default_list)
+
+        else:
+            self.regex_rules = default_list
+
+    def get_clear_content(self) -> str:
+        text = self.content
+
+        self._make_regex_rules()
+
+        for pattern, substitution, flag in self.regex_rules:
+            text = re.sub(pattern, substitution, text, flag)
+
+        return text
+
+    def preprocess_content(
+        self, text: str, lem: WordNetLemmatizer = WordNetLemmatizer()
+    ) -> str:
+        # 3.5 Convert to list from string
+        self.stop_words = self.stop_words or set(stopwords.words("english"))
+
+        text = text.split()
+
+        # 3.7 Lemmatisation
+        text = [lem.lemmatize(word) for word in text if not word in self.stop_words]
+        return " ".join(text)
