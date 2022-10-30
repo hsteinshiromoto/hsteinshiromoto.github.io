@@ -242,14 +242,45 @@ class RegexContentFilter(Meta):
         return filtered_text
 
 
-    def lemmatize_content(
-        self, text: str, lem: WordNetLemmatizer = WordNetLemmatizer()
-    ) -> str:
-        # 3.5 Convert to list from string
-        self.stop_words = self.stop_words or set(stopwords.words("english"))
+class LemmatizeContent(Meta):
+    """Lemmative post content"""
 
-        text = text.split()
+    def __init__(
+        self,
+        stop_words: list[str] = stopwords.words("english"),
+        lem: WordNetLemmatizer = WordNetLemmatizer(),
+    ):
+        """Lemmatizes post content
+
+        Args:
+            stop_words (list[str], optional): List of English stop words. Defaults to stopwords.words("english").
+            lem (WordNetLemmatizer, optional): Word lemmatizer. Defaults to WordNetLemmatizer().
+        """
+        self.stop_words = set(stop_words)
+        self.lem = lem
+
+    def make(
+        self,
+        content: str,
+    ) -> LemmatizeContent:
+        """Lemmatizes words in post content.
+
+        Args:
+            content (str): Post content.
+        """
+        content = content.split()
 
         # 3.7 Lemmatisation
-        text = [lem.lemmatize(word) for word in text if not word in self.stop_words]
-        return " ".join(text)
+        self.text = [
+            self.lem.lemmatize(word) for word in content if not word in self.stop_words
+        ]
+
+        return self
+
+    def get(self):
+        """Get post text with lemmatized words
+
+        Returns:
+            str: Post text with lemmatized words
+        """
+        return " ".join(self.text)
