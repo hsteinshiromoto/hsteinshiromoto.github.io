@@ -143,15 +143,17 @@ class Tags(Meta):
     """
 
     def __init__(self, n_grams: zip, top_frequent: int = 5) -> None:
+        """_summary_
+
+        Args:
+            n_grams (zip): N-grams generator.
+            top_frequent (int, optional): Select top n_grams. Defaults to 5.
+        """
         self.n_grams = n_grams
         self.top_frequent = top_frequent
 
     def make(self) -> Tags:
         """Get most frequent n-grams
-
-        Args:
-            n_grams (zip): N-grams generator.
-            top_frequent (int, optional): Select top n_grams. Defaults to 5.
 
         Returns:
             Tags:
