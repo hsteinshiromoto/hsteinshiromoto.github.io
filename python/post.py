@@ -392,9 +392,12 @@ def main(
     title = get_title(post)
     front_page, content = get_content_and_metadata(post)
 
-    word_list = process_content(content)
-    word_count_df = get_word_counts(word_list)
-    tags = make_tags(word_count_df["Word"].tolist(), n_tags)
+    grams = Grams(content)
+    word_list = grams.make_word_list()
+    ngrams = grams.make_grams(word_list)
+    ngrams_count_df = grams.get_most_frequent_ngram(ngrams)
+
+    tags = make_tags(ngrams_count_df["ngrams"].tolist())
 
     front_page = front_page or make_front_page(date, title, categories, tags)
 
