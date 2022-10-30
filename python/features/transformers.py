@@ -182,14 +182,16 @@ class Tags(Meta):
             return [" ".join(item) for item in self.grams_df["ngrams"].tolist()]
 
 
-@dataclass
-class CleanContent:
-    #! TODO: Continue from here
-    content: str
-    stop_words: set = field(default_factory=set)
-    regex_rules: list = field(default_factory=list[tuple])
+class RegexContentFilter(Meta):
+    def make(self, regex_rules: list[tuple] = []):
+        """_summary_
 
-    def _make_regex_rules(self):
+        Args:
+            regex_rules (list[tuple], optional): _description_. Defaults to [].
+
+        Returns:
+            RegexContentFilter:
+        """
         default_list = [
             (r"http\S+", "", re.MULTILINE),  # Match website links
             (r"(`{1}(\w+|.+)\b`{1})", "", re.MULTILINE),  # Match inline code blocks
@@ -207,21 +209,21 @@ class CleanContent:
             (r"</?.*?>", " ", re.MULTILINE),  # Match HTML tags
         ]
 
-        if self.regex_rules:
-            self.regex_rules = self.regex_rules.extend(default_list)
+        if regex_rules:
+            self.regex_rules = regex_rules.extend(default_list)
 
         else:
             self.regex_rules = default_list
 
-    def get_clear_content(self) -> str:
-        text = self.content
+        return self
 
-        self._make_regex_rules()
-
+    def get(self, content: str) -> str:
+        filtered_text = content
         for pattern, substitution, flag in self.regex_rules:
-            text = re.sub(pattern, substitution, text, flag)
+            filtered_text = re.sub(pattern, substitution, filtered_text, flag)
 
-        return text
+        return filtered_text
+
 
     def lemmatize_content(
         self, text: str, lem: WordNetLemmatizer = WordNetLemmatizer()
