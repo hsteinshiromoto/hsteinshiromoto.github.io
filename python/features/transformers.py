@@ -275,7 +275,7 @@ class LemmatizeContent(Meta):
 
         return self
 
-    def get(self):
+    def get(self) -> str:
         """Get post text with lemmatized words
 
         Returns:
