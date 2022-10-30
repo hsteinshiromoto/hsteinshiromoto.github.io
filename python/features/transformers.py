@@ -131,18 +131,22 @@ class Tags(Meta):
     Example:
         >>> text = "Lorem ipsum dolor sit. Lorem ipsum, dolor sit."
         >>> grams = [('Lorem', 'ipsum'), ('ipsum', 'dolor'), ('dolor', 'sit')]
-        >>> tags = Tags()
-        >>> _ = tags.make(grams, 2)
+        >>> tags = Tags(grams, 2)
+        >>> _ = tags.make()
         >>> tags.get()
         ['Lorem ipsum', 'ipsum dolor']
         >>> grams = [("word_1"), ("word_2")]
-        >>> tags = Tags()
-        >>> _ = tags.make(grams, 2)
+        >>> tags = Tags(grams, 2)
+        >>> _ = tags.make()
         >>> tags.get()
         ['word_1', 'word_2']
     """
 
-    def make(self, n_grams: zip, top_frequent: int = 5) -> Tags:
+    def __init__(self, n_grams: zip, top_frequent: int = 5) -> None:
+        self.n_grams = n_grams
+        self.top_frequent = top_frequent
+
+    def make(self) -> Tags:
         """Get most frequent n-grams
 
         Args:
@@ -152,10 +156,10 @@ class Tags(Meta):
         Returns:
             Tags:
         """
-        ngrams_freq_dist = nltk.FreqDist(n_grams)
+        ngrams_freq_dist = nltk.FreqDist(self.n_grams)
         ngrams_count_dict = {"ngrams": [], "count": []}
 
-        for gram, count in ngrams_freq_dist.most_common(top_frequent):
+        for gram, count in ngrams_freq_dist.most_common(self.top_frequent):
             ngrams_count_dict["ngrams"].append(gram)
             ngrams_count_dict["count"].append(count)
 
