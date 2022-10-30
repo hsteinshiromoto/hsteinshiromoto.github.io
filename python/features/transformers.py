@@ -81,42 +81,40 @@ class WordList(Meta):
         return self.words_list
 
 
-class Grams(Meta):
-    """_summary_
+class NGrams(Meta):
+    """Make n-grams, given a words list.
 
-    Returns:
-        _type_: _description_
+    Args:
+        words_list (list[str]): List of words.
+
+    Example:
+        >>> text = "Lorem ipsum dolor sit"
+        >>> words_list = text.split()
+        >>> ngrams = NGrams(words_list)
+        >>> _ = ngrams.make(n_grams=2)
+        >>> ngrams_obj = ngrams.get()
+        >>> [gram for gram in ngrams_obj] == [('Lorem', 'ipsum'), ('ipsum', 'dolor'), ('dolor', 'sit')]
+        True
     """
 
-    def __init__(
-        self,
-        text: str,
-        tokenizer: RegexpTokenizer = RegexpTokenizer(r"\w+"),
-        stop_words: list = [],
-    ):
-        self.text = text
-        self.tokenizer = tokenizer
-        self.stop_words = stop_words
+    def __init__(self, words_list: list[str]):
+        self.words_list = words_list
 
-    def make_grams(self, words_list: list, n_grams: int = 1) -> zip:
+    def make(self, n_grams: int = 1) -> NGrams:
         """Make n-grams, given a words list.
 
         Args:
-            words_list (list): List of words
             n_grams (int, optional): n-grams length. Defaults to 1.
 
         Returns:
-            zip: N-grams generator.
-
-        Example:
-            >>> text = "Lorem ipsum dolor sit."
-            >>> gram = Grams(text=text)
-            >>> words_list = gram.make_word_list()
-            >>> ngrams = gram.make_grams(words_list, n_grams=2)
-            >>> [gram for gram in ngrams]
-            [('Lorem', 'ipsum'), ('ipsum', 'dolor'), ('dolor', 'sit')]
+            NGrams:
         """
-        return nltk.ngrams(words_list, n_grams)
+        self.ngrams = nltk.ngrams(self.words_list, n_grams)
+
+        return self
+
+    def get(self) -> zip:
+        return self.ngrams
 
 
 @dataclass
