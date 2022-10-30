@@ -259,14 +259,14 @@ class LemmatizeContent(Meta):
 
     def make(
         self,
-        content: str,
+        text: str,
     ) -> LemmatizeContent:
         """Lemmatizes words in post content.
 
         Args:
             content (str): Post content.
         """
-        content = content.split()
+        content = text.split()
 
         # 3.7 Lemmatisation
         self.text = [
