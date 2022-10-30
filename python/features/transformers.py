@@ -114,6 +114,11 @@ class NGrams(Meta):
         return self
 
     def get(self) -> zip:
+        """Returns n-grams
+
+        Returns:
+            zip: n-grams
+        """
         return self.ngrams
 
 
