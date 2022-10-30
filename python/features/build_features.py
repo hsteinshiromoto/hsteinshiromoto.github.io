@@ -53,6 +53,6 @@ def main(post: str, date: datetime, title: str, categories: list[str]):
     most_frequent_grams = tags.get_most_frequent_ngram(ngrams)
     post_tags = tags.make_tags(most_frequent_grams["ngrams"])
 
-    front_page = make_front_page(date, title, categories, tags)
+    front_page = make_front_page(date, title, categories, post_tags)
 
     return front_page
