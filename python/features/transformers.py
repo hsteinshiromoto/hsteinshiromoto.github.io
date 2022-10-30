@@ -29,6 +29,7 @@ class WordList(Meta):
     Args:
         tokenizer (RegexpTokenizer, optional): Word tokenizer. Defaults to RegexpTokenizer(r"\w+").
         stop_words (list[str], optional): List of English stop words. Defaults to stopwords.words("english").
+        filter_words (list[str], optional): Words to be excluded. Defaults to [].
 
     Example:
         >>> text = "Lorem ipsum dolor sit."
@@ -53,7 +54,6 @@ class WordList(Meta):
 
         Args:
             text (str): Text to get words list from.
-            filter_words (list[str], optional): Words to be excluded. Defaults to [].
 
         Returns:
             WordList:
