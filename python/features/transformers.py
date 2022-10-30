@@ -1,4 +1,4 @@
-from __future__ import annotations
+from __future__ import annotations  # Necessary for self typehint
 
 import re
 from abc import ABC, abstractmethod
