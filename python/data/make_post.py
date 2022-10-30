@@ -13,11 +13,11 @@ import yaml
 
 nltk.download("stopwords", "wordnet", "genesis", "omw-1.4")
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 sys.path.append(str(PROJECT_ROOT))
 
-import src.features.build_features as bf
+import python.features.build_features as bf
 
 
 class Prepender:
