@@ -21,7 +21,18 @@ class Meta(abc):
         pass
 
 
-    def make_word_list(self, filter_words: list = []) -> list:
+class WordList(Meta):
+    def __init__(
+        self,
+        text: str,
+        tokenizer: RegexpTokenizer = RegexpTokenizer(r"\w+"),
+        stop_words: list = stopwords.words("english"),
+    ):
+        self.text = text
+        self.tokenizer = tokenizer
+        self.stop_words = stop_words
+
+    def make(self, filter_words: list = []) -> list:
         """Make list of words from text
 
         Args:
@@ -33,20 +44,42 @@ class Meta(abc):
 
         Example:
             >>> text = "Lorem ipsum dolor sit."
-            >>> gram = Grams(text=text)
-            >>> gram.make_word_list(1)
+            >>> word_list = WordList(text=text)
+            >>> word_list.make()
+            >>> word_list.get()
             ['Lorem', 'ipsum', 'dolor', 'sit']
         """
         tokens = self.tokenizer.tokenize(self.text)
-
-        self.stpwords = self.stpwords or stopwords.words("english")
-        words_list = [w for w in tokens if (w.lower() not in self.stpwords)]
+        words_list = [w for w in tokens if (w.lower() not in self.stop_words)]
 
         if filter_words:
             filtered_words = [w for w in words_list if (w.lower() not in filter_words)]
             words_list = filtered_words
 
-        return words_list
+        self.words_list = words_list
+
+        return self
+
+    def get(self):
+        return self.words_list
+
+
+class Grams(Meta):
+    """_summary_
+
+    Returns:
+        _type_: _description_
+    """
+
+    def __init__(
+        self,
+        text: str,
+        tokenizer: RegexpTokenizer = RegexpTokenizer(r"\w+"),
+        stop_words: list = [],
+    ):
+        self.text = text
+        self.tokenizer = tokenizer
+        self.stop_words = stop_words
 
     def make_grams(self, words_list: list, n_grams: int = 1) -> zip:
         """Make n-grams, given a words list.
