@@ -1,4 +1,5 @@
 import re
+from abc import ABC, abstractmethod
 from collections.abc import Iterable
 from dataclasses import dataclass, field
 
@@ -10,17 +11,15 @@ from nltk.stem.porter import PorterStemmer
 from nltk.stem.wordnet import WordNetLemmatizer
 
 
-@dataclass
-class Grams:
-    """_summary_
+class Meta(abc):
+    @abstractmethod
+    def get(self):
+        pass
 
-    Returns:
-        _type_: _description_
-    """
+    @abstractmethod
+    def make(self):
+        pass
 
-    text: str
-    tokenizer: RegexpTokenizer = RegexpTokenizer(r"\w+")
-    stpwords: list = field(default_factory=list)
 
     def make_word_list(self, filter_words: list = []) -> list:
         """Make list of words from text
