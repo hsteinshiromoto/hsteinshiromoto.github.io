@@ -24,11 +24,26 @@ class Meta(ABC):
 
 
 class WordList(Meta):
+    """_summary_
+
+    Args:
+        text (str): Text to get words list from.
+        tokenizer (RegexpTokenizer, optional): Word tokenizer. Defaults to RegexpTokenizer(r"\w+").
+        stop_words (list[str], optional): List of English stop words. Defaults to stopwords.words("english").
+
+    Example:
+        >>> text = "Lorem ipsum dolor sit."
+        >>> word_list = WordList(text=text)
+        >>> _ = word_list.make()
+        >>> word_list.get() == ['Lorem', 'ipsum', 'dolor', 'sit']
+        True
+    """
+
     def __init__(
         self,
         text: str,
         tokenizer: RegexpTokenizer = RegexpTokenizer(r"\w+"),
-        stop_words: list = stopwords.words("english"),
+        stop_words: list[str] = stopwords.words("english"),
     ):
         self.text = text
         self.tokenizer = tokenizer
@@ -42,13 +57,6 @@ class WordList(Meta):
 
         Returns:
             WordList:
-
-        Example:
-            >>> text = "Lorem ipsum dolor sit."
-            >>> word_list = WordList(text=text)
-            >>> _ = word_list.make()
-            >>> word_list.words_list == ['Lorem', 'ipsum', 'dolor', 'sit']
-            True
         """
         tokens = self.tokenizer.tokenize(self.text)
         words_list = [w for w in tokens if (w.lower() not in self.stop_words)]
@@ -69,14 +77,6 @@ class WordList(Meta):
 
         Returns:
             list[str]: List of words.
-
-        Example:
-            >>> text = "Lorem ipsum dolor sit."
-            >>> word_list = WordList(text=text)
-            >>> _ = word_list.make()
-            >>> word_list.get() == ['Lorem', 'ipsum', 'dolor', 'sit']
-            True
-
         """
         return self.words_list
 
