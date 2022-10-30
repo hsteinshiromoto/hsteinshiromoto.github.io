@@ -187,11 +187,16 @@ class Tags(Meta):
 
 
 class RegexContentFilter(Meta):
-    def make(self, regex_rules: list[tuple] = []):
-        """_summary_
+    def __init__(self, regex_rules: list[tuple] = []):
+        """Removes regular expressions from text.
 
         Args:
-            regex_rules (list[tuple], optional): _description_. Defaults to [].
+            regex_rules (list[tuple], optional): List of regexes to be removed (pattern, substitution, regex flags). Defaults to [].
+        """
+        self.regex_rules = regex_rules
+
+    def make(self) -> RegexContentFilter:
+        """Define list of regular expressions based on a default list.
 
         Returns:
             RegexContentFilter:
@@ -213,16 +218,24 @@ class RegexContentFilter(Meta):
             (r"</?.*?>", " ", re.MULTILINE),  # Match HTML tags
         ]
 
-        if regex_rules:
-            self.regex_rules = regex_rules.extend(default_list)
+        if self.regex_rules:
+            self.regex_rules = self.regex_rules.extend(default_list)
 
         else:
             self.regex_rules = default_list
 
         return self
 
-    def get(self, content: str) -> str:
-        filtered_text = content
+    def get(self, text: str) -> str:
+        """Remove regular expressions from text.
+
+        Args:
+            text (str): Text to be filtered.
+
+        Returns:
+            str: Filtered text.
+        """
+        filtered_text = text
         for pattern, substitution, flag in self.regex_rules:
             filtered_text = re.sub(pattern, substitution, filtered_text, flag)
 
