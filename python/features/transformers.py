@@ -3,13 +3,11 @@ from __future__ import annotations  # Necessary for self typehint
 import re
 from abc import ABC, abstractmethod
 from collections.abc import Iterable
-from dataclasses import dataclass, field
 
 import nltk
 import pandas as pd
 from nltk import RegexpTokenizer
 from nltk.corpus import stopwords
-from nltk.stem.porter import PorterStemmer
 from nltk.stem.wordnet import WordNetLemmatizer
 
 
