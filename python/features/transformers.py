@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import re
 from abc import ABC, abstractmethod
 from collections.abc import Iterable
@@ -32,22 +34,21 @@ class WordList(Meta):
         self.tokenizer = tokenizer
         self.stop_words = stop_words
 
-    def make(self, filter_words: list = []) -> list:
-        """Make list of words from text
+    def make(self, filter_words: list[str] = []) -> WordList:
+        """Make list of words from text.
 
         Args:
-            n_gram (int): n gram size.
-            filter_words (list, optional): Words to be excluded. Defaults to [].
+            filter_words (list[str], optional): Words to be excluded. Defaults to [].
 
         Returns:
-            list: Words list.
+            WordList:
 
         Example:
             >>> text = "Lorem ipsum dolor sit."
             >>> word_list = WordList(text=text)
-            >>> word_list.make()
-            >>> word_list.get()
-            ['Lorem', 'ipsum', 'dolor', 'sit']
+            >>> _ = word_list.make()
+            >>> word_list.words_list == ['Lorem', 'ipsum', 'dolor', 'sit']
+            True
         """
         tokens = self.tokenizer.tokenize(self.text)
         words_list = [w for w in tokens if (w.lower() not in self.stop_words)]
@@ -60,7 +61,23 @@ class WordList(Meta):
 
         return self
 
-    def get(self):
+    def get(self) -> list[str]:
+        """_summary_
+
+        Args:
+            WordList:
+
+        Returns:
+            list[str]: List of words.
+
+        Example:
+            >>> text = "Lorem ipsum dolor sit."
+            >>> word_list = WordList(text=text)
+            >>> _ = word_list.make()
+            >>> word_list.get() == ['Lorem', 'ipsum', 'dolor', 'sit']
+            True
+
+        """
         return self.words_list
 
 
