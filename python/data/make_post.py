@@ -1,4 +1,5 @@
 import re
+import sys
 from collections.abc import Iterable
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -13,6 +14,8 @@ import yaml
 nltk.download("stopwords", "wordnet", "genesis", "omw-1.4")
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+sys.path.append(str(PROJECT_ROOT))
 
 
 class Prepender:
