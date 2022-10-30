@@ -11,7 +11,7 @@ from nltk.stem.porter import PorterStemmer
 from nltk.stem.wordnet import WordNetLemmatizer
 
 
-class Meta(abc):
+class Meta(ABC):
     @abstractmethod
     def get(self):
         pass
