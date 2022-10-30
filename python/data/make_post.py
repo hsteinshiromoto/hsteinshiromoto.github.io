@@ -17,6 +17,8 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 sys.path.append(str(PROJECT_ROOT))
 
+import src.features.build_features as bf
+
 
 class Prepender:
     """Prepend string to file
@@ -98,40 +100,6 @@ def make_filename_from_title(date: datetime, title: str) -> str:
         '2022-10-24-blog-post_the_title'
     """
     return f"{date.strftime('%Y-%m-%d')}-blog-post_{title.lower().replace(' ', '_')}"
-
-
-def make_front_page(
-    date: datetime, title: str, categories: list[str], tags: list[str]
-) -> dict:
-    """Makes post front page yaml.
-
-    Args:
-        date (datetime): Post date.
-        title (str): Post title.
-        categories (list[str]): Post categories.
-        tags (list[str]): Post tags.
-
-    Returns:
-        None:
-
-    Example:
-        >>> title = "The Title"
-        >>> date = datetime.strptime('2022-10-24', "%Y-%m-%d")
-        >>> make_front_page(date, title, ['category_1', 'category_2'], ['tag_1', 'tag_2'])
-        {'title': 'The Title', 'categories': ['category_1', 'category_2'], 'tags': ['tag_1', 'tag_2'], 'date': '2022-10-24', 'permalink': 'posts/2022/10/24/blog-post_the_title'}
-    """
-
-    formatted_title = title.lower().replace(" ", "_")
-
-    permalink = f"posts/{date.strftime('%Y/%m/%d')}/blog-post_{formatted_title}"
-
-    return {
-        "title": title,
-        "categories": categories,
-        "tags": tags,
-        "date": date.strftime("%Y-%m-%d"),
-        "permalink": permalink,
-    }
 
 
 def get_post(filename: str, path: Path = PROJECT_ROOT / "_posts") -> str:
@@ -220,16 +188,8 @@ def main(
 
     post = get_post(filename=filename)
     title = get_title(post)
-    front_page, content = get_content_and_metadata(post)
-
-    grams = Grams(content)
-    word_list = grams.make_word_list()
-    ngrams = grams.make_grams(word_list)
-    ngrams_count_df = grams.get_most_frequent_ngram(ngrams)
-
-    tags = make_tags(ngrams_count_df["ngrams"].tolist())
-
-    front_page = front_page or make_front_page(date, title, categories, tags)
+    _, content = get_content_and_metadata(post)
+    front_page = bf.main(content, date, title, categories)
 
     post = Post(
         title=title,
