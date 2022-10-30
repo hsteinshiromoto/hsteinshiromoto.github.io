@@ -89,24 +89,30 @@ class NGrams(Meta):
     Example:
         >>> text = "Lorem ipsum dolor sit"
         >>> words_list = text.split()
-        >>> ngrams = NGrams()
-        >>> _ = ngrams.make(words_list=words_list, n_grams=2)
+        >>> ngrams = NGrams(words_list=words_list, n_grams=2)
+        >>> _ = ngrams.make()
         >>> ngrams_obj = ngrams.get()
         >>> [gram for gram in ngrams_obj] == [('Lorem', 'ipsum'), ('ipsum', 'dolor'), ('dolor', 'sit')]
         True
     """
 
-    def make(self, words_list: list[str], n_grams: int = 1) -> NGrams:
+    def __init__(self, words_list: list[str], n_grams: int = 1):
         """Make n-grams, given a words list.
 
         Args:
             words_list (list[str]): List of words.
             n_grams (int, optional): n-grams length. Defaults to 1.
+        """
+        self.words_list = words_list
+        self.n_grams = n_grams
+
+    def make(self) -> NGrams:
+        """Make n-grams, given a words list.
 
         Returns:
             NGrams:
         """
-        self.ngrams = nltk.ngrams(words_list, n_grams)
+        self.ngrams = nltk.ngrams(self.words_list, self.n_grams)
 
         return self
 
