@@ -185,6 +185,16 @@ class Tags(Meta):
 
 
 class RegexContentFilter(Meta):
+    """Removes regular expressions from text.
+
+    Example:
+        >>> text = "http://www.google.com/index.html the `code here` bla bla </tag>"
+        >>> content_filter = RegexContentFilter()
+        >>> _ = content_filter.make()
+        >>> content_filter.get(text)
+        'the bla bla tag'
+    """
+
     def __init__(self, regex_rules: list[tuple] = []):
         """Removes regular expressions from text.
 
@@ -237,7 +247,7 @@ class RegexContentFilter(Meta):
         for pattern, substitution, flag in self.regex_rules:
             filtered_text = re.sub(pattern, substitution, filtered_text, flag)
 
-        return filtered_text
+        return filtered_text.strip()
 
 
 class LemmatizeContent(Meta):
