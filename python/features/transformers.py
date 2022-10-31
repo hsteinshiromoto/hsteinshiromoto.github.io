@@ -251,7 +251,15 @@ class RegexContentFilter(Meta):
 
 
 class LemmatizeContent(Meta):
-    """Lemmative post content"""
+    """Lemmatize post content
+
+    Example:
+        >>> text = "Connecting the things"
+        >>> lemmatizer = LemmatizeContent()
+        >>> _ = lemmatizer.make(text)
+        >>> lemmatizer.get()
+        'Connecting thing'
+    """
 
     def __init__(
         self,
