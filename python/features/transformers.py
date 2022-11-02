@@ -267,6 +267,7 @@ class RegexContentFilter(Meta):
                 re.MULTILINE,
             ),  # Match non-word characters and digits
             (r"</?.*?>", " ", re.MULTILINE),  # Match HTML tags
+            (r"\d*", " ", re.MULTILINE),  # Remove digits
         ]
 
         if self.regex_rules:
