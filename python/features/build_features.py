@@ -57,8 +57,8 @@ def main(post: str, date: datetime, title: str, categories: list[str]):
     _ = n_grams_pipeline.make(post)
     ngrams = n_grams_pipeline.get(post)
 
-    tags = tf.Tags(10)
-    most_frequent_grams = tags.make(ngrams)
+    tags = tf.Tags(5)
+    _ = tags.make(ngrams)
     post_tags = tags.get(ngrams)
 
     front_page = make_front_page(date, title, categories, post_tags)
