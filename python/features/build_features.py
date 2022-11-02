@@ -45,14 +45,26 @@ def make_front_page(
 
 def main(post: str, date: datetime, title: str, categories: list[str]):
 
-    grams = tf.Grams(post)
-    word_list = grams.make_word_list()
-    ngrams = grams.make_grams(word_list)
+    n_grams_steps = [
+        ("filter_content", tf.RegexContentFilter()),
+        ("lemmatize_content", tf.LemmatizeContent()),
+        ("get_word_list", tf.WordList()),
+        ("get_ngrams", tf.NGrams()),
+    ]
 
-    tags = tf.Tags(ngrams)
-    most_frequent_grams = tags.get_most_frequent_ngram(ngrams)
-    post_tags = tags.make_tags(most_frequent_grams["ngrams"])
+    n_grams_pipeline = tf.Pipeline(n_grams_steps)
+
+    _ = n_grams_pipeline.make(post)
+    ngrams = n_grams_pipeline.get(post)
+
+    tags = tf.Tags(10)
+    most_frequent_grams = tags.make(ngrams)
+    post_tags = tags.get(ngrams)
 
     front_page = make_front_page(date, title, categories, post_tags)
 
     return front_page
+
+
+if __name__ == "__main__":
+    main()
