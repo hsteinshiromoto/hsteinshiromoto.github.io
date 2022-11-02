@@ -3,8 +3,7 @@ from __future__ import annotations  # Necessary for self typehint
 import re
 from abc import ABC, abstractmethod
 from collections.abc import Iterable
-from tokenize import Name
-from typing import Callable
+from typing import Callable, Generator
 
 import nltk
 import pandas as pd
@@ -47,11 +46,11 @@ class Pipeline:
     def __init__(self, steps: list[tuple[str, Callable]]) -> None:
         self.steps = steps
 
-    def make(self, text: str):
+    def make(self, text: str = ""):
         for index, (step, func) in enumerate(self.steps):
             self.steps[index] = (step, func.make(text))
 
-    def get(self, text: str):
+    def get(self, text: str = ""):
         for _, func in self.steps:
             try:
                 output = func.get(output)
@@ -110,7 +109,7 @@ class WordList(Meta):
 
         return self
 
-    def get(self) -> list[str]:
+    def get(self, text="") -> list[str]:
         """Returns list of words
 
         Args:
@@ -128,21 +127,19 @@ class NGrams(Meta):
     Example:
         >>> text = "Lorem ipsum dolor sit"
         >>> words_list = text.split()
-        >>> ngrams = NGrams(words_list=words_list, n_grams=2)
+        >>> ngrams = NGrams(n_grams=2)
         >>> _ = ngrams.make()
-        >>> ngrams_obj = ngrams.get()
+        >>> ngrams_obj = ngrams.get(words_list)
         >>> [gram for gram in ngrams_obj] == [('Lorem', 'ipsum'), ('ipsum', 'dolor'), ('dolor', 'sit')]
         True
     """
 
-    def __init__(self, words_list: list[str], n_grams: int = 1):
+    def __init__(self, n_grams: int = 1):
         """Make n-grams, given a words list.
 
         Args:
-            words_list (list[str]): List of words.
             n_grams (int, optional): n-grams length. Defaults to 1.
         """
-        self.words_list = words_list
         self.n_grams = n_grams
 
     def make(self, text: str = "") -> NGrams:
@@ -151,17 +148,18 @@ class NGrams(Meta):
         Returns:
             NGrams:
         """
-        self.ngrams = nltk.ngrams(self.words_list, self.n_grams)
-
         return self
 
-    def get(self) -> zip:
+    def get(self, words_list: list[str]) -> Generator:
         """Returns n-grams
 
+        Args:
+            words_list (list[str]): List of words.
+
         Returns:
-            zip: n-grams
+            Generator: n-grams
         """
-        return self.ngrams
+        return nltk.ngrams(words_list, self.n_grams)
 
 
 class Tags(Meta):
@@ -170,34 +168,38 @@ class Tags(Meta):
     Example:
         >>> text = "Lorem ipsum dolor sit. Lorem ipsum, dolor sit."
         >>> grams = [('Lorem', 'ipsum'), ('ipsum', 'dolor'), ('dolor', 'sit')]
-        >>> tags = Tags(grams, 2)
-        >>> _ = tags.make()
+        >>> tags = Tags(2)
+        >>> _ = tags.make(grams)
         >>> tags.get()
         ['Lorem ipsum', 'ipsum dolor']
         >>> grams = [("word_1"), ("word_2")]
-        >>> tags = Tags(grams, 2)
-        >>> _ = tags.make()
+        >>> tags = Tags(2)
+        >>> _ = tags.make(grams)
         >>> tags.get()
         ['word_1', 'word_2']
     """
 
-    def __init__(self, n_grams: zip, top_frequent: int = 5) -> None:
+    def __init__(self, top_frequent: int = 5) -> None:
         """_summary_
 
         Args:
-            n_grams (zip): N-grams generator.
             top_frequent (int, optional): Select top n_grams. Defaults to 5.
         """
-        self.n_grams = n_grams
         self.top_frequent = top_frequent
 
-    def make(self, text: str = "") -> Tags:
+    def make(
+        self,
+        n_grams: zip,
+    ) -> Tags:
         """Get most frequent n-grams
+
+        Args:
+            n_grams (zip): N-grams generator.
 
         Returns:
             Tags:
         """
-        ngrams_freq_dist = nltk.FreqDist(self.n_grams)
+        ngrams_freq_dist = nltk.FreqDist(n_grams)
         ngrams_count_dict = {"ngrams": [], "count": []}
 
         for gram, count in ngrams_freq_dist.most_common(self.top_frequent):
@@ -212,7 +214,7 @@ class Tags(Meta):
 
         return self
 
-    def get(self) -> Iterable[str]:
+    def get(self, text="") -> Iterable[str]:
         """Returns n tags according to frequency.
 
         Returns:
@@ -334,7 +336,7 @@ class LemmatizeContent(Meta):
 
         return self
 
-    def get(self) -> str:
+    def get(self, text="") -> str:
         """Get post text with lemmatized words
 
         Returns:
