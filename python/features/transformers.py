@@ -97,7 +97,9 @@ class WordList(Meta):
             WordList:
         """
         tokens = self.tokenizer.tokenize(text)
-        words_list = [w for w in tokens if (w.lower() not in self.stop_words)]
+        words_list = [
+            w for w in tokens if (w.lower() not in self.stop_words) & (len(w) > 1)
+        ]
 
         if self.filter_words:
             filtered_words = [
