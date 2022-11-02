@@ -3,6 +3,8 @@ from __future__ import annotations  # Necessary for self typehint
 import re
 from abc import ABC, abstractmethod
 from collections.abc import Iterable
+from tokenize import Name
+from typing import Callable
 
 import nltk
 import pandas as pd
@@ -19,6 +21,45 @@ class Meta(ABC):
     @abstractmethod
     def make(self):
         pass
+
+
+class Pipeline:
+    """Text processing pipeline
+
+    Example:
+        >>> class test_1:
+        ...     def make(self, a):
+        ...         return self
+        ...     def get(self, a):
+        ...         return 2*a
+        >>> class test_2:
+        ...     def make(self, a):
+        ...         return self
+        ...     def get(self, a):
+        ...         return 3*a
+        >>> input = 1
+        >>> pipe = Pipeline([("test_1", test_1()), ("test_2", test_2())])
+        >>> pipe.make(input)
+        >>> pipe.get(input) == 6
+        True
+    """
+
+    def __init__(self, steps: list[tuple[str, Callable]]) -> None:
+        self.steps = steps
+
+    def make(self, text: str):
+        for index, (step, func) in enumerate(self.steps):
+            self.steps[index] = (step, func.make(text))
+
+    def get(self, text: str):
+        for _, func in self.steps:
+            try:
+                output = func.get(output)
+
+            except (NameError, UnboundLocalError):
+                output = func.get(text)
+
+        return output
 
 
 class WordList(Meta):
@@ -104,7 +145,7 @@ class NGrams(Meta):
         self.words_list = words_list
         self.n_grams = n_grams
 
-    def make(self) -> NGrams:
+    def make(self, text: str = "") -> NGrams:
         """Make n-grams, given a words list.
 
         Returns:
@@ -150,7 +191,7 @@ class Tags(Meta):
         self.n_grams = n_grams
         self.top_frequent = top_frequent
 
-    def make(self) -> Tags:
+    def make(self, text: str = "") -> Tags:
         """Get most frequent n-grams
 
         Returns:
@@ -203,7 +244,7 @@ class RegexContentFilter(Meta):
         """
         self.regex_rules = regex_rules
 
-    def make(self) -> RegexContentFilter:
+    def make(self, text: str = "") -> RegexContentFilter:
         """Define list of regular expressions based on a default list.
 
         Returns:
