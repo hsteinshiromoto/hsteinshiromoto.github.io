@@ -101,7 +101,7 @@ def make_filename_from_title(date: datetime, title: str) -> str:
     return f"{date.strftime('%Y-%m-%d')}-blog-post_{title.lower().replace(' ', '_')}"
 
 
-def get_post(filename: str, path: Path = PROJECT_ROOT / "_posts") -> Union[str, dict]:
+def get_post(filename: str, path: Path = PROJECT_ROOT / "_posts") -> tuple[str, dict]:
 
     with open(str(path / filename)) as file:
         post = frontmatter.load(file)
