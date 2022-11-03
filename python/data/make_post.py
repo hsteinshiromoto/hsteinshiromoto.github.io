@@ -1,14 +1,13 @@
-import re
 import sys
 from collections.abc import Iterable
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
-from typing import Dict
+from typing import Dict, Union
 
 import click
+import frontmatter
 import nltk
-import pandas as pd
 import yaml
 
 nltk.download("stopwords", "wordnet", "genesis", "omw-1.4")
@@ -102,48 +101,12 @@ def make_filename_from_title(date: datetime, title: str) -> str:
     return f"{date.strftime('%Y-%m-%d')}-blog-post_{title.lower().replace(' ', '_')}"
 
 
-def get_post(filename: str, path: Path = PROJECT_ROOT / "_posts") -> str:
+def get_post(filename: str, path: Path = PROJECT_ROOT / "_posts") -> Union[str, dict]:
 
     with open(str(path / filename)) as file:
-        return file.read()
+        post = frontmatter.load(file)
 
-
-def get_content_and_metadata(post: str) -> tuple[dict, str]:
-    """Gets yaml front page of blog post.
-
-    Args:
-        post (str): The blog post containing the yaml front page.
-
-    Returns:
-        Union[dict, str]: Yaml Front page and post content
-
-    Example:
-        >>> post = "--- title: test --- Test"
-        >>> front_page, content = get_content_and_metadata(post)
-        >>> content == "Test"
-        True
-        >>> front_page
-        {'title': 'test'}
-        >>> post = "Just a test string"
-        >>> front_page, content = get_content_and_metadata(post)
-        >>> content == post
-        True
-        >>> front_page
-        {}
-    """
-    regex = r"-{3}\n{1}((.|\n)*)-{3}\n{1}"
-    result = re.search(regex, post, re.MULTILINE)
-
-    if result:
-        content = re.sub(regex, "", post)
-        metadata = result.group()
-        metadata = yaml.safe_load(metadata)
-
-    else:
-        content = post
-        metadata = {}
-
-    return metadata, content
+    return post.content, post.metadata
 
 
 def get_title(post: str) -> str:
@@ -186,10 +149,11 @@ def main(
 ):
     date = date or datetime.now().date()
 
-    post = get_post(filename=filename)
-    title = get_title(post)
-    _, content = get_content_and_metadata(post)
-    front_page = bf.main(content, date, title, categories)
+    content, front_page = get_post(filename=filename)
+    title = get_title(content)
+
+    if not front_page:
+        front_page = bf.main(content, date, title, categories)
 
     post = Post(
         title=title,
