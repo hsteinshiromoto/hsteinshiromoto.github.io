@@ -16,7 +16,7 @@
             "name": "Python: post.py",
             "type": "python",
             "request": "launch",
-            "program": "python/post.py",
+            "program": "python/data/make_post.py",
             "console": "integratedTerminal",
             "justMyCode": true,
             "args": [
