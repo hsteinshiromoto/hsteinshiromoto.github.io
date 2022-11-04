@@ -10,6 +10,7 @@ import pandas as pd
 from nltk import RegexpTokenizer
 from nltk.corpus import stopwords
 from nltk.stem.wordnet import WordNetLemmatizer
+from sklearn.feature_extraction.text import CountVectorizer as SKLCountVectorizer
 
 
 class Meta(ABC):
@@ -20,6 +21,17 @@ class Meta(ABC):
     @abstractmethod
     def make(self):
         pass
+
+
+class CountVectorizer(Meta):
+    def __init__(self, args) -> None:
+        self.vectorizer = SKLCountVectorizer(args)
+
+    def get(self, text: str) -> CountVectorizer:
+        self.vectorizer.fit(text)
+
+    def make(self, text: str):
+        return self.vectorizer.transform(text)
 
 
 class Pipeline:
