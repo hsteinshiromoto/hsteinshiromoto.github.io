@@ -32,12 +32,8 @@ class CountVectorizer(Meta, SKLCountVectorizer):
         ... "Lorem dolor Tincidunt praesent semper")
         >>> cv = CountVectorizer()
         >>> _ = cv.make(text)
-        >>> cv.get(text).toarray()
-        array([[1, 1, 1, 1, 0, 0, 1, 0],
-        ...   [0, 1, 0, 1, 1, 1, 0, 1]])
-        >>> cv.get_feature_names_out()
-        array(['amet', 'dolor', 'ipsum', 'lorem', 'praesent', 'semper', 'sit',
-        ...   'tincidunt'], dtype=object)
+        >>> list(cv.get(text))
+        [(1, 'amet'), (2, 'dolor'), (1, 'ipsum'), (2, 'lorem'), (1, 'praesent'), (1, 'semper'), (1, 'sit'), (1, 'tincidunt')]
     """
 
     def __init__(self) -> None:
@@ -53,8 +49,10 @@ class CountVectorizer(Meta, SKLCountVectorizer):
     def make(self, text: str) -> CountVectorizer:
         self.fit(text)
 
-    def get(self, text: str) -> spmatrix:
-        return self.transform(text)
+    def get(self, text: str) -> zip:
+        count_array = self.transform(text).toarray()
+        count_array = count_array.sum(axis=0)
+        return zip(count_array, self.get_feature_names_out())
 
 
 class Pipeline:
