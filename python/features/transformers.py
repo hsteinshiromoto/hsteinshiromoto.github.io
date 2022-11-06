@@ -5,8 +5,8 @@ from abc import ABC, abstractmethod
 from collections.abc import Iterable
 from typing import Callable, Generator
 
-from scipy.sparse.base import spmatrix
 import nltk
+import numpy as np
 import pandas as pd
 from nltk import RegexpTokenizer
 from nltk.corpus import stopwords
@@ -50,8 +50,8 @@ class CountVectorizer(Meta, SKLCountVectorizer):
         self.fit(text)
 
     def get(self, text: str) -> zip:
-        count_array = self.transform(text).toarray()
-        count_array = count_array.sum(axis=0)
+        count_array = self.transform(text).sum(axis=0)
+        count_array = np.asarray(count_array).reshape(-1)
         return zip(count_array, self.get_feature_names_out())
 
 
