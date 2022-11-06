@@ -5,6 +5,7 @@ from abc import ABC, abstractmethod
 from collections.abc import Iterable
 from typing import Callable, Generator
 
+from scipy.sparse.base import spmatrix
 import nltk
 import pandas as pd
 from nltk import RegexpTokenizer
@@ -15,23 +16,45 @@ from sklearn.feature_extraction.text import CountVectorizer as SKLCountVectorize
 
 class Meta(ABC):
     @abstractmethod
-    def get(self):
-        pass
-
-    @abstractmethod
     def make(self):
         pass
 
+    @abstractmethod
+    def get(self):
+        pass
 
-class CountVectorizer(Meta):
-    def __init__(self, args) -> None:
-        self.vectorizer = SKLCountVectorizer(args)
 
-    def get(self, text: str) -> CountVectorizer:
-        self.vectorizer.fit(text)
+class CountVectorizer(Meta, SKLCountVectorizer):
+    """Get count vector of ngrams in text.
 
-    def make(self, text: str):
-        return self.vectorizer.transform(text)
+    Example:
+        >>> text = ("Lorem ipsum dolor sit amet.",
+        ... "Lorem dolor Tincidunt praesent semper")
+        >>> cv = CountVectorizer()
+        >>> _ = cv.make(text)
+        >>> cv.get(text).toarray()
+        array([[1, 1, 1, 1, 0, 0, 1, 0],
+        ...   [0, 1, 0, 1, 1, 1, 0, 1]])
+        >>> cv.get_feature_names_out()
+        array(['amet', 'dolor', 'ipsum', 'lorem', 'praesent', 'semper', 'sit',
+        ...   'tincidunt'], dtype=object)
+    """
+
+    def __init__(self) -> None:
+        """
+        Args:
+            See [1]
+
+        References:
+            [1] https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html
+        """
+        super().__init__()
+
+    def make(self, text: str) -> CountVectorizer:
+        self.fit(text)
+
+    def get(self, text: str) -> spmatrix:
+        return self.transform(text)
 
 
 class Pipeline:
