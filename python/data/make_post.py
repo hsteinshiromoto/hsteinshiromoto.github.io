@@ -5,6 +5,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Dict, Union
 
+from transformers import pipeline
 import click
 import frontmatter
 import nltk
@@ -122,6 +123,22 @@ def get_title(post: str) -> str:
     return raw_title.replace("#", "").strip()
 
 
+def make_introduction(generator: pipeline, context: str, max_length: int = 50) -> str:
+    """_summary_
+
+    Args:
+        generator (pipeline): _description_
+        context (str): _description_
+        max_length (int, optional): _description_. Defaults to 50.
+
+    Returns:
+        str: Introductory text
+    """
+    return generator(context, max_length=50, do_sample=True, temperature=0.9)[0][
+        "generated_text"
+    ]
+
+
 def make_post(frontpage: dict):
 
     filename = f"{str(date)}_blog_post_{filename_title}.md"
@@ -154,6 +171,8 @@ def main(
 
     if not front_page:
         front_page = bf.main(content, date, title, categories)
+
+    generator = pipeline("text-generation", model="EleutherAI/gpt-neo-125M")
 
     post = Post(
         title=title,
