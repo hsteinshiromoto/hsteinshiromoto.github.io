@@ -1,0 +1,147 @@
+{
+  "main": {
+    "id": "50321ef1788eaac0",
+    "type": "split",
+    "children": [
+      {
+        "id": "7f8f9de2a5245ba8",
+        "type": "leaf",
+        "state": {
+          "type": "empty",
+          "state": {}
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "88f52aa906023694",
+    "type": "split",
+    "children": [
+      {
+        "id": "725f74986c924946",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cb68594d9d49eb57",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "87d3aa47589ebb20",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "90b68301b7288ea6",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "4e8168aafa837f85",
+    "type": "split",
+    "children": [
+      {
+        "id": "0d5cdb6c105f32e0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fb0ad4fb7d86c48f",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "d0a167f92e8753d1",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "de916297d4cf8e71",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "457f17c772b23c65",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          },
+          {
+            "id": "97c5e1c09fb0a6b6",
+            "type": "leaf",
+            "state": {
+              "type": "breadcrumbs-matrix",
+              "state": {}
+            }
+          },
+          {
+            "id": "bd6a55837178751b",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "active": "7f8f9de2a5245ba8",
+  "lastOpenFiles": [
+    "2022-11-13.md",
+    "_posts/2022-10-01-blog_post_regex_cheatsheet.md",
+    "_posts/2022-12-23-blog-post_optimization_references.md",
+    "_posts/2021-01-21-blog_post_a_digression_on_the_cantor_set.md",
+    "_posts/2020-06-04-blog-post_cumulative_sum_with_pandas.md"
+  ]
+}
