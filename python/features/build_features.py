@@ -2,11 +2,22 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+from nltk.corpus import stopwords
+from nltk.tokenize import sent_tokenize
+
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 sys.path.append(str(PROJECT_ROOT))
 
 import python.features.transformers as tf
+
+DEFAULT_SETTINGS = {
+    "CountVectorizer": {
+        "strip_accents": "ascii",
+        "stop_words": stopwords.words("english"),
+        "ngram_range": (1, 2),
+    }
+}
 
 
 def make_front_page(
@@ -48,8 +59,11 @@ def main(post: str, date: datetime, title: str, categories: list[str]):
     n_grams_steps = [
         ("filter_content", tf.RegexContentFilter()),
         ("lemmatize_content", tf.LemmatizeContent()),
-        ("get_word_list", tf.WordList()),
-        ("get_ngrams", tf.NGrams()),
+        ("tokenizer", tf.Tokenizer(sent_tokenize)),
+        (
+            "count_vectorizer",
+            tf.CountVectorizer(**DEFAULT_SETTINGS.get("CountVectorizer")),  # type: ignore
+        ),
     ]
 
     n_grams_pipeline = tf.Pipeline(n_grams_steps)
