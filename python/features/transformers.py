@@ -8,10 +8,11 @@ from typing import Callable, Generator
 import nltk
 import numpy as np
 import pandas as pd
-from nltk import RegexpTokenizer
 from nltk.corpus import stopwords
 from nltk.stem.wordnet import WordNetLemmatizer
 from sklearn.feature_extraction.text import CountVectorizer as SKLCountVectorizer
+
+nltk.download("punkt")
 
 
 class Meta(ABC):
@@ -36,7 +37,26 @@ class CountVectorizer(Meta, SKLCountVectorizer):
         [(1, 'amet'), (2, 'dolor'), (1, 'ipsum'), (2, 'lorem'), (1, 'praesent'), (1, 'semper'), (1, 'sit'), (1, 'tincidunt')]
     """
 
-    def __init__(self) -> None:
+    def __init__(
+        self,
+        input="content",
+        encoding="utf-8",
+        decode_error="strict",
+        strip_accents=None,
+        lowercase=True,
+        preprocessor=None,
+        tokenizer=None,
+        stop_words=None,
+        token_pattern="(?u)\b\w\w+\b",
+        ngram_range=(1, 1),
+        analyzer="word",
+        max_df=1.0,
+        min_df=1,
+        max_features=None,
+        vocabulary=None,
+        binary=False,
+        dtype=np.int64,
+    ) -> None:
         """
         Args:
             See [1]
@@ -47,12 +67,13 @@ class CountVectorizer(Meta, SKLCountVectorizer):
         super().__init__()
 
     def make(self, text: str) -> CountVectorizer:
-        self.fit(text)
+        return self
 
-    def get(self, text: str) -> zip:
+    def get(self, text: str) -> Iterable[tuple[int, str]]:
+        self.fit(text)
         count_array = self.transform(text).sum(axis=0)
         count_array = np.asarray(count_array).reshape(-1)
-        return zip(count_array, self.get_feature_names_out())
+        return sorted(zip(count_array, self.get_feature_names_out()), reverse=True)
 
 
 class Pipeline:
@@ -94,7 +115,7 @@ class Pipeline:
         return output
 
 
-class WordList(Meta):
+class Tokenizer(Meta):
     """Makes list of words from text using regex tokenizer.
 
     Args:
@@ -104,7 +125,7 @@ class WordList(Meta):
 
     Example:
         >>> text = "Lorem ipsum dolor sit."
-        >>> word_list = WordList()
+        >>> word_list = Tokenizer()
         >>> _ = word_list.make(text=text)
         >>> word_list.get() == ['Lorem', 'ipsum', 'dolor', 'sit']
         True
@@ -112,7 +133,7 @@ class WordList(Meta):
 
     def __init__(
         self,
-        tokenizer: RegexpTokenizer = RegexpTokenizer(r"\w+"),
+        tokenizer: Callable,
         stop_words: list[str] = stopwords.words("english"),
         filter_words: list[str] = [],
     ):
@@ -120,7 +141,7 @@ class WordList(Meta):
         self.stop_words = stop_words
         self.filter_words = filter_words
 
-    def make(self, text: str) -> WordList:
+    def make(self, text: str) -> Tokenizer:
         """Makes list of words from text.
 
         Args:
@@ -129,7 +150,7 @@ class WordList(Meta):
         Returns:
             WordList:
         """
-        tokens = self.tokenizer.tokenize(text)
+        tokens = self.tokenizer(text)
         words_list = [
             w for w in tokens if (w.lower() not in self.stop_words) & (len(w) > 1)
         ]

@@ -3,6 +3,7 @@ from datetime import datetime
 from pathlib import Path
 
 from nltk.corpus import stopwords
+from nltk.tokenize import sent_tokenize
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
@@ -58,6 +59,7 @@ def main(post: str, date: datetime, title: str, categories: list[str]):
     n_grams_steps = [
         ("filter_content", tf.RegexContentFilter()),
         ("lemmatize_content", tf.LemmatizeContent()),
+        ("tokenizer", tf.Tokenizer(sent_tokenize)),
         (
             "count_vectorizer",
             tf.CountVectorizer(**DEFAULT_SETTINGS.get("CountVectorizer")),  # type: ignore
