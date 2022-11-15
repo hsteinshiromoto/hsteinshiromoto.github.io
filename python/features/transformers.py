@@ -11,6 +11,7 @@ import pandas as pd
 from nltk.corpus import stopwords
 from nltk.stem.wordnet import WordNetLemmatizer
 from sklearn.feature_extraction.text import CountVectorizer as SKLCountVectorizer
+from transformers import pipeline
 
 nltk.download("punkt")
 
@@ -113,6 +114,66 @@ class Pipeline:
                 output = func.get(text)
 
         return output
+
+
+class GenText(Meta):
+    """Generate text using GPT-2 model.
+
+    Example:
+        >>> generator = pipeline("text-generation", model="gpt2")
+        >>> context = "This is a test"
+        >>> gen_text = GenText(generator)
+        >>> _ = gen_text.make(context)
+        >>> gen_text.get(context)
+    """
+
+    def __init__(
+        self,
+        pipeline: pipeline,
+        max_length: int = 50,
+        do_sample: bool = True,
+        temperature: float = 0.9,
+    ):
+        """
+        Args:
+            pipeline (pipeline): GPT-2 model.
+            max_length (int, optional): _description_. Defaults to 50.
+            do_sample (bool, optional): _description_. Defaults to True.
+            temperature (float, optional): _description_. Defaults to 0.9.
+        """
+        self.pipeline = pipeline
+        self.max_length = max_length
+        self.do_sample = do_sample
+        self.temperature = temperature
+
+    def make(self, text: str) -> GenText:
+        """Fits text generator
+
+        Args:
+            text (str): Context of text to be generated
+
+        Returns:
+            GenText: Fitted generator.
+        """
+        self.generator = self.pipeline(
+            text,
+            max_length=self.max_length,
+            do_sample=self.do_sample,
+            temperature=self.temperature,
+        )
+        return self
+
+    def get(self, text: str) -> Generator[str]:
+        """Returns generated text.
+
+        Args:
+            text (str): Unused
+
+        Yields:
+            Generator[str]: Generated text.
+        """
+        for _ in range(10):
+            yield self.generator[0]["generated_text"]
 
 
 class Tokenizer(Meta):
