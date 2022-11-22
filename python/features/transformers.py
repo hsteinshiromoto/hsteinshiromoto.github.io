@@ -3,7 +3,7 @@ from __future__ import annotations  # Necessary for self typehint
 import re
 from abc import ABC, abstractmethod
 from collections.abc import Iterable
-from typing import Callable, Generator
+from typing import Callable, Generator, Union
 
 import nltk
 import numpy as np
@@ -13,7 +13,7 @@ from nltk.stem.wordnet import WordNetLemmatizer
 from sklearn.feature_extraction.text import CountVectorizer as SKLCountVectorizer
 from transformers import pipeline
 
-nltk.download("punkt")
+nltk.download(["punkt", "stopwords", "wordnet", "omw-1.4"])
 
 
 class Meta(ABC):
@@ -296,7 +296,7 @@ class Tags(Meta):
         ['word_1', 'word_2']
     """
 
-    def __init__(self, top_frequent: int = 5) -> None:
+    def __init__(self, top_frequent: Union[int, float] = 5) -> None:
         """_summary_
 
         Args:
@@ -316,18 +316,14 @@ class Tags(Meta):
         Returns:
             Tags:
         """
-        ngrams_freq_dist = nltk.FreqDist(n_grams)
-        ngrams_count_dict = {"ngrams": [], "count": []}
+        self.grams_df = pd.DataFrame.from_records(
+            data=n_grams, columns=["Count", "NGram"]
+        )
 
-        for gram, count in ngrams_freq_dist.most_common(self.top_frequent):
-            ngrams_count_dict["ngrams"].append(gram)
-            ngrams_count_dict["count"].append(count)
-
-        grams_df = pd.DataFrame.from_dict(ngrams_count_dict)
-        grams_df["proportion"] = 100 * grams_df["count"] / grams_df["count"].sum()
-        grams_df.sort_values(by="count", inplace=True)
-
-        self.grams_df = grams_df
+        self.grams_df["Proportion"] = (
+            self.grams_df["Count"] / self.grams_df["Count"].sum()
+        )
+        self.grams_df["CumProportion"] = self.grams_df["Proportion"].cumsum()
 
         return self
 
@@ -337,11 +333,14 @@ class Tags(Meta):
         Returns:
             Iterable[str]: n tags.
         """
-        if isinstance(self.grams_df.loc[0, "ngrams"], str):
-            return self.grams_df["ngrams"].tolist()
+        if isinstance(self.top_frequent, int):
+            output = self.grams_df.loc[: self.top_frequent, "NGram"]
 
-        else:
-            return [" ".join(item) for item in self.grams_df["ngrams"].tolist()]
+        elif isinstance(self.top_frequent, float):
+            idx = self.grams_df["CumProportion"].sub(self.top_frequent).abs().idxmin()
+            output = self.grams_df.loc[:idx, "NGram"]
+
+        return output.tolist()
 
 
 class RegexContentFilter(Meta):
