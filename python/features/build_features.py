@@ -4,6 +4,7 @@ from pathlib import Path
 
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize
+from transformers import pipeline
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
@@ -15,7 +16,7 @@ DEFAULT_SETTINGS = {
     "CountVectorizer": {
         "strip_accents": "ascii",
         "stop_words": stopwords.words("english"),
-        "ngram_range": (1, 2),
+        "ngram_range": (1, 3),
     }
 }
 
