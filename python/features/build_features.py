@@ -76,6 +76,15 @@ def main(post: str, date: datetime, title: str, categories: list[str]):
     _ = tags.make(ngrams)
     post_tags = tags.get(ngrams)
 
+    summarize_text_steps = [
+        ("RegexContentFilter", tf.RegexContentFilter()),
+        ("GenText", tf.GenText(pipeline("text-generation", model="gpt2"))),
+    ]
+
+    summarize_text_pipeline = tf.Pipeline(summarize_text_steps)
+    _ = summarize_text_pipeline.make(post)
+    summary = summarize_text_pipeline.get(post)
+
     front_page = make_front_page(date, title, categories, post_tags)
 
     return front_page
