@@ -5,6 +5,7 @@
 # NLTK
 # ---
 wordnet/*
+stopwords/*
 
 # ---
 # Node.js and NPM
@@ -805,3 +806,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/vim,sublimetext,visualstudiocode,ruby,macos,windows,linux,latex,jekyll,jupyternotebooks,pycharm+all,python
+stopwords/tokenizers/punkt/czech.pickle
