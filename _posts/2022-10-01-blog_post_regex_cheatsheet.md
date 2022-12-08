@@ -2,7 +2,7 @@
 title: 'My RegEx Cheatsheet'
 date: 2022-09-27
 layout: posts
-permalink: posts/2022/09/27/blog-post_regex_cheatsheet
+permalink: posts/2022/10/01/blog-post_regex_cheatsheet
 tags: 
   - regex
   - cheatsheet
@@ -11,7 +11,7 @@ categories:
   - coding
 ---
 
-# My RegEx Cheatsheet
+## Introduction
 
 In this post, I compile a cheatsheet of the main regexes that I use in my projects.
 
@@ -38,22 +38,22 @@ An example of a regular expression is to locate a word spelled two different way
 
 ## Table of Contents
 
-- [My RegEx Cheatsheet](#my-regex-cheatsheet)
-  - [Table of Contents](#table-of-contents)
-  - [Character Classes](#character-classes)
-  - [Python's regex module](#pythons-regex-module)
-    - [`re.findall`](#refindall)
-    - [`re.finditer`](#refinditer)
-    - [`re.search`](#research)
-    - [`re.split`](#resplit)
-    - [`re.sub`](#resub)
-    - [`re.compile`](#recompile)
-    - [`re.escape`](#reescape)
-    - [Flags](#flags)
-  - [Cookbook](#cookbook)
-    - [Select everything between the keywods `start` and `end`](#select-everything-between-the-keywods-start-and-end)
-    - [Select email addresses](#select-email-addresses)
-  - [References:](#references)
+- [Introduction](#introduction)
+- [Table of Contents](#table-of-contents)
+- [Character Classes](#character-classes)
+- [Python's regex module](#pythons-regex-module)
+  - [`re.findall`](#refindall)
+  - [`re.finditer`](#refinditer)
+  - [`re.search`](#research)
+  - [`re.split`](#resplit)
+  - [`re.sub`](#resub)
+  - [`re.compile`](#recompile)
+  - [`re.escape`](#reescape)
+  - [Flags](#flags)
+- [Cookbook](#cookbook)
+  - [Select everything between the keywods `start` and `end`](#select-everything-between-the-keywods-start-and-end)
+  - [Select email addresses](#select-email-addresses)
+- [References:](#references)
 
 ## Character Classes
 
