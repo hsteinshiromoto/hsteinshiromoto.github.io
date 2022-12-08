@@ -1,4 +1,17 @@
-# Regex Cheatsheet
+---
+title: 'My RegEx Cheatsheet'
+date: 2022-09-27
+layout: posts
+permalink: posts/2022/09/27/blog-post_regex_cheatsheet
+tags: 
+  - regex
+  - cheatsheet
+  - Python
+categories:
+  - coding
+---
+
+# My RegEx Cheatsheet
 
 In this post, I compile a cheatsheet of the main regexes that I use in my projects.
 
@@ -25,7 +38,7 @@ An example of a regular expression is to locate a word spelled two different way
 
 ## Table of Contents
 
-- [Regex Cheatsheet](#regex-cheatsheet)
+- [My RegEx Cheatsheet](#my-regex-cheatsheet)
   - [Table of Contents](#table-of-contents)
   - [Character Classes](#character-classes)
   - [Python's regex module](#pythons-regex-module)
