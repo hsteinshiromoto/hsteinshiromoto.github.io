@@ -11,8 +11,6 @@ categories:
   - coding
 ---
 
-## Introduction
-
 In this post, I compile a cheatsheet of the main regexes that I use in my projects.
 
 Digital communication relies heavily on regular expressions to make it work. These are sequences of characters that specify a search pattern in the text. It is usually these types of patterns that are used by string-searching algorithms when they are attempting to "find" and/or "replace" strings or when they are attempting to validate input. Regular expression techniques are developed in theoretical computer science and formal language theory.
@@ -38,7 +36,6 @@ An example of a regular expression is to locate a word spelled two different way
 
 ## Table of Contents
 
-- [Introduction](#introduction)
 - [Table of Contents](#table-of-contents)
 - [Character Classes](#character-classes)
 - [Python's regex module](#pythons-regex-module)
