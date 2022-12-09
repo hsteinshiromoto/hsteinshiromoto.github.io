@@ -1,3 +1,11 @@
+
+## 1. Contents
+
+- [1. Contents](#1-contents)
+- [2. Introduction](#2-introduction)
+
+## 2. Introduction
+
 In machine learning, a hyperparameter is a parameter of a learning algorithm (not of the model being learned). Hyperparameters are often chosen by a human designer before training the model. They can have a significant impact on the performance of the model on unseen data, so finding good values for them is often a crucial part of the machine learning pipeline. Some examples of hyperparameters include the learning rate and regularization strength in a neural network, the kernel and regularization strength in support vector machines, and the number of clusters to use in a clustering algorithm.
 
 Cross-validation is a technique used to evaluate a model hyperparameters by training it on a portion of the available data and evaluating it on the remaining portion. This allows us to assess the model's performance on unseen data and avoid overfitting. In cross-validation, the process of choosing hyperparameters can be done by trying out different combinations of hyperparameters on the training data and evaluating their performance on the validation data, then selecting the combination that performs the best. This can help ensure that the final model is not overfitting to the training data.
