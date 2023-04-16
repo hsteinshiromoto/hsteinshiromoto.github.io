@@ -41,7 +41,10 @@ WORKDIR $HOME
 RUN apt-get update && apt-get install apt-file -y && apt-file update && apt-get install -y git-flow vim zsh tmux
 
 # ---
-# Setup ZSH
+# Setup ZSH [1]
+# 
+# References
+#   [1] https://github.com/deluan/zsh-in-docker/blob/master/Dockerfile
 # ---
 COPY bin/oh-my-zosh-install.sh /usr/local/
 RUN /usr/local/oh-my-zosh-install.sh \
