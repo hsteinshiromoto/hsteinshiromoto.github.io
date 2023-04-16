@@ -18,9 +18,11 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8
 ENV TZ Australia/Sydney
-ENV SHELL=/bin/bash
 ENV HOME=/home/$PROJECT_NAME
 ENV PYTHON_VERSION=$PYTHON_VERSION
+ENV POETRY_VIRTUALENVS_CREATE=false \
+    POETRY_VIRTUALENVS_IN_PROJECT=false
+
 # ---
 # Set container time zone, maintainer and define home and workdir
 # ---
@@ -77,16 +79,14 @@ RUN pyenv install $PYTHON_VERSION && pyenv global $PYTHON_VERSION
 
 # ---
 # Install poetry
+# References:
+#   [1] https://stackoverflow.com/questions/53835198/integrating-python-poetry-with-docker
 # ---
-RUN curl -sSL https://install.python-poetry.org | python3 -
-
-ENV PATH="${PATH}:$HOME/.poetry/bin"
-ENV PATH="${PATH}:$HOME/.local/bin"
+RUN pip install poetry
 
 COPY pyproject.toml poetry.lock /usr/local/
 
-RUN poetry config virtualenvs.create false \
-    && cd /usr/local \
+RUN cd /usr/local \
     && poetry install --no-interaction --no-ansi
 
 ENV PATH="${PATH}:$HOME/.local/bin"
