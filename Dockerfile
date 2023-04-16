@@ -23,6 +23,7 @@ ENV PYTHON_VERSION=$PYTHON_VERSION
 ENV POETRY_VIRTUALENVS_CREATE=false \
     POETRY_VIRTUALENVS_IN_PROJECT=false
 
+SHELL ["/bin/bash", "-c"] 
 # ---
 # Set container time zone, maintainer and define home and workdir
 # ---
