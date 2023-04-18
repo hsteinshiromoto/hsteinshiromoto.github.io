@@ -49,19 +49,14 @@ RUN apt-get update && apt-get install apt-file -y && apt-file update && apt-get 
 # References
 #   [1] https://github.com/deluan/zsh-in-docker/blob/master/Dockerfile
 # ---
-COPY bin/oh-my-zosh-install.sh /usr/local/
-RUN /usr/local/oh-my-zosh-install.sh \
-    -t https://github.com/denysdovhan/spaceship-prompt \
-    -a 'SPACESHIP_PROMPT_ADD_NEWLINE="false"' \
-    -a 'SPACESHIP_PROMPT_SEPARATE_LINE="false"' \
-    -p git \
-    -p https://github.com/zsh-users/zsh-autosuggestions \
-    -p https://github.com/zsh-users/zsh-completions \
-    -p https://github.com/zsh-users/zsh-history-substring-search \
-    -p https://github.com/zsh-users/zsh-syntax-highlighting \
-    -p 'history-substring-search' \
-    -a 'bindkey "\$terminfo[kcuu1]" history-substring-search-up' \
-    -a 'bindkey "\$terminfo[kcud1]" history-substring-search-down'
+COPY files/.zshrc files/.tmux.conf $HOME/
+
+RUN bash -c "$(curl https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
+RUN git clone --depth 1 https://github.com/romkatv/powerlevel10k $HOME/.oh-my-zsh/custom/themes/powerlevel10k
+RUN git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm && \
+     ~/.tmux/plugins/tpm/bin/install_plugins
+
+SHELL ["/bin/zsh", "-c"] 
 
 # ---
 # Install pyenv
