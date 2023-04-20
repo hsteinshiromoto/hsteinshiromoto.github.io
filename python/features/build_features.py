@@ -4,6 +4,7 @@ from pathlib import Path
 
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize
+from transformers import pipeline
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
@@ -15,7 +16,7 @@ DEFAULT_SETTINGS = {
     "CountVectorizer": {
         "strip_accents": "ascii",
         "stop_words": stopwords.words("english"),
-        "ngram_range": (1, 2),
+        "ngram_range": (1, 3),
     }
 }
 
@@ -57,12 +58,12 @@ def make_front_page(
 def main(post: str, date: datetime, title: str, categories: list[str]):
 
     n_grams_steps = [
-        ("filter_content", tf.RegexContentFilter()),
-        ("lemmatize_content", tf.LemmatizeContent()),
-        ("tokenizer", tf.Tokenizer(sent_tokenize)),
+        ("RegexContentFilter", tf.RegexContentFilter()),
+        ("LemmatizeContent", tf.LemmatizeContent()),
+        ("Tokenizer", tf.Tokenizer(sent_tokenize)),
         (
-            "count_vectorizer",
-            tf.CountVectorizer(**DEFAULT_SETTINGS.get("CountVectorizer")),  # type: ignore
+            "CountVectorizer",
+            tf.CountVectorizer(**DEFAULT_SETTINGS["CountVectorizer"]),  # type: ignore
         ),
     ]
 
@@ -74,6 +75,15 @@ def main(post: str, date: datetime, title: str, categories: list[str]):
     tags = tf.Tags(5)
     _ = tags.make(ngrams)
     post_tags = tags.get(ngrams)
+
+    summarize_text_steps = [
+        ("RegexContentFilter", tf.RegexContentFilter()),
+        ("GenText", tf.GenText(pipeline("text-generation", model="gpt2"))),
+    ]
+
+    summarize_text_pipeline = tf.Pipeline(summarize_text_steps)
+    _ = summarize_text_pipeline.make(post)
+    summary = summarize_text_pipeline.get(post)
 
     front_page = make_front_page(date, title, categories, post_tags)
 

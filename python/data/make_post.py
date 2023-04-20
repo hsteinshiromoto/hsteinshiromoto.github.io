@@ -9,6 +9,7 @@ import click
 import frontmatter
 import nltk
 import yaml
+from transformers import pipeline
 
 nltk.download("stopwords", "wordnet", "genesis", "omw-1.4")
 
