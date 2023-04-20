@@ -8,31 +8,41 @@
     // "dockerFile": "../Dockerfile",
     // Add the IDs of extensions you want installed when the container is created in the array below.
     "extensions": [
-        "mhutchie.git-graph",
-        "hediet.vscode-drawio",
-        "eamodio.gitlens",
-        "znck.grammarly",
-        "oderwat.indent-rainbow",
-        "ajshort.latex-preview",
-        "james-yu.latex-workshop",
-        "yzhang.markdown-all-in-one",
-        "davidanson.vscode-markdownlint",
-        "christian-kohler.path-intellisense",
-        "esbenp.prettier-vscode",
-        "ms-python.vscode-pylance",
-        "ms-python.python",
-        "njpwerner.autodocstring",
-        "littlefoxteam.vscode-python-test-adapter",
-        "sourcery.sourcery",
-        "cssho.vscode-svgviewer",
-        "hbenl.vscode-test-explorer",
-        "wayou.vscode-icons-mac",
-        "redhat.vscode-yaml",
-        "anjali.clipboard-history",
-        "streetsidesoftware.code-spell-checker",
-        "fabiospampinato.vscode-diff",
-        "nickfode.latex-formatter",
-        "amirha.better-comments-2"
+        "2gua.rainbow-brackets"
+        ,"amirHA.better-comments-2"
+        ,"bungcip.better-toml"
+        ,"christian-kohler.path-intellisense"
+        ,"DavidAnson.vscode-markdownlint"
+        ,"eamodio.gitlens"
+        ,"esbenp.prettier-vscode"
+        ,"fabiospampinato.vscode-diff"
+        ,"grimmer.vscode-back-forward-button"
+        ,"hbenl.vscode-test-explorer"
+        ,"James-Yu.latex-workshop"
+        ,"lextudio.restructuredtext"
+        ,"littlefoxteam.vscode-python-test-adapter"
+        ,"mhutchie.git-graph"
+        ,"ms-python.python"
+        ,"ms-python.vscode-pylance"
+        ,"ms-toolsai.jupyter"
+        ,"ms-toolsai.jupyter-keymap"
+        ,"ms-toolsai.jupyter-renderers"
+        ,"ms-toolsai.vscode-jupyter-cell-tags"
+        ,"ms-toolsai.vscode-jupyter-slideshow"
+        ,"ms-vscode.makefile-tools"
+        ,"ms-vscode.test-adapter-converter"
+        ,"nickfode.latex-formatter"
+        ,"njpwerner.autodocstring"
+        ,"oderwat.indent-rainbow"
+        ,"PsykoSoldi3r.vscode-git-flow"
+        ,"redhat.vscode-yaml"
+        ,"reverbc.vscode-pytest"
+        ,"streetsidesoftware.code-spell-checker"
+        ,"trond-snekvik.simple-rst"
+        ,"twday.bibmanager"
+        ,"wayou.vscode-icons-mac"
+        ,"yzhang.markdown-all-in-one"
+        ,"znck.grammarly"
     ],
     // The optional 'runArgs' property can be used to specify additional runtime arguments.
     // "runArgs": ["-u", "vscode"],

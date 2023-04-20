@@ -18,7 +18,7 @@ Welcome to my webpage. I am a data scientist interested in using advanced prescr
 strategies.
 
 I currently work as a senior manager in data science and machine learning at Macquarie Group, an Australian banking
-institution. Here, I help the Risk Management Group to mitigate the non-financial risk of Macquarie's activities.
+institution. Here, I support the Risk Management Group to mitigate non-financial risks.
 
 Previously, I was a senior data scientist at Telstra, an Australian telecommunications company where I use machine
 learning for customer personalization. Before joining Telstra, I worked at QBE Insurance, and the

@@ -4,5 +4,17 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"python.terminal.activateEnvInCurrentTerminal": true,
+			"editor.formatOnSaveMode": "file",
+				"editor.formatOnSave": true,
+				"workbench.colorCustomizations": 
+			{
+					"titleBar.activeBackground": "#000000"
+				},
+			"python.analysis.typeCheckingMode": "basic",
+				"python.formatting.provider": "black",
+				"python.linting.pylintEnabled": true,
+				"python.linting.enabled": true
+	}
 }

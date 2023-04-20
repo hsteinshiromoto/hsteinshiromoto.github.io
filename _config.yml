@@ -21,7 +21,7 @@ title                    : "Critical Point"
 title_separator          : "@"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Humberto STEIN SHIROMOTO"
-description              : "An amazing website."
+description              : "Humberto's website"
 url                      : "https://hsteinshiromoto.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "hsteinshiromoto/hsteinshiromoto.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -116,24 +116,27 @@ author:
     - label: "Email"
       icon: "fas fa-fw fa-duotone fa-envelope-open"
       url: "mailto:hsteinshiromoto@gmail.com"
-    - label: "Website"
-      icon: "fas fa-fw fa-link"
-      # url: "https://your-website.com"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/hsteinshiromoto"
-    - label: "Facebook"
-      icon: "fab fa-fw fa-facebook-square"
-      # url: "https://facebook.com/"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/hsteinshiromoto"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      # url: "https://instagram.com/"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://linkedin.com/in/hsteinshiromoto"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/hsteinshiromoto"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/hsteinshiromoto"
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      # url: "https://your-website.com"
+    - label: "Facebook"
+      icon: "fab fa-fw fa-facebook-square"
+      # url: "https://facebook.com/"
+    - label: "Instagram"
+      icon: "fab fa-fw fa-instagram"
+      # url: "https://instagram.com/"
+    
+    
+    
     
 # Site Footer
 footer:
@@ -198,6 +201,7 @@ exclude:
   - tmp
   - /docs # ignore Minimal Mistakes /docs
   - /test # ignore Minimal Mistakes /test
+  - python/
 keep_files:
   - .git
   - .svn
