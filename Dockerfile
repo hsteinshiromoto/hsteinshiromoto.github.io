@@ -54,7 +54,7 @@ COPY files/.zshrc files/.tmux.conf $HOME/
 RUN bash -c "$(curl https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
 RUN git clone --depth 1 https://github.com/romkatv/powerlevel10k $HOME/.oh-my-zsh/custom/themes/powerlevel10k
 RUN git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm && \
-     ~/.tmux/plugins/tpm/bin/install_plugins
+    ~/.tmux/plugins/tpm/bin/install_plugins
 
 SHELL ["/bin/zsh", "-c"] 
 
@@ -77,8 +77,10 @@ RUN pyenv install $PYTHON_VERSION && pyenv global $PYTHON_VERSION
 # Install poetry
 # References:
 #   [1] https://stackoverflow.com/questions/53835198/integrating-python-poetry-with-docker
+#   [2] https://github.com/python-poetry/poetry/issues/461#issuecomment-1348696119
 # ---
-RUN pip install poetry
+RUN pip install poetry && \
+    poetry self add poetry-plugin-up
 
 COPY pyproject.toml poetry.lock /usr/local/
 
