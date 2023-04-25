@@ -43,6 +43,7 @@
         ,"wayou.vscode-icons-mac"
         ,"yzhang.markdown-all-in-one"
         ,"znck.grammarly"
+        ,"github.vscode-github-actions"
     ],
     // The optional 'runArgs' property can be used to specify additional runtime arguments.
     // "runArgs": ["-u", "vscode"],
