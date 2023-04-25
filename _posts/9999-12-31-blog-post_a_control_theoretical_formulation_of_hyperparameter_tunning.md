@@ -1,8 +1,8 @@
 ---
 title: 'A Control Theoretical Formulation of Hyperparameter Tunning'
-date: 2022-12-16
+date: 9999-12-31
 layout: posts
-permalink: posts/2022/12/16/blog-post_a_control_theoretical_formulation_of_hyperparameter_tunning
+permalink: posts/9999/12/31/blog-post_a_control_theoretical_formulation_of_hyperparameter_tunning
 tags: 
   - control theory
   - machine learning
