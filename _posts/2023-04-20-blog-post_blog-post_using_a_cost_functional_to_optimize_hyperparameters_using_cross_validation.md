@@ -13,6 +13,8 @@ categories:
 
 **Abstract**. This blog post discusses the importance of cost functions in mathematical optimization and how it applies to machine learning problems. The author argues that formulating the optimization of the performance metrics of a machine learning classifier in terms of a cost function is better than optimizing a single metric because it provides a more comprehensive and flexible framework for optimization, can help to address the trade-off between model complexity and performance, and can lead to better performance and generalization. An example of this formulation is provided for a binary classifier.
 
+# Using a Cost Functional to Optimize Hyperparameters Using Cross Validation
+
 ## What is a cost function?
 
 In mathematical optimization, a cost function is a mathematical function that represents the cost or objective to be minimized or maximized in a given optimization problem. The cost function defines the relationship between the input variables and the output values of the problem. In optimization problems, the goal is to find the input values that minimize or maximize the cost function, subject to certain constraints. The cost function plays a crucial role in defining the optimization problem and in guiding the search for the optimal solution. The choice of the cost function depends on the nature of the problem and the desired optimization criteria. In many real-world problems, the cost function may be a complex, nonlinear function that requires advanced mathematical tools and techniques to be analyzed and optimized.

@@ -84,7 +84,7 @@ RUN pip install poetry && \
 
 COPY pyproject.toml poetry.lock /usr/local/
 
-RUN poetry config virtualenvs.create false \ 
+RUN poetry config virtualenvs.create false && \ 
     cd /usr/local \
     && poetry install --no-interaction --no-ansi
 

@@ -4,7 +4,7 @@ SHELL:=/bin/bash
 # ---
 # Variables
 # ---
-PYTHON_VERSION="3.10.7"
+PYTHON_VERSION="3.11.1"
 PROJECT_PATH := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 GIT_REMOTE=$(shell basename $(shell git remote get-url origin))
 PROJECT_NAME=$(shell basename $(PWD))
@@ -51,7 +51,9 @@ hooks:
 doctest:
 	pytest --doctest-modules
 
-
+## Update Poetry packages
+poetry_up:
+	poetry up --latest
 # ---
 # Self Documenting Commands
 # ---
