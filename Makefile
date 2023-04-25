@@ -51,7 +51,9 @@ hooks:
 doctest:
 	pytest --doctest-modules
 
-
+## Update Poetry packages
+poetry_up:
+	poetry up --latest
 # ---
 # Self Documenting Commands
 # ---
