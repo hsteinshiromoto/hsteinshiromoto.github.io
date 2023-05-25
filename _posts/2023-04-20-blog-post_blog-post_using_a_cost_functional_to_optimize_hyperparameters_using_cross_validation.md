@@ -1,4 +1,5 @@
 ---
+toc: true
 title: 'Using a Cost Functional to Optimize Hyperparameters Using Cross Validation'
 date: 2023-04-20
 layout: posts
