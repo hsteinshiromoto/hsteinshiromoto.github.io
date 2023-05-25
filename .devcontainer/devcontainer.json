@@ -1,48 +1,49 @@
 // For format details, see https://aka.ms/vscode-remote/devcontainer.json or the definition README at
 // https://github.com/microsoft/vscode-dev-containers/tree/master/containers/docker-existing-dockerfile
 {
-    "image": "ghcr.io/hsteinshiromoto/hsteinshiromoto.github.io/hsteinshiromoto.github.io:latest",
+    "image": "hsteinshiromoto/hsteinshiromoto.github.io:latest",
     // Sets the run context to one level up instead of the .devcontainer folder.
     "context": "..",
     // Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
     // "dockerFile": "../Dockerfile",
     // Add the IDs of extensions you want installed when the container is created in the array below.
     "extensions": [
-        "2gua.rainbow-brackets"
-        ,"amirHA.better-comments-2"
-        ,"bungcip.better-toml"
-        ,"christian-kohler.path-intellisense"
-        ,"DavidAnson.vscode-markdownlint"
-        ,"eamodio.gitlens"
-        ,"esbenp.prettier-vscode"
-        ,"fabiospampinato.vscode-diff"
-        ,"grimmer.vscode-back-forward-button"
-        ,"hbenl.vscode-test-explorer"
-        ,"James-Yu.latex-workshop"
-        ,"lextudio.restructuredtext"
-        ,"littlefoxteam.vscode-python-test-adapter"
-        ,"mhutchie.git-graph"
-        ,"ms-python.python"
-        ,"ms-python.vscode-pylance"
-        ,"ms-toolsai.jupyter"
-        ,"ms-toolsai.jupyter-keymap"
-        ,"ms-toolsai.jupyter-renderers"
-        ,"ms-toolsai.vscode-jupyter-cell-tags"
-        ,"ms-toolsai.vscode-jupyter-slideshow"
-        ,"ms-vscode.makefile-tools"
-        ,"ms-vscode.test-adapter-converter"
-        ,"nickfode.latex-formatter"
-        ,"njpwerner.autodocstring"
-        ,"oderwat.indent-rainbow"
-        ,"PsykoSoldi3r.vscode-git-flow"
-        ,"redhat.vscode-yaml"
-        ,"reverbc.vscode-pytest"
-        ,"streetsidesoftware.code-spell-checker"
-        ,"trond-snekvik.simple-rst"
-        ,"twday.bibmanager"
-        ,"wayou.vscode-icons-mac"
-        ,"yzhang.markdown-all-in-one"
-        ,"znck.grammarly"
+        "2gua.rainbow-brackets",
+        "amirHA.better-comments-2",
+        "bungcip.better-toml",
+        "christian-kohler.path-intellisense",
+        "DavidAnson.vscode-markdownlint",
+        "eamodio.gitlens",
+        "esbenp.prettier-vscode",
+        "fabiospampinato.vscode-diff",
+        "grimmer.vscode-back-forward-button",
+        "hbenl.vscode-test-explorer",
+        "James-Yu.latex-workshop",
+        "lextudio.restructuredtext",
+        "littlefoxteam.vscode-python-test-adapter",
+        "mhutchie.git-graph",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter",
+        "ms-toolsai.jupyter-keymap",
+        "ms-toolsai.jupyter-renderers",
+        "ms-toolsai.vscode-jupyter-cell-tags",
+        "ms-toolsai.vscode-jupyter-slideshow",
+        "ms-vscode.makefile-tools",
+        "ms-vscode.test-adapter-converter",
+        "nickfode.latex-formatter",
+        "njpwerner.autodocstring",
+        "oderwat.indent-rainbow",
+        "PsykoSoldi3r.vscode-git-flow",
+        "redhat.vscode-yaml",
+        "reverbc.vscode-pytest",
+        "streetsidesoftware.code-spell-checker",
+        "trond-snekvik.simple-rst",
+        "twday.bibmanager",
+        "wayou.vscode-icons-mac",
+        "yzhang.markdown-all-in-one",
+        "znck.grammarly",
+        "github.vscode-github-actions"
     ],
     // The optional 'runArgs' property can be used to specify additional runtime arguments.
     // "runArgs": ["-u", "vscode"],
