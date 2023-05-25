@@ -1,0 +1,18 @@
+email:
+  id: 'h.stein.shiromoto@gmail.com'
+  href: 'mailto:h.stein.shiromoto@gmail.com'
+  title: 'Email'
+  fa-icon: 'fa-envelope-square'
+
+linkedin:
+  id: 'hsteinshiromoto'
+  href: 'https://www.linkedin.com/'
+  title: 'LinkedIn'
+  fa-icon: 'fa-linkedin-square'
+
+github:
+  id: 'hsteinshiromoto'
+  href: 'https://github.com/'
+  title: 'GitHub'
+  fa-icon: 'fa-github-square'
+
