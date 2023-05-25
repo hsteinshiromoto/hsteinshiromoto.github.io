@@ -11,5 +11,3 @@ redirect_from:
 ---
 
 # Links to My Social Profiles
-
-{% include social-media-links.html %}
