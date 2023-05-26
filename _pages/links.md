@@ -30,7 +30,7 @@ redirect_from:
     </div>
     <div class="div-1"> 
         <h2>
-        <a href="https://github.com/{{ author.github }}" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+        <a href="https://github.com/hsteinshiromoto" itemprop="sameAs" rel="nofollow noopener noreferrer me">
             <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">hsteinshiromoto</span>
         </a>
         </h2>
