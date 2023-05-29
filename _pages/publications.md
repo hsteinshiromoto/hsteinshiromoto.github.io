@@ -6,21 +6,18 @@ author_profile: true
 redirect_from:
   - /publications
   - /publications.html
+toc: true
+toc_label: "Table of Contents"
+toc_sticky: true
 ---
 
-- [1. Books](#1-books)
-- [2. Peer-reviewed Journals](#2-peer-reviewed-journals)
-- [3. Peer-reviewed Conference Proceedings](#3-peer-reviewed-conference-proceedings)
-- [4. Software](#4-software)
-- [5. Other Communications](#5-other-communications)
-
-## 1. Books
+## Books
 
 * [B1] **H. Stein Shiromoto**.
   "*Design and Analysis of Control Systems*". Springer, 2017.
   doi: [10.1007/978-3-319-52012-4](http://dx.doi.org/10.1007/978-3-319-52012-4).
 
-## 2. Peer-reviewed Journals
+## Peer-reviewed Journals
 
 * [J5] **H. Stein Shiromoto**, M. Revay, and I. R. Manchester. “*Distributed Nonlinear Control Design using Separable Control Contraction Metrics*”. In: IEEE Trans. Control Net. Syst. 6.4 (Dec. 2018), pp. 1281–1290. doi: [10.1109/TCNS.2018.2885270](http://dx.doi.org/10.1109/TCNS.2018.2885270). arXiv: [1810.04794](https://arxiv.org/abs/1810.04794) [cs.SY, math.OC].
 
@@ -32,7 +29,7 @@ redirect_from:
 
 * [J1] **H. Stein Shiromoto**, V. Andrieu, and C. Prieur. “*Relaxed and hybridized backstepping*”. In: IEEE Trans. Autom. Control 58.12 (2013), pp. 3236–3241. doi: [10.1109/TAC.2013.2263613](http://dx.doi.org/10.1109/TAC.2013.2263613). arXiv: [1502.03461](https://arxiv.org/abs/1502.03461) [math.OC, cs.SY].
 
-## 3. Peer-reviewed Conference Proceedings
+## Peer-reviewed Conference Proceedings
 
 * [C5] **H. Stein Shiromoto** and I. R. Manchester. “*Decentralized Nonlinear Feedback Design with Separable Control Contraction Metrics*”. In: Proceedings of the 55th Conference on Decision and Control (CDC). Las Vegas, NV, USA, Dec. 2016, pp. 5551–5556. doi:[10.1109/CDC.2016.7799122](http://dx.doi.org/10.1109/CDC.2016.7799122). arXiv: [1609.07237](https://arxiv.org/abs/1609.07237) [math.OC].
 
@@ -44,7 +41,7 @@ redirect_from:
 
 * [C1] **H. Stein Shiromoto**, V. Andrieu, and C. Prieur. “*Combining a backstepping controller with a local stabilizer*”. In: Proceedings of the American Control Conference (ACC). San Francisco, CA, United States of America, 2011, pp. 3197–3202. doi: [10.1109/ACC.2011.5991251](http://dx.doi.org/10.1109/ACC.2011.5991251). arXiv: [1503.02892](https://arxiv.org/abs/1503.02892).
 
-## 4. Software
+## Software
 
 * [S4] **H. Stein Shiromoto** (2021). *A collection of tools for visualization and data processing for exploratory data analysis* (Version 0.0.5) [Computer software]. doi: [10.5281/zenodo.5563181](https://doi.org/10.5281/zenodo.5563181). PyPI: [pypi.org/project/datatoolkit/](https://pypi.org/project/datatoolkit/). Github: [github.com/hsteinshiromoto/datatoolkit](https://github.com/hsteinshiromoto/datatoolkit).
 
@@ -54,7 +51,7 @@ redirect_from:
 
 * [S1] **H. Stein Shiromoto** (2020). *Algorithms used in the paper Decentralized Nonlinear Feedback Design with Separable Control Contraction Metrics* (Version 1.0) [Computer software]. doi: [10.5281/zenodo.3744126](https://doi.org/10.5281/zenodo.3744126). Github: [github.com/hsteinshiromoto/paper.ssm16](https://github.com/hsteinshiromoto/paper.ssm16).
 
-## 5. Other Communications
+## Other Communications
 
 * [O4] **H. Stein Shiromoto**, P. Feketa, and S. Dashkovskiy. "*Example Demonstrating the Application of Small-gain and Density Propagation Conditions for Interconnections*". 2016. arXiv: [1606.02360](https://arxiv.org/abs/1606.02360).
 
