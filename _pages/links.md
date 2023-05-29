@@ -1,13 +1,15 @@
 ---
 layout: single
 permalink: /links/
-title: "Links to Connect with Me"
+title: "Links to Contact Me"
 author_profile: true
 redirect_from:
 - /links/
 - /links.html
 - /social/
 - /social.html
+- /contact/
+- /contact.html
 ---
 
 <style>
