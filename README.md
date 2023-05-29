@@ -19,3 +19,4 @@
 * https://www.cross-validated.com/Personal-website-with-Minimal-Mistakes-Jekyll-Theme-HOWTO-Part-I/
 * Icons list: https://gist.github.com/mohamdio/982653e3a8ae35f892f13c5ef0ef9b58
 * Post Jupyter notebook: https://www.linode.com/docs/guides/jupyter-notebook-on-jekyll/
+* [Instructions on how to make the Masthead navigation bar "sticky"](https://github.com/fortierq/fortierq.github.io/commit/477b98f45c87474484327a55cae185873b6caac0) by [Quentin Fortier](https://github.com/fortierq) → [Example](https://hsteinshiromoto.github.io/)
