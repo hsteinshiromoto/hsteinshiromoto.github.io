@@ -1,7 +1,7 @@
 ---
 layout: single
 permalink: /links/
-title: "Links to My Social Profiles"
+title: "Links to Connect with Me"
 author_profile: true
 redirect_from:
 - /links/
