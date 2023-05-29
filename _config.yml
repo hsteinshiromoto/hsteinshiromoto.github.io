@@ -315,3 +315,4 @@ defaults:
       comments: true
       share: true
       related: true
+      sticky: true
