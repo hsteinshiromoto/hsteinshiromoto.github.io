@@ -1,13 +1,15 @@
 ---
 title: 'Optimization References'
 date: 2021-12-23
-layout: posts
 permalink: posts/2021/12/23/optimization_references
 categories:
   - mathematics
 tags: 
   - optimization
   - references 
+toc: true
+toc_label: "Table of Contents"
+toc_sticky: true
 ---
 
 My list of reference materials containing for mathematical optimisation, based on [Quora](https://www.quora.com/What-are-some-good-resources-to-learn-about-optimization).

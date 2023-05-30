@@ -2,38 +2,20 @@
 title: 'Signing git commits with gpg'
 date: 2020-05-28
 permalink: /posts/2020/05/28/signing_commits_with_gpg
-layout: posts
 categories:
   - coding
 tags:
   - git
   - gpg
   - digital signature
+toc: true
+toc_label: "Table of Contents"
+toc_sticky: true
 ---
 
 I found this post on how to sign commits with gpg on Medium, and I copied to my blog so I can keep for my records. Please, visit the original source at: 
 
 [`https://medium.com/better-programming/how-to-sign-your-git-commits-1014edaf1e85`](https://medium.com/better-programming/how-to-sign-your-git-commits-1014edaf1e85)
-
-Contents of this post:
-
-- [1. How to Sign Your Git Commits](#1-how-to-sign-your-git-commits)
-- [2. Why Sign Git Commits?](#2-why-sign-git-commits)
-- [3. Cryptographic Signatures and GPG](#3-cryptographic-signatures-and-gpg)
-  - [3.1. Asymmetric cryptography](#31-asymmetric-cryptography)
-  - [3.2. About signatures](#32-about-signatures)
-  - [3.3. GPG: the GNU privacy guard](#33-gpg-the-gnu-privacy-guard)
-- [4. Set Up Your Git to Sign Commits](#4-set-up-your-git-to-sign-commits)
-  - [4.1. Install GPG](#41-install-gpg)
-  - [4.2. Generate a GPG key pair](#42-generate-a-gpg-key-pair)
-  - [4.3. Add multiple emails](#43-add-multiple-emails)
-  - [4.4. Configure Git to sign your commits](#44-configure-git-to-sign-your-commits)
-  - [4.5. Add the GPG key to GitHub](#45-add-the-gpg-key-to-github)
-  - [4.6. Make a signed commit](#46-make-a-signed-commit)
-  - [4.7. Configure Visual Studio Code for signing commits](#47-configure-visual-studio-code-for-signing-commits)
-  - [4.8. Using hardware tokens](#48-using-hardware-tokens)
-- [5. A Troubleshoot when Brew Updates](#5-a-troubleshoot-when-brew-updates)
-- [6. References](#6-references)
 
 # 1. How to Sign Your Git Commits
 

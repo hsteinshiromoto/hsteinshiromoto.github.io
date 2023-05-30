@@ -1,7 +1,6 @@
 ---
 title: "Pandas Value Counts"
 date: 2020-08-13
-layout: posts
 permalink: posts/2020/08/27/pandas_value_counts
 categories: 
   - coding
@@ -9,6 +8,7 @@ tags:
   - python
   - join
   - pandas
+toc: false
 ---
 
 The `value_counts()` function in the popular python data science library [Pandas](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.value_counts.html) is a quick way to count the unique values in a single column otherwise known as a series of data.

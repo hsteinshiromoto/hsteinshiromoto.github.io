@@ -1,7 +1,6 @@
 ---
 title: 'A Control Theoretical Formulation of Hyperparameter Tunning'
 date: 9999-12-31
-layout: posts
 permalink: posts/9999/12/31/blog-post_a_control_theoretical_formulation_of_hyperparameter_tunning
 tags: 
   - control theory
@@ -10,6 +9,9 @@ tags:
   - optimization
 categories:
   - mathematics
+toc: true
+toc_label: "Table of Contents"
+toc_sticky: true
 ---
 
 In the development of a machine learning model, its hyperparameters are optimized to obtain the best performance metric of choice. In this post, we will discuss how to fomulate the search of these hyperparameters in terms of a control theorical problem. The advantage of this formulation is to be able to use the current model performance metric as a feedback to improve the search of the optimal hyperparameter.
