@@ -42,15 +42,13 @@ jobs:
           response=$(docker manifest inspect ghcr.io/${{ github.repository }}/$IMAGE_NAME:${{ steps.docker_version.outputs.version }} > /dev/null ; echo $?)
           echo ::set-output name=image_exists::$(echo ${response})
 
-      - name: Build docker image if it is not on registry
-        if: ${{ steps.image_exists.outputs.image_exists == 1 }}
+      - name: Build docker image 
         run: make image
 
       # 0 If exists. 1 Else
       # References:
       #   [1] https://stackoverflow.com/questions/32113330/check-if-imagetag-combination-already-exists-on-docker-hub
       - name: Push image to Github Registry
-        if: ${{ steps.image_exists.outputs.image_exists == 1 }}
         run: |
               IMAGE_ID=ghcr.io/${{ github.repository }}/$IMAGE_NAME
 
