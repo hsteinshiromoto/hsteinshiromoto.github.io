@@ -4,12 +4,8 @@ permalink: /links/
 title: "Links to Contact Me"
 author_profile: true
 redirect_from:
-- /links/
-- /links.html
 - /social/
-- /social.html
 - /contact/
-- /contact.html
 ---
 
 [LinkedIn <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> hsteinshiromoto](https://www.linkedin.com/in/hsteinshiromoto){: .btn .btn--linkedin .btn--x-large}

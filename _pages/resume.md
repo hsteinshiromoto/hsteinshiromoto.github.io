@@ -5,8 +5,6 @@ title: "Resume"
 author_profile: true
 redirect_from:
 - /cv/
-- /resume.html
-- /cv.html
 toc: true
 toc_label: "Table of Contents"
 toc_sticky: true
