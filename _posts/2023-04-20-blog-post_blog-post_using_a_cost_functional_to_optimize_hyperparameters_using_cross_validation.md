@@ -1,6 +1,4 @@
 ---
-toc: true
-toc_label: "Table of Contents"
 title: 'Using a Cost Functional to Optimize Hyperparameters Using Cross Validation'
 date: 2023-04-20
 layout: posts
@@ -14,6 +12,17 @@ categories:
 ---
 
 This blog post discusses the importance of cost functions in mathematical optimization and how it applies to machine learning problems. The author argues that formulating the optimization of the performance metrics of a machine learning classifier in terms of a cost function is better than optimizing a single metric because it provides a more comprehensive and flexible framework for optimization, can help to address the trade-off between model complexity and performance, and can lead to better performance and generalization. An example of this formulation is provided for a binary classifier.
+
+{<section id="table-of-contents" class="toc">
+  <header>
+    <h2>Contents</h2>
+  </header>
+<div id="drawer" markdown="1">
+*  Auto generated table of contents
+{:toc}
+</div>
+</section><!-- /#table-of-contents -->}
+
 
 ## What is a cost function?
 
