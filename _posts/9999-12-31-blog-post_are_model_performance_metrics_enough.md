@@ -1,14 +1,16 @@
 ---
 title: "Are Model Performance Metrics Enough?"
-date: 2021-10-31
-layout: posts
-permalink: posts/2021/10/31/are_model_performance_metrics_enough
+date: 9999-12-31
+permalink: posts/9999/12/31/are_model_performance_metrics_enough
 categories: 
   - management
   - opinion
   - machine learning
   - performance
   - evaluation
+toc: true
+toc_label: "Table of Contents"
+toc_sticky: true
 ---
 
 My model has a "good enough" performance, is this sufficient for deployment?

@@ -1,7 +1,6 @@
 ---
 title: 'My RegEx Cheatsheet'
 date: 2022-09-27
-layout: posts
 permalink: posts/2022/10/01/blog-post_regex_cheatsheet
 tags: 
   - regex
@@ -9,6 +8,9 @@ tags:
   - Python
 categories:
   - coding
+toc: true
+toc_label: "Table of Contents"
+toc_sticky: true
 ---
 
 In this post, I compile a cheatsheet of the main regexes that I use in my projects.

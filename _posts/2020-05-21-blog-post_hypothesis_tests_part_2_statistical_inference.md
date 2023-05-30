@@ -1,26 +1,17 @@
 ---
 title: 'Hypothesis Tests Part 2: Statistical Inference'
 date: 2020-05-21
-layout: posts
 permalink: /posts/2020/05/21/statistical_tests_part_2_statistical_inference
 categories:
   - statistics
 tags:
   - hypothesis_tests
+toc: true
+toc_label: "Table of Contents"
+toc_sticky: true
 ---
 
 In this post, I present an overview of statistical tests. The goal of calculating a test statistic is to decided if the null hypothesis is true. Once value of the test-statistic is obtained, it is compared with a pre-defined critical value. If the test statistic is found to be greater than the critical value, then hypothesis is rejected.
-
-- [1. The Statistical Inference Setting](#1-the-statistical-inference-setting)
-- [2. Tests](#2-tests)
-  - [2.1. T-test](#21-t-test)
-    - [2.1.1. Population and Sample](#211-population-and-sample)
-    - [2.1.2. Different Samples](#212-different-samples)
-  - [2.2. ANOVA](#22-anova)
-  - [2.3. $\chi^2$ Test](#23-chi2-test)
-- [3. Errors](#3-errors)
-- [4. Dealing with Non-normal Distributions](#4-dealing-with-non-normal-distributions)
-- [5. Further Reading](#5-further-reading)
 
 # 1. The Statistical Inference Setting
 

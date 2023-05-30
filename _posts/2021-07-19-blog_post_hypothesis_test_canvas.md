@@ -1,13 +1,13 @@
 ---
 title: "Hypothesis Test Canvas"
 date: 2021-07-19
-layout: posts
 permalink: posts/2021/07/19/hypothesis_test_canvas
 categories: 
   - statistics
 tags:
   - canvas
   - hypothesis test
+toc: false
 ---
 
 Based on the machine learning canvas, I wrote down a hypothesis test canvas to clarify what hypothesis we are testing, what data is employed and how the results of test will be used.

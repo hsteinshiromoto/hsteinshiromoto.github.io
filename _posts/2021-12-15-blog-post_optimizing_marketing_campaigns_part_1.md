@@ -1,7 +1,6 @@
 ---
 title: 'Optimizing Marketing Campaigns Part 1: Clustering'
 date: 2021-12-15
-layout: posts
 permalink: posts/2021/12/15/blog-post_optimizing_marketing_campaigns_part_1
 tags: 
   - marketing
@@ -11,6 +10,9 @@ tags:
   - gurobi
 categories:
   - case study
+toc: true
+toc_label: "Table of Contents"
+toc_sticky: true
 ---
 
 In this series of posts, we analyze how to maximize the profit of marketing campaigns using mathematical optimization techniques. In the first part, we use optimize the profit of campaign for a cluster of customers. To do this, we model the profit and cost of the campaigns of two products. Furthermore, the constraints on maximum number of offers, budget and return on investment are also modelled and considered to maximize the profit.

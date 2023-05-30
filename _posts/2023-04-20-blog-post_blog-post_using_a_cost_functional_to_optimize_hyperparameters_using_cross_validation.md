@@ -1,7 +1,6 @@
 ---
 title: 'Using a Cost Functional to Optimize Hyperparameters Using Cross Validation'
 date: 2023-04-20
-layout: posts
 permalink: posts/2023/04/20/blog-post_using_a_cost_functional_to_optimize_hyperparameters_using_cross_validation
 tags: 
   - optimization
@@ -9,11 +8,12 @@ tags:
   - Python
 categories:
   - coding
-excerpt: "This blog post discusses the importance of cost functions in mathematical optimization and how it applies to machine learning problems. The author argues that formulating the optimization of the performance metrics of a machine learning classifier in terms of a cost function is better than optimizing a single metric because it provides a more comprehensive and flexible framework for optimization, can help to address the trade-off between model complexity and performance, and can lead to better performance and generalization. An example of this formulation is provided for a binary classifier."
 toc: true
 toc_label: "Table of Contents"
-toc_icon: "heart"
+toc_sticky: true
 ---
+
+This blog post discusses the importance of cost functions in mathematical optimization and how it applies to machine learning problems. The author argues that formulating the optimization of the performance metrics of a machine learning classifier in terms of a cost function is better than optimizing a single metric because it provides a more comprehensive and flexible framework for optimization, can help to address the trade-off between model complexity and performance, and can lead to better performance and generalization. An example of this formulation is provided for a binary classifier.
 
 
 ## What is a cost function?
