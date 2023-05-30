@@ -3,10 +3,10 @@ layout: single
 title: "Sitemap"
 permalink: /sitemap/
 author_profile: true
+toc: true
+toc_label: "Table of Contents"
+toc_sticky: true
 ---
-
-- [1. Pages](#1-pages)
-- [2. Posts](#2-posts)
 
 A list of all the posts and pages found on the site. For you robots out there is an [XML version]({{ base_path }}/sitemap.xml) available for digesting as well.
 

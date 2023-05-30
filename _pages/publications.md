@@ -3,9 +3,6 @@ layout: single
 title: "List of Publications"
 permalink: /publications/
 author_profile: true
-redirect_from:
-  - /publications
-  - /publications.html
 toc: true
 toc_label: "Table of Contents"
 toc_sticky: true
