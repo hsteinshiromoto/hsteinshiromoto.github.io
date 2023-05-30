@@ -282,6 +282,7 @@ PLATFORMS
 DEPENDENCIES
   github-pages
   jekyll-include-cache
+  jekyll-redirect-from
 
 BUNDLED WITH
    1.17.3
