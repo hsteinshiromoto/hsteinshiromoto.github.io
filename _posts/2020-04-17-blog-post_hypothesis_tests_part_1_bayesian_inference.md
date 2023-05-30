@@ -1,13 +1,15 @@
 ---
 title: 'Hypothesis Tests Part 1: Bayesian Inference'
 date: 2020-04-17
-layout: posts
 permalink: /posts/2020/04/17/hypothesis_tests_part_1_bayesian_inference
 categories:
   - statistics
 tags:
   - hypothesis_tests
   - Bayes
+toc: true
+toc_label: "Table of Contents"
+toc_sticky: true
 ---
 
 Every quantity that is estimated from data, such as the mean or the variance, is subject to uncertainties of the measurements due to data collection. If a different sample of measurements is collected, value  fluctuations will certainly give rise to a different set of measurements, even if the experiments are performed under the same conditions. The use of different data samples to measure the same value results in a sampling distribution that characterize the quantity in consideration. This distribution is used to characterize the "true" value of the quantity in consideration. This blog post is dedicated to present how the collected data is employed to test hypotheses of the quantity being measured.

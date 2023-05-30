@@ -1,7 +1,6 @@
 ---
 title: 'Using Hyperopt for Hyperparameter Tunning'
 date: 2021-07-20
-layout: posts
 permalink: posts/2021/07/20/using_hyperopt_for_hyperparameter_tunning
 categories: 
   - coding
@@ -9,6 +8,7 @@ tags:
   - python
   - machine learning
   - bayesian optimization
+toc: false
 ---
 
 In this post I show how to use `hyperopt` to tune hyperparameters of classifiers.

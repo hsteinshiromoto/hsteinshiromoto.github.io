@@ -1,14 +1,15 @@
 ---
 title: 'Plotting a weighted graph using networkx'
 date: 2021-09-03
-layout: posts
 permalink: posts/2021/09/03/plotting_weighted_graph
 categories: 
   - coding
 tags:
   - python
   - graph
+toc: false
 ---
+
 In this blog post, I show how to plot a weighted graph using `networkx`.
 
 The following code makes a graph based on a list of nodes and a matrix of edge weights.

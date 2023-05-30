@@ -1,12 +1,14 @@
 ---
 title: 'Soft Maximum'
 date: 2021-11-28
-layout: posts
 permalink: posts/2021/11/28/soft_maximum
 categories: 
   - mathematics
 tags:
   - optimization
+toc: true
+toc_label: "Table of Contents"
+toc_sticky: true
 ---
 In applications you often want to take the maximum of two numbers. But the simple function
 
