@@ -1,13 +1,13 @@
 ---
 title: "Querying the Latest Record"
 date: 2020-08-13
-layout: posts
 permalink: posts/2020/08/13/querying_the_latest_record
 categories: 
   - coding
 tags:
   - SQL
   - join
+toc: false
 ---
 
 In this gist, I show how to get the latest record or a user based on a datetime column.

@@ -1,11 +1,13 @@
 ---
 title: "My Quick Reference Guide For A Few Natural Language Processing Techniques"
 date: 2020-07-02
-layout: posts
 permalink: /posts/2020/07/02/my_quick_reference_guide_for_a_few_natural_language_processing_techniques
 tags:
   - Natural Language Processing
   - Machine Learning
+toc: true
+toc_label: "Table of Contents"
+toc_sticky: true
 ---
 Natural language processing (NLP) is a field of study dedicated to
 analyze of natural languages. In particular, using statistics and
@@ -13,32 +15,6 @@ algorithms.
 
 This blog post provides a quick reference guide on what, when and how
 each of the methods can be used.
-
-- [Regular Expressions (RegEx)](#regular-expressions-regex)
-  - [What it is](#what-it-is)
-  - [When to use it](#when-to-use-it)
-  - [How to use it](#how-to-use-it)
-- [Word Tokenization](#word-tokenization)
-  - [What it is](#what-it-is-1)
-  - [When to use it](#when-to-use-it-1)
-  - [How to use it](#how-to-use-it-1)
-- [Bag of Words](#bag-of-words)
-  - [What it is](#what-it-is-2)
-  - [When to use it](#when-to-use-it-2)
-  - [How to use it](#how-to-use-it-2)
-- [Word as Vectors](#word-as-vectors)
-  - [What it is](#what-it-is-3)
-  - [When to use it](#when-to-use-it-3)
-  - [How to use it](#how-to-use-it-3)
-- [Tf-idf](#tf-idf)
-  - [What it is](#what-it-is-4)
-  - [When to use it](#when-to-use-it-4)
-  - [How to use it](#how-to-use-it-4)
-- [Name Entity Recognition](#name-entity-recognition)
-  - [What it is](#what-it-is-5)
-  - [When to use it](#when-to-use-it-5)
-  - [How to use it](#how-to-use-it-5)
-- [References](#references)
 
 # Regular Expressions (RegEx)
 

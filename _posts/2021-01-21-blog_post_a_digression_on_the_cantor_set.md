@@ -1,19 +1,15 @@
 ---
 title: "A Digression on the Cantor Set"
 date: 2021-01-21
-layout: posts
 permalink: posts/2021/01/21/a_digression_on_the_cantor_set
 categories: 
   - mathematics
+toc: true
+toc_label: "Table of Contents"
+toc_sticky: true
 ---
 
 The Cantor set is a special type of set in mathematics. In this blog post, I will use it as an illustration of how my mind works, when I learning a new topic.
-
-- [1. Mathematics](#1-mathematics)
-  - [1.1. Definition](#11-definition)
-  - [1.2. Properties](#12-properties)
-- [2. A Model of How We Learn](#2-a-model-of-how-we-learn)
-- [3. References](#3-references)
 
 Cantor sets are used as a counterexample in fields such as set theory, and general topology.
 

@@ -1,7 +1,6 @@
 ---
 title: 'Adding a Dark/Light Theme Switcher to Minimal Mistakes'
 date: 2022-09-27
-layout: posts
 permalink: posts/2022/09/27/blog-post_adding_theme_switch_to_minimal_mistakes
 tags: 
   - webdev
@@ -9,6 +8,7 @@ tags:
   - github
 categories:
   - coding
+toc: false
 ---
 
 This is how I found out how to add a switcher to toggle between light and dark modes of minimal mistakes theme.
