@@ -1,7 +1,7 @@
 ---
 title: "Are Model Performance Metrics Enough?"
-date: 9999-12-31
-permalink: posts/9999/12/31/are_model_performance_metrics_enough
+date: 2023-07-05
+permalink: posts/2023/07/05/are_model_performance_metrics_enough
 categories: 
   - management
   - opinion
