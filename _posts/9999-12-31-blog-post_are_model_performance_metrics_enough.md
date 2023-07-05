@@ -13,11 +13,12 @@ toc_label: "Table of Contents"
 toc_sticky: true
 ---
 
-My model has a "good enough" performance, is this sufficient for deployment?
+My model has a "good enough" performance, is this sufficient for deployment? This post highlights the limitations of relying solely on performance metrics when assessing the readiness of a machine learning model for deployment. It emphasizes the importance of considering both correctness and performance as separate components in the evaluation process. By visualizing the relationship between correctness and performance in different regions, the blog post illustrates the need for critical evaluation and avoiding overconfidence in performance metrics. Furthermore, it emphasizes the impact of business assumptions on correctness and stresses the significance of scientifically-based decision-making.
+
+# Introduction
 
 In general, we are inclined to assume that if the performance metrics of a model is above a certain threshold, then it is ready to be moved to the next stage of the development. As I show in this blog post, we must be more critical about this criterion, because performance metric only measures a part of a data science problem.
 
-# Introduction
 
 While working in a project in which the main deliverable is a machine learning model, the data scientist frequently needs to answer the question if the model performance is good enough. Implicitly, it is assumed that the metric chosen to measure the model performance also captures all the pieces of information about the of the process that generate the data and its characteristics such as distribution, dependencies etc. This assumption can be understood as the causal relationship: if the performance metrics is high, then the model is correct.
 
