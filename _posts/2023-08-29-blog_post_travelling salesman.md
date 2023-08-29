@@ -99,7 +99,7 @@ nx.draw_networkx_edges(G, pos, ax=ax, width=2);
 
 
     
-![png](output_7_0.png)
+![png](https://github.com/hsteinshiromoto/hsteinshiromoto.github.io/_posts/images/2023-08-29_travelling_salesman/output_7_0.png)
     
 
 
@@ -498,7 +498,7 @@ nx.draw_networkx_labels(G, pos, ax=ax);
 
 
     
-![png](output_33_0.png)
+![png](https://raw.githubusercontent.com/hsteinshiromoto/hsteinshiromoto.github.io/_posts/images/2023-08-29_travelling_salesman/output_33_0.png)
     
 
 
