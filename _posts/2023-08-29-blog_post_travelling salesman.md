@@ -1,4 +1,17 @@
-# Travelling Salesman Problem
+---
+title: "The Traveling Salesman Problem"
+date: 2023-07-05
+permalink: posts/2023/08/29/traveling_salesman_problem
+categories: 
+  - optimization
+  - Python
+toc: true
+toc_label: "Table of Contents"
+toc_sticky: true
+excerpt: "The Traveling Salesman Problem (TSP), a captivating conundrum in mathematical optimization, has seamlessly integrated itself into a multitude of industries, reshaping the way we approach efficiency and problem-solving."
+---
+
+# Traveling Salesman Problem
 
 ## Introduction
 
