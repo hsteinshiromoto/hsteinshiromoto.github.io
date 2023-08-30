@@ -1,6 +1,6 @@
 ---
 title: "The Traveling Salesman Problem"
-date: 2023-07-05
+date: 2023-08-29
 permalink: posts/2023/08/29/traveling_salesman_problem
 categories: 
   - optimization
@@ -99,7 +99,7 @@ nx.draw_networkx_edges(G, pos, ax=ax, width=2);
 
 
     
-![png](https://github.com/hsteinshiromoto/hsteinshiromoto.github.io/_posts/images/2023-08-29_travelling_salesman/output_7_0.png)
+![png](images/2023-08-29_travelling_salesman/output_7_0.png)
     
 
 
@@ -498,7 +498,7 @@ nx.draw_networkx_labels(G, pos, ax=ax);
 
 
     
-![png](https://raw.githubusercontent.com/hsteinshiromoto/hsteinshiromoto.github.io/_posts/images/2023-08-29_travelling_salesman/output_33_0.png)
+![png](images/2023-08-29_travelling_salesman/output_33_0.png)
     
 
 
