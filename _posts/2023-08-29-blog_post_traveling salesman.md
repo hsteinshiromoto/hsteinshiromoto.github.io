@@ -11,10 +11,6 @@ toc_sticky: true
 excerpt: "The Traveling Salesman Problem (TSP), a captivating conundrum in mathematical optimization, has seamlessly integrated itself into a multitude of industries, reshaping the way we approach efficiency and problem-solving."
 ---
 
-# Traveling Salesman Problem
-
-## Introduction
-
 The Traveling Salesman Problem (TSP), a captivating conundrum in mathematical optimization, has seamlessly integrated itself into a multitude of industries, reshaping the way we approach efficiency and problem-solving. 
 
 The problem consists of finding the path that minizes the overall traveled distance between locations such that all locations are visited only once.
