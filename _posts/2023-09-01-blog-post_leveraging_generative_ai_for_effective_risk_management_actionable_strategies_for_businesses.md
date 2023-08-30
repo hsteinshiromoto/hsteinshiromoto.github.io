@@ -3,8 +3,9 @@ title: "Leveraging Generative AI for Effective Risk Management: Actionable Strat
 date: 2023-09-01
 permalink: posts/2023/09/01/leveraging_generative_ai_for_effective_risk_management_actionable_strategies_for_businesses
 categories: 
-  - optimization
-  - Python
+  - risk_management
+  - business
+  - AI
 toc: true
 toc_label: "Table of Contents"
 toc_sticky: true
