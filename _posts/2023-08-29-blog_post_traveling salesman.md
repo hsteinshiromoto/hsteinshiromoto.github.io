@@ -1,6 +1,6 @@
 ---
 title: "The Traveling Salesman Problem"
-date: 2023-07-05
+date: 2023-08-29
 permalink: posts/2023/08/29/traveling_salesman_problem
 categories: 
   - optimization
