@@ -1,4 +1,15 @@
-
+---
+title: "Leveraging Generative AI for Effective Risk Management Part I: Introduction to Business Risk"
+date: 2023-09-01
+permalink: posts/2023/09/01/introduction_to_business_risk
+categories: 
+  - risk_management
+  - business
+  - AI
+toc: true
+toc_label: "Table of Contents"
+toc_sticky: true
+---
 
 In life, there are certainties like death and taxes, but there's one more constant: risk. The COVID-19 pandemic starkly reminded us of this fact as we grappled with evaluating and reevaluating personal risks with each wave of the pandemic. Businesses face similar challenges, and their ability to manage and mitigate risk plays a crucial role in their success.
 
