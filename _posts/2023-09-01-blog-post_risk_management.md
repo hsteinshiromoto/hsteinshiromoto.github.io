@@ -15,8 +15,7 @@ In life, there are certainties like death and taxes, but there's one more consta
 
 {% capture notice-2 %}
 
-This post is part of the Leveraging Generative AI for Effective Risk Management series. 
-The link for the part II can be found [here](https://humberto.stein-shiromoto.net/posts/2023/09/26/generative_ai_for_risk_management).
+This post is part of a series. The link for the part II can be found [here](https://humberto.stein-shiromoto.net/posts/2023/09/26/generative_ai_for_risk_management).
 
 {% endcapture %}
 
