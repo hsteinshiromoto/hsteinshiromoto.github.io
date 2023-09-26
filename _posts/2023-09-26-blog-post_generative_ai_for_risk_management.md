@@ -15,8 +15,7 @@ In today's rapidly evolving business landscape, risk management is more critical
 
 {% capture notice-2 %}
 
-This post is part of the Leveraging Generative AI for Effective Risk Management series. 
-The link for the part I can be found [here](https://humberto.stein-shiromoto.net/posts/2023/09/01/introduction_to_business_risk).
+This post is part of a series. The link for the part I can be found [here](https://humberto.stein-shiromoto.net/posts/2023/09/01/introduction_to_business_risk).
 
 {% endcapture %}
 
