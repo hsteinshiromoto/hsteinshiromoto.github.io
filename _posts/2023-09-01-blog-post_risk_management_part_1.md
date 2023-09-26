@@ -13,6 +13,15 @@ toc_sticky: true
 
 In life, there are certainties like death and taxes, but there's one more constant: risk. The COVID-19 pandemic starkly reminded us of this fact as we grappled with evaluating and reevaluating personal risks with each wave of the pandemic. Businesses face similar challenges, and their ability to manage and mitigate risk plays a crucial role in their success.
 
+{% capture notice-2 %}
+
+This post is part of the Leveraging Generative AI for Effective Risk Management series. 
+The link for the part II can be found [here](https://humberto.stein-shiromoto.net/posts/2023/09/26/generative_ai_for_risk_management).
+
+{% endcapture %}
+
+<div class="notice--info">{{ notice-2 | markdownify }}</div>
+
 ## The Origins of Business Risk
 
 Businesses encounter risk from both external and internal sources. External factors like inflation, supply chain disruptions, geopolitical shifts, climate-related disasters, competition, reputation issues, and cyberattacks can significantly impact an organization's plans. Internally, poor leadership decisions or unauthorized disclosures of sensitive information can also pose risks. Yet, perhaps the most dangerous risk is missing opportunities for innovation and growth.
