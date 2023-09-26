@@ -43,6 +43,8 @@ jobs:
               - 'poetry.lock'
               - 'pyproject.toml'
               - '.github/workflows/ci.yml'
+              - 'Gemfile'
+              - 'Gemfile.lock'
 
       - name: Log into registry
         if: steps.changed_files.outputs.build_image == 'true'
