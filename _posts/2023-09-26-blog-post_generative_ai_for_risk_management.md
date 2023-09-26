@@ -1,7 +1,7 @@
 ---
 title: "Leveraging Generative AI for Effective Risk Management: Actionable Strategies for Businesses"
-date: 2023-09-01
-permalink: posts/2023/09/01/generative_ai_for_risk_management
+date: 2023-09-26
+permalink: posts/2023/09/26/generative_ai_for_risk_management
 categories: 
   - risk_management
   - business
