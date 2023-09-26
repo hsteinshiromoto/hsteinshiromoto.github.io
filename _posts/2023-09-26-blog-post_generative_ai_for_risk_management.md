@@ -13,6 +13,15 @@ toc_sticky: true
 
 In today's rapidly evolving business landscape, risk management is more critical than ever before. As industries grow increasingly complex and interconnected, the need for sophisticated strategies to identify, assess, and mitigate risks has become paramount. Enter generative artificial intelligence (AI), a revolutionary technology that has the potential to transform the way businesses design and implement risk controls. In this article, we'll explore how businesses can harness the power of generative AI to enhance their risk management practices, backed by actionable tips and real-life case studies.
 
+{% capture notice-2 %}
+
+This post is part of the Leveraging Generative AI for Effective Risk Management series. 
+The link for the part I can be found [here](https://humberto.stein-shiromoto.net/posts/2023/09/01/introduction_to_business_risk).
+
+{% endcapture %}
+
+<div class="notice--info">{{ notice-2 | markdownify }}</div>
+
 ## Understanding Generative AI in Risk Management
 
 Generative AI involves using algorithms to create new, original content based on patterns and data it has learned from. In the context of risk management, generative AI can be employed to simulate scenarios, model potential risks, and design effective controls. Here's how businesses can put this innovative technology to work:
