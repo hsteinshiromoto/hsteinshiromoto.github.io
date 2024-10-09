@@ -27,7 +27,7 @@ image:
 	$(eval DOCKER_IMAGE_TAG=${DOCKER_IMAGE_NAME}:${DOCKER_TAG})
 
 	@echo "Building docker image ${DOCKER_IMAGE_TAG}"
-	docker build --build-arg BUILD_DATE=${BUILD_DATE} \
+	docker buildx build --build-arg BUILD_DATE=${BUILD_DATE} \
 				--build-arg PROJECT_NAME=${PROJECT_NAME} \
 				--build-arg PYTHON_VERSION=${PYTHON_VERSION} \
 				-t ${DOCKER_IMAGE_TAG} .
