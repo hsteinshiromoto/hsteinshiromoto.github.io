@@ -28,7 +28,8 @@ toc_sticky: true
 
 ## Work Experience
 
-* May 22 - Now: Senior Manager, Macquarie Group, Australia
+* Oct 24 - Now: Tech Lead - Data & AI, Akordi/Laing O'Rourke, Australia
+* May 22 - Sep 24: Senior Manager, Macquarie Group, Australia
 * Jan 21 - Apr 22: Scrum Master, Telstra, Australia
 * Jan 20 - Apr 22: Senior Data Scientist, Telstra, Australia
 * Aug 19 - Dec 19: Senior Data Scientist, QBE, Australia
