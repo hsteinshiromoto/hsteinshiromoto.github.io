@@ -1,107 +1,121 @@
 # ---
 # Build arguments
 # ---
-ARG DOCKER_PARENT_IMAGE=ruby:2.5
+ARG DOCKER_PARENT_IMAGE=nixos/nix:latest
 FROM $DOCKER_PARENT_IMAGE
 
 # NB: Arguments should come after FROM otherwise they're deleted
 ARG BUILD_DATE
 ARG PROJECT_NAME
-ARG PYTHON_VERSION
-
-# Silence debconf
-ARG DEBIAN_FRONTEND=noninteractive
+ARG PYTHON_VERSION=3.11
 
 # ---
-# Enviroment variables
+# Environment variables
 # ---
 ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8
-ENV TZ Australia/Sydney
+ENV TZ=Australia/Sydney
 ENV HOME=/home/$PROJECT_NAME
 ENV PYTHON_VERSION=$PYTHON_VERSION
 ENV POETRY_VIRTUALENVS_CREATE=false \
     POETRY_VIRTUALENVS_IN_PROJECT=false
 
-SHELL ["/bin/bash", "-c"] 
-# ---
-# Set container time zone, maintainer and define home and workdir
-# ---
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
 LABEL org.label-schema.build-date=$BUILD_DATE \
     maintainer="Humberto STEIN SHIROMOTO <h.stein.shiromoto@gmail.com>"
 
+# ---
+# Create home directory and set workdir
+# ---
 RUN mkdir -p $HOME && mkdir -p $HOME/gems
 WORKDIR $HOME
 
 # ---
-# Install Debian Packages
-#
-# References:
-#   [1] https://unix.stackexchange.com/questions/336392/e-unable-to-locate-package-vim-on-debian-jessie-simplified-docker-container
+# Configure Nix
 # ---
-RUN apt-get update && apt-get install apt-file -y && apt-file update && apt-get install -y git-flow vim zsh tmux gnupg2 tree curl wget
+RUN echo "experimental-features = nix-command flakes" >> /etc/nix/nix.conf
 
 # ---
-# Setup ZSH [1]
-# 
-# References
+# Install system packages via Nix
+# ---
+RUN nix-env -iA \
+    nixpkgs.ruby_3_2 \
+    nixpkgs.bundler \
+    nixpkgs.python311 \
+    nixpkgs.python311Packages.pip \
+    nixpkgs.poetry \
+    nixpkgs.git \
+    nixpkgs.gitAndTools.git-flow \
+    nixpkgs.vim \
+    nixpkgs.neovim \
+    nixpkgs.zsh \
+    nixpkgs.tmux \
+    nixpkgs.gnupg \
+    nixpkgs.tree \
+    nixpkgs.curl \
+    nixpkgs.wget \
+    nixpkgs.cacert \
+    nixpkgs.nodejs \
+    nixpkgs.gcc \
+    nixpkgs.gnumake \
+    nixpkgs.which
+
+# ---
+# Set up certificate environment for SSL
+# ---
+ENV SSL_CERT_FILE=/nix/store/$(ls /nix/store | grep -m1 "nss-cacert.*")/etc/ssl/certs/ca-bundle.crt
+ENV NIX_SSL_CERT_FILE=$SSL_CERT_FILE
+
+# ---
+# Configure timezone
+# ---
+RUN ln -sf /nix/store/$(ls /nix/store | grep -m1 "tzdata.*")/share/zoneinfo/$TZ /etc/localtime
+
+# ---
+# Setup ZSH
+#
+# References:
 #   [1] https://github.com/deluan/zsh-in-docker/blob/master/Dockerfile
 # ---
 COPY files/.zshrc files/.tmux.conf $HOME/
 
-RUN bash -c "$(curl https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
-RUN git clone --depth 1 https://github.com/romkatv/powerlevel10k $HOME/.oh-my-zsh/custom/themes/powerlevel10k
+# Set zsh as default shell
+ENV SHELL=/nix/var/nix/profiles/default/bin/zsh
+SHELL ["/nix/var/nix/profiles/default/bin/zsh", "-c"]
+
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended || true
+
+RUN git clone --depth 1 https://github.com/romkatv/powerlevel10k $HOME/.oh-my-zsh/custom/themes/powerlevel10k || true
+
 RUN git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm && \
-    ~/.tmux/plugins/tpm/bin/install_plugins
-
-SHELL ["/bin/zsh", "-c"] 
+    $HOME/.tmux/plugins/tpm/bin/install_plugins || true
 
 # ---
-# Install pyenv
-#
-# References:
-#   [1] https://stackoverflow.com/questions/65768775/how-do-i-integrate-pyenv-poetry-and-docker
+# Install Python dependencies via Poetry
 # ---
-RUN git clone --depth=1 https://github.com/pyenv/pyenv.git $HOME/.pyenv
-ENV PYENV_ROOT="${HOME}/.pyenv"
-ENV PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${PATH}"
-
-# ---
-# Install Python and set the correct version
-# ---
-RUN pyenv install $PYTHON_VERSION && pyenv global $PYTHON_VERSION
-
-# ---
-# Install poetry
-# References:
-#   [1] https://stackoverflow.com/questions/53835198/integrating-python-poetry-with-docker
-#   [2] https://github.com/python-poetry/poetry/issues/461#issuecomment-1348696119
-# ---
-RUN pip install poetry && \
-    poetry self add poetry-plugin-up
-
 COPY pyproject.toml poetry.lock /usr/local/
 
-RUN poetry config virtualenvs.create false && \ 
-    cd /usr/local \
-    && poetry install --no-interaction --no-ansi
+RUN poetry config virtualenvs.create false && \
+    cd /usr/local && \
+    poetry install --no-interaction --no-ansi --no-root || true
 
 ENV PATH="${PATH}:$HOME/.local/bin"
-# Need for Pytest
-ENV PATH="${PATH}:${PYENV_ROOT}/versions/$PYTHON_VERSION/bin"
 
 # ---
-# Install Gems
+# Install Ruby Gems
 # ---
 RUN bundle config --global frozen 1
 
-# prepare to install ruby packages into container
+# Prepare to install ruby packages into container
 COPY Gemfile Gemfile.lock minimal-mistakes-jekyll.gemspec $HOME/gems/
 
 RUN cd $HOME/gems && bundle install
 
+# ---
+# Expose Jekyll port
+# ---
 EXPOSE 4000
 
-CMD ["jekyll", "serve"]
+# ---
+# Default command
+# ---
+CMD ["jekyll", "serve", "--host", "0.0.0.0"]
