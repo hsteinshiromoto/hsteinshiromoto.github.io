@@ -21,13 +21,16 @@ services:
       - TZ=Australia/Sydney
       - LANG=C.UTF-8
       - LC_ALL=C.UTF-8
+      - BUNDLE_BUILD__NOKOGIRI=--use-system-libraries
+      - BUNDLE_BUILD__FFI=--disable-system-libffi
     command: >
-      jekyll serve
+      sh -c "bundle install &&
+      bundle exec jekyll serve
       --host 0.0.0.0
       --incremental
       --livereload
       --drafts
-      --force_polling
+      --force_polling"
     stdin_open: true
     tty: true
     networks:

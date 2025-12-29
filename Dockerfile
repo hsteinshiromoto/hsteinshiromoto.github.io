@@ -39,11 +39,17 @@ RUN nix-env -iA \
     nixpkgs.stdenv.cc \
     nixpkgs.gnumake
 
-# Add Nix profile to PATH
-ENV PATH="/root/.nix-profile/bin:${PATH}"
+# Set up Nix environment in shell initialization
+RUN echo '. /root/.nix-profile/etc/profile.d/nix.sh' >> /root/.bashrc && \
+    echo '. /root/.nix-profile/etc/profile.d/nix.sh' >> /root/.profile
 
-# Install bundler via gem (source Nix profile to ensure PATH is set)
-RUN . /root/.nix-profile/etc/profile.d/nix.sh && gem install bundler
+# Add Nix profiles to PATH for non-interactive shells
+ENV PATH="/nix/var/nix/profiles/per-user/root/profile/bin:/root/.nix-profile/bin:${PATH}"
+
+# Install bundler via gem to a known location
+ENV GEM_HOME="/usr/local/bundle"
+ENV PATH="/usr/local/bundle/bin:${PATH}"
+RUN export PATH="/nix/var/nix/profiles/per-user/root/profile/bin:$PATH" && gem install bundler
 
 # ---
 # Configure timezone
@@ -57,7 +63,11 @@ RUN ln -sf /nix/store/$(ls /nix/store | grep -m1 "tzdata.*")/share/zoneinfo/$TZ 
 # Prepare to install ruby packages into container
 COPY Gemfile minimal-mistakes-jekyll.gemspec $HOME/gems/
 
-RUN . /root/.nix-profile/etc/profile.d/nix.sh && cd $HOME/gems && bundle install
+RUN export PATH="/nix/var/nix/profiles/per-user/root/profile/bin:$PATH" && cd $HOME/gems && bundle install
+
+# Copy and set up entrypoint script
+COPY bin/entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # ---
 # Expose Jekyll port
@@ -65,6 +75,7 @@ RUN . /root/.nix-profile/etc/profile.d/nix.sh && cd $HOME/gems && bundle install
 EXPOSE 4000
 
 # ---
-# Default command
+# Set entrypoint and default command
 # ---
-CMD ["jekyll", "serve", "--host", "0.0.0.0"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+CMD ["bundle", "exec", "jekyll", "serve", "--host", "0.0.0.0"]
