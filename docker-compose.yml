@@ -6,7 +6,6 @@ services:
       args:
         BUILD_DATE: ${BUILD_DATE:-}
         PROJECT_NAME: ${PROJECT_NAME:-hsteinshiromoto.github.io}
-        PYTHON_VERSION: ${PYTHON_VERSION:-3.11.1}
     image: hsteinshiromoto/hsteinshiromoto.github.io:latest
     container_name: ${PROJECT_NAME:-hsteinshiromoto.github.io}
     volumes:
