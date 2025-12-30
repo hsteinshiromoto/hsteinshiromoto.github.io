@@ -12,6 +12,22 @@ If you enjoy my website, please consider sponsoring:
 
 [!["Buy Me A Coffee"](https://user-images.githubusercontent.com/1376749/120938564-50c59780-c6e1-11eb-814f-22a0399623c5.png)](https://www.buymeacoffee.com/hsteinshiromoto)
  [![Support via PayPal](https://cdn.jsdelivr.net/gh/twolfson/paypal-github-button@1.0.0/dist/button.svg)](https://www.paypal.me/hsteinshiromoto)
+## Project Structure
+
+```
+.
+├── _config.yml           # Jekyll configuration
+├── _posts/              # Blog posts (Markdown)
+├── _pages/              # Static pages
+├── assets/              # Images, CSS, JavaScript
+├── python/              # Python utilities
+├── Dockerfile           # Docker image definition
+├── docker-compose.yml   # Docker Compose configuration
+├── Gemfile              # Ruby dependencies
+├── package.json         # Node.js dependencies
+└── pyproject.toml       # Python dependencies
+```
+
 
 This website is built with Jekyll and uses the Minimal Mistakes theme. You can run it locally using Docker.
 
@@ -98,22 +114,6 @@ PYTHON_VERSION=3.11.1
 JEKYLL_ENV=development
 ```
 
-## Project Structure
-
-```
-.
-├── _config.yml           # Jekyll configuration
-├── _posts/              # Blog posts (Markdown)
-├── _pages/              # Static pages
-├── assets/              # Images, CSS, JavaScript
-├── python/              # Python utilities
-├── Dockerfile           # Docker image definition
-├── docker-compose.yml   # Docker Compose configuration
-├── Gemfile              # Ruby dependencies
-├── package.json         # Node.js dependencies
-└── pyproject.toml       # Python dependencies
-```
-
 ## Deployment
 
 This site is automatically deployed to GitHub Pages via GitHub Actions when changes are pushed to the main branch. The Docker setup is for local development only.
@@ -126,3 +126,4 @@ This site is automatically deployed to GitHub Pages via GitHub Actions when chan
 * Icons list: https://gist.github.com/mohamdio/982653e3a8ae35f892f13c5ef0ef9b58
 * Post Jupyter notebook: https://www.linode.com/docs/guides/jupyter-notebook-on-jekyll/
 * [Instructions on how to make the Masthead navigation bar "sticky"](https://github.com/fortierq/fortierq.github.io/commit/477b98f45c87474484327a55cae185873b6caac0) by [Quentin Fortier](https://github.com/fortierq) → [Example](https://hsteinshiromoto.github.io/)
+* [Tokyo Night Theme](https://wixdaq.github.io/Tokyo-Night-Website/)
