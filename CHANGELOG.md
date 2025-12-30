@@ -1,5 +1,30 @@
 ## Unreleased
 
+## [1.5.0]
+
+### Added
+
+- Add docker-compose.yml for local development
+- Add entrypoint to container
+- Add NixOS' stdenv and gnumake to Docker image
+
+### Changed
+
+- Change theme to Tokyo Night
+- Change theme of page head
+- Update theme of the TOC of each page
+- Change color of highlight in TOC
+- Change Docker parent image to use NixOS
+- Simplify Dockerfile
+- Remove the version of docker-compose
+- Update README.md
+
+### Fixed
+
+- Fix bug with link colours in the blog/ page
+
+## Unreleased (upstream)
+
 ### Bug Fixes
 
 - Fix unlisted YouTube video embeds in documentation/test sites. [#3649](https://github.com/mmistakes/minimal-mistakes/issues/3649)
