@@ -298,6 +298,12 @@ table {
       text-decoration: underline;
     }
   }
+
+  /* Active TOC item highlight */
+  .active a {
+    background-color: #7ecfff !important;
+    color: $tokyo-bg !important;
+  }
 }
 
 /* Tag and category styling */
