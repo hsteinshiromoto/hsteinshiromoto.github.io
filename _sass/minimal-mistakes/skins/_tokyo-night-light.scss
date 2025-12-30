@@ -1,0 +1,293 @@
+/* ==========================================================================
+   Tokyo Night Light skin
+   Based on: https://wixdaq.github.io/Tokyo-Night-Website/
+   ========================================================================== */
+
+/* Tokyo Night Light Color Palette */
+$tokyo-bg: #d5d6db;
+$tokyo-bg-light: #e6e7ed;
+$tokyo-bg-highlight: #c8c9ce;
+$tokyo-fg: #343b58;
+$tokyo-fg-light: #40434f;
+$tokyo-comment: #6c6e75;
+$tokyo-blue: #2959aa;
+$tokyo-cyan: #0f4b6e;
+$tokyo-cyan-light: #006c86;
+$tokyo-green: #385f0d;
+$tokyo-magenta: #5a3e8e;
+$tokyo-orange: #965027;
+$tokyo-red: #8c4351;
+$tokyo-yellow: #8f5e15;
+$tokyo-teal: #33635c;
+$tokyo-border: #b4b5b9;
+
+/* Colors */
+$background-color: $tokyo-bg !default;
+$text-color: $tokyo-fg !default;
+$muted-text-color: $tokyo-comment !default;
+$primary-color: $tokyo-blue !default;
+$border-color: $tokyo-border !default;
+$code-background-color: $tokyo-bg-highlight !default;
+$code-background-color-dark: mix(#000, $tokyo-bg, 10%) !default;
+$form-background-color: $tokyo-bg-light !default;
+$footer-background-color: $tokyo-blue !default;
+
+/* Semantic colors */
+$success-color: $tokyo-green !default;
+$warning-color: $tokyo-orange !default;
+$danger-color: $tokyo-red !default;
+$info-color: $tokyo-cyan-light !default;
+$focus-color: $tokyo-magenta !default;
+$active-color: mix($tokyo-bg, $tokyo-blue, 20%) !default;
+
+/* Links */
+$link-color: $tokyo-cyan !default;
+$link-color-hover: mix(#000, $tokyo-cyan, 15%) !default;
+$link-color-visited: $tokyo-magenta !default;
+$masthead-link-color: $tokyo-fg !default;
+$masthead-link-color-hover: $tokyo-blue !default;
+$navicon-link-color-hover: mix(#fff, $tokyo-fg, 80%) !default;
+
+/* YIQ color contrast */
+$yiq-contrasted-dark-default: $tokyo-fg !default;
+$yiq-contrasted-light-default: #fff !default;
+
+/* Tokyo Night Light syntax highlighting (base16) */
+$base00: $tokyo-bg;        // Background
+$base01: $tokyo-bg-highlight; // Darker background
+$base02: $tokyo-border;    // Selection
+$base03: $tokyo-comment;   // Comments
+$base04: $tokyo-fg-light;  // Dark foreground
+$base05: $tokyo-fg;        // Default foreground
+$base06: #1a1b26;          // Light foreground
+$base07: #0f0f14;          // Lightest
+$base08: $tokyo-red;       // Errors, deletions
+$base09: $tokyo-orange;    // Numbers, constants
+$base0a: $tokyo-yellow;    // Classes, search highlight
+$base0b: $tokyo-green;     // Strings, success
+$base0c: $tokyo-teal;      // Regex, escape chars
+$base0d: $tokyo-blue;      // Functions, methods
+$base0e: $tokyo-magenta;   // Keywords
+$base0f: $tokyo-cyan;      // Deprecated
+
+/* Social icons inherit text color */
+.author__urls.social-icons i,
+.author__urls.social-icons .svg-inline--fa,
+.page__footer-follow .social-icons i,
+.page__footer-follow .social-icons .svg-inline--fa {
+  color: inherit;
+}
+
+/* Footer styling */
+.page__footer {
+  color: #fff !important;
+}
+
+/* Button overrides for Tokyo Night Light */
+.btn--primary {
+  background-color: $tokyo-blue;
+  color: #fff;
+}
+
+.btn--primary:hover {
+  background-color: mix(#000, $tokyo-blue, 15%);
+  color: #fff;
+}
+
+.btn--success {
+  background-color: $tokyo-green;
+  color: #fff;
+}
+
+.btn--warning {
+  background-color: $tokyo-orange;
+  color: #fff;
+}
+
+.btn--danger {
+  background-color: $tokyo-red;
+  color: #fff;
+}
+
+.btn--info {
+  background-color: $tokyo-cyan-light;
+  color: #fff;
+}
+
+/* Archive links */
+.archive__item-title a {
+  color: $tokyo-cyan;
+  text-decoration: none;
+
+  &:visited {
+    color: $tokyo-magenta;
+  }
+
+  &:hover {
+    color: mix(#000, $tokyo-cyan, 15%);
+    text-decoration: underline;
+  }
+}
+
+.archive__item a,
+.archive__item-excerpt a,
+.list__item a {
+  color: $tokyo-cyan;
+  text-decoration: none;
+
+  &:visited {
+    color: $tokyo-magenta;
+  }
+
+  &:hover {
+    color: mix(#000, $tokyo-cyan, 15%);
+    text-decoration: underline;
+  }
+}
+
+/* Pagination */
+.pagination--pager {
+  background-color: $tokyo-bg-light;
+  border-color: $tokyo-border;
+
+  &:hover {
+    background-color: $tokyo-blue;
+    color: #fff;
+  }
+}
+
+/* Notice boxes with Tokyo Night colors */
+.notice--primary {
+  background-color: mix($tokyo-bg, $tokyo-blue, 85%);
+  border-left-color: $tokyo-blue;
+}
+
+.notice--info {
+  background-color: mix($tokyo-bg, $tokyo-cyan-light, 85%);
+  border-left-color: $tokyo-cyan-light;
+}
+
+.notice--success {
+  background-color: mix($tokyo-bg, $tokyo-green, 85%);
+  border-left-color: $tokyo-green;
+}
+
+.notice--warning {
+  background-color: mix($tokyo-bg, $tokyo-orange, 85%);
+  border-left-color: $tokyo-orange;
+}
+
+.notice--danger {
+  background-color: mix($tokyo-bg, $tokyo-red, 85%);
+  border-left-color: $tokyo-red;
+}
+
+/* Blockquotes */
+blockquote {
+  border-left-color: $tokyo-blue;
+}
+
+/* Table styling */
+table {
+  border-color: $tokyo-border;
+
+  th {
+    background-color: $tokyo-bg-highlight;
+  }
+
+  tr:nth-child(even) {
+    background-color: mix($tokyo-bg, $tokyo-bg-light, 50%);
+  }
+}
+
+/* Navigation toggle icon */
+.navicon {
+  background: $tokyo-fg;
+
+  &::before,
+  &::after {
+    background: $tokyo-fg;
+  }
+}
+
+/* Sidebar toggle */
+.nav__toggle {
+  &:hover {
+    .navicon,
+    .navicon::before,
+    .navicon::after {
+      background: $tokyo-blue;
+    }
+  }
+}
+
+/* TOC styling */
+.toc {
+  background-color: $tokyo-bg-light;
+  border-color: $tokyo-border;
+
+  .nav__title {
+    background-color: $tokyo-blue;
+    color: #fff;
+  }
+}
+
+/* Tag and category styling */
+.page__taxonomy-item {
+  background-color: $tokyo-bg-light;
+  border-color: $tokyo-border;
+
+  &:hover {
+    background-color: $tokyo-blue;
+    color: #fff;
+  }
+}
+
+/* Scrollbar styling for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $tokyo-bg-highlight;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $tokyo-comment;
+  border-radius: 4px;
+
+  &:hover {
+    background: $tokyo-blue;
+  }
+}
+
+/* Explicit link styling for Tokyo Night Light */
+a {
+  color: $tokyo-cyan;
+  text-decoration: none;
+
+  &:visited {
+    color: $tokyo-magenta;
+  }
+
+  &:hover {
+    color: mix(#000, $tokyo-cyan, 15%);
+    text-decoration: underline;
+  }
+}
+
+/* Page content links */
+.page__content a:not(.btn) {
+  color: $tokyo-cyan;
+  text-decoration: none;
+
+  &:visited {
+    color: $tokyo-magenta;
+  }
+
+  &:hover {
+    color: mix(#000, $tokyo-cyan, 15%);
+    text-decoration: underline;
+  }
+}

@@ -20,15 +20,15 @@
 <link rel="stylesheet alternate" href="{{ '/assets/css/theme2.css' | relative_url }}" id="theme_source_2">
 <script>
   let theme = sessionStorage.getItem('theme');
-  if (theme === "dark") {
-    sessionStorage.setItem('theme', 'dark');
+  if (theme === "tokyo-light") {
+    sessionStorage.setItem('theme', 'tokyo-light');
     node1 = document.getElementById('theme_source');
     node2 = document.getElementById('theme_source_2');
     node1.setAttribute('rel', 'stylesheet alternate');
     node2.setAttribute('rel', 'stylesheet');
   }
   else {
-    sessionStorage.setItem('theme', 'light');
+    sessionStorage.setItem('theme', 'tokyo-dark');
   }
 </script>
 {% endif %}
