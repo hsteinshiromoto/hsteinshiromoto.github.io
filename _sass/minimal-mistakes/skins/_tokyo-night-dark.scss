@@ -280,12 +280,23 @@ table {
 
 /* TOC styling */
 .toc {
-  background-color: $tokyo-bg-highlight;
-  border-color: $tokyo-dark-blue;
+  background-color: $tokyo-bg-highlight !important;
+  border-color: $tokyo-dark-blue !important;
 
   .nav__title {
-    background-color: $tokyo-blue;
-    color: $tokyo-bg;
+    background: #242a3b !important;
+    background-color: #242a3b !important;
+    color: $tokyo-cyan !important;
+  }
+
+  a {
+    color: $tokyo-cyan !important;
+    text-decoration: none;
+
+    &:hover {
+      color: mix(#fff, $tokyo-cyan, 25%) !important;
+      text-decoration: underline;
+    }
   }
 }
 
