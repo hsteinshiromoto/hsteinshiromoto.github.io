@@ -121,10 +121,32 @@ $base0f: $tokyo-cyan;      // Deprecated
 
 /* Archive links */
 .archive__item-title a {
-  color: $tokyo-fg;
+  color: $tokyo-cyan;
+  text-decoration: none;
+
+  &:visited {
+    color: $tokyo-magenta;
+  }
 
   &:hover {
-    color: $tokyo-cyan;
+    color: mix(#fff, $tokyo-cyan, 25%);
+    text-decoration: underline;
+  }
+}
+
+.archive__item a,
+.archive__item-excerpt a,
+.list__item a {
+  color: $tokyo-cyan;
+  text-decoration: none;
+
+  &:visited {
+    color: $tokyo-magenta;
+  }
+
+  &:hover {
+    color: mix(#fff, $tokyo-cyan, 25%);
+    text-decoration: underline;
   }
 }
 
