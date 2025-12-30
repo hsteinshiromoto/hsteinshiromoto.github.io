@@ -1,0 +1,41 @@
+services:
+  jekyll:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BUILD_DATE: ${BUILD_DATE:-}
+        PROJECT_NAME: ${PROJECT_NAME:-hsteinshiromoto.github.io}
+    image: hsteinshiromoto/hsteinshiromoto.github.io:latest
+    container_name: ${PROJECT_NAME:-hsteinshiromoto.github.io}
+    volumes:
+      - .:/home/${PROJECT_NAME:-hsteinshiromoto.github.io}
+      # Exclude these directories from being overwritten in the container
+      - /home/${PROJECT_NAME:-hsteinshiromoto.github.io}/.pyenv
+      - /home/${PROJECT_NAME:-hsteinshiromoto.github.io}/.oh-my-zsh
+      - /home/${PROJECT_NAME:-hsteinshiromoto.github.io}/.tmux
+    ports:
+      - "4000:4000"
+    environment:
+      - JEKYLL_ENV=${JEKYLL_ENV:-development}
+      - TZ=Australia/Sydney
+      - LANG=C.UTF-8
+      - LC_ALL=C.UTF-8
+      - BUNDLE_BUILD__NOKOGIRI=--use-system-libraries
+      - BUNDLE_BUILD__FFI=--disable-system-libffi
+    command: >
+      sh -c "bundle install &&
+      bundle exec jekyll serve
+      --host 0.0.0.0
+      --incremental
+      --livereload
+      --drafts
+      --force_polling"
+    stdin_open: true
+    tty: true
+    networks:
+      - jekyll-network
+
+networks:
+  jekyll-network:
+    driver: bridge

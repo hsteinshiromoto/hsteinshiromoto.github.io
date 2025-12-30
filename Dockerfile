@@ -1,107 +1,81 @@
 # ---
 # Build arguments
 # ---
-ARG DOCKER_PARENT_IMAGE=ruby:2.5
+ARG DOCKER_PARENT_IMAGE=nixos/nix:latest
 FROM $DOCKER_PARENT_IMAGE
 
 # NB: Arguments should come after FROM otherwise they're deleted
 ARG BUILD_DATE
 ARG PROJECT_NAME
-ARG PYTHON_VERSION
-
-# Silence debconf
-ARG DEBIAN_FRONTEND=noninteractive
 
 # ---
-# Enviroment variables
+# Environment variables
 # ---
 ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8
-ENV TZ Australia/Sydney
+ENV TZ=Australia/Sydney
 ENV HOME=/home/$PROJECT_NAME
-ENV PYTHON_VERSION=$PYTHON_VERSION
-ENV POETRY_VIRTUALENVS_CREATE=false \
-    POETRY_VIRTUALENVS_IN_PROJECT=false
-
-SHELL ["/bin/bash", "-c"] 
-# ---
-# Set container time zone, maintainer and define home and workdir
-# ---
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
-    maintainer="Humberto STEIN SHIROMOTO <h.stein.shiromoto@gmail.com>"
+    maintainer="Humberto STEIN SHIROMOTO <hsteinshiromoto@gmail.com>"
 
+# ---
+# Create home directory and set workdir
+# ---
 RUN mkdir -p $HOME && mkdir -p $HOME/gems
 WORKDIR $HOME
 
 # ---
-# Install Debian Packages
-#
-# References:
-#   [1] https://unix.stackexchange.com/questions/336392/e-unable-to-locate-package-vim-on-debian-jessie-simplified-docker-container
+# Configure Nix
 # ---
-RUN apt-get update && apt-get install apt-file -y && apt-file update && apt-get install -y git-flow vim zsh tmux gnupg2 tree curl wget
+RUN echo "experimental-features = nix-command flakes" >> /etc/nix/nix.conf
 
 # ---
-# Setup ZSH [1]
-# 
-# References
-#   [1] https://github.com/deluan/zsh-in-docker/blob/master/Dockerfile
+# Install system packages via Nix
 # ---
-COPY files/.zshrc files/.tmux.conf $HOME/
+RUN nix-env -iA \
+    nixpkgs.ruby \
+    nixpkgs.nodejs \
+    nixpkgs.stdenv.cc \
+    nixpkgs.gnumake
 
-RUN bash -c "$(curl https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
-RUN git clone --depth 1 https://github.com/romkatv/powerlevel10k $HOME/.oh-my-zsh/custom/themes/powerlevel10k
-RUN git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm && \
-    ~/.tmux/plugins/tpm/bin/install_plugins
+# Set up Nix environment in shell initialization
+RUN echo '. /root/.nix-profile/etc/profile.d/nix.sh' >> /root/.bashrc && \
+    echo '. /root/.nix-profile/etc/profile.d/nix.sh' >> /root/.profile
 
-SHELL ["/bin/zsh", "-c"] 
+# Add Nix profiles to PATH for non-interactive shells
+ENV PATH="/nix/var/nix/profiles/per-user/root/profile/bin:/root/.nix-profile/bin:${PATH}"
 
-# ---
-# Install pyenv
-#
-# References:
-#   [1] https://stackoverflow.com/questions/65768775/how-do-i-integrate-pyenv-poetry-and-docker
-# ---
-RUN git clone --depth=1 https://github.com/pyenv/pyenv.git $HOME/.pyenv
-ENV PYENV_ROOT="${HOME}/.pyenv"
-ENV PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${PATH}"
+# Install bundler via gem to a known location
+ENV GEM_HOME="/usr/local/bundle"
+ENV PATH="/usr/local/bundle/bin:${PATH}"
+RUN export PATH="/nix/var/nix/profiles/per-user/root/profile/bin:$PATH" && gem install bundler
 
 # ---
-# Install Python and set the correct version
+# Configure timezone
 # ---
-RUN pyenv install $PYTHON_VERSION && pyenv global $PYTHON_VERSION
-
-# ---
-# Install poetry
-# References:
-#   [1] https://stackoverflow.com/questions/53835198/integrating-python-poetry-with-docker
-#   [2] https://github.com/python-poetry/poetry/issues/461#issuecomment-1348696119
-# ---
-RUN pip install poetry && \
-    poetry self add poetry-plugin-up
-
-COPY pyproject.toml poetry.lock /usr/local/
-
-RUN poetry config virtualenvs.create false && \ 
-    cd /usr/local \
-    && poetry install --no-interaction --no-ansi
-
-ENV PATH="${PATH}:$HOME/.local/bin"
-# Need for Pytest
-ENV PATH="${PATH}:${PYENV_ROOT}/versions/$PYTHON_VERSION/bin"
+RUN ln -sf /nix/store/$(ls /nix/store | grep -m1 "tzdata.*")/share/zoneinfo/$TZ /etc/localtime
 
 # ---
-# Install Gems
+# Install Ruby Gems
 # ---
-RUN bundle config --global frozen 1
 
-# prepare to install ruby packages into container
-COPY Gemfile Gemfile.lock minimal-mistakes-jekyll.gemspec $HOME/gems/
+# Prepare to install ruby packages into container
+COPY Gemfile minimal-mistakes-jekyll.gemspec $HOME/gems/
 
-RUN cd $HOME/gems && bundle install
+RUN export PATH="/nix/var/nix/profiles/per-user/root/profile/bin:$PATH" && cd $HOME/gems && bundle install
 
+# Copy and set up entrypoint script
+COPY bin/entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# ---
+# Expose Jekyll port
+# ---
 EXPOSE 4000
 
-CMD ["jekyll", "serve"]
+# ---
+# Set entrypoint and default command
+# ---
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+CMD ["bundle", "exec", "jekyll", "serve", "--host", "0.0.0.0"]
