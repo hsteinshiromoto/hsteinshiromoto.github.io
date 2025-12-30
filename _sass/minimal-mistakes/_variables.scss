@@ -122,24 +122,24 @@ $navicon-link-color-hover: mix(#fff, $primary-color, 75%) !default;
 $notice-background-mix: 80% !default;
 $code-notice-background-mix: 90% !default;
 
-/* dracula syntax highlighting (base16) */
-/* https://github.com/dracula/base16-dracula-scheme */
-$base00: #282936;
-$base01: #3a3c4e;
-$base02: #4d4f68;
-$base03: #626483;
-$base04: #62d6e8;
-$base05: #e9e9f4;
-$base06: #f1f2f8;
-$base07: #f7f7fb;
-$base08: #ea51b2;
-$base09: #b45bcf;
-$base0a: #00f769;
-$base0b: #ebff87;
-$base0c: #a1efe4;
-$base0d: #62d6e8;
-$base0e: #b45bcf;
-$base0f: #00f769;
+/* Tokyo Night syntax highlighting (base16) */
+/* https://wixdaq.github.io/Tokyo-Night-Website/ */
+$base00: #1a1b26;  // Background
+$base01: #16161e;  // Darker background
+$base02: #292e42;  // Selection
+$base03: #565f89;  // Comments
+$base04: #787c99;  // Dark foreground
+$base05: #a9b1d6;  // Default foreground
+$base06: #cbccd1;  // Light foreground
+$base07: #d5d6db;  // Lightest
+$base08: #f7768e;  // Red - Errors, deletions
+$base09: #ff9e64;  // Orange - Numbers, constants
+$base0a: #e0af68;  // Yellow - Classes, search highlight
+$base0b: #9ece6a;  // Green - Strings, success
+$base0c: #73daca;  // Teal - Regex, escape chars
+$base0d: #7aa2f7;  // Blue - Functions, methods
+$base0e: #bb9af7;  // Purple - Keywords
+$base0f: #7dcfff;  // Cyan - Deprecated
 
 /*
    Breakpoints
@@ -173,27 +173,33 @@ $navicon-height: 0.25rem !default;
 $global-transition: all 0.2s ease-in-out !default;
 $intro-transition: intro 0.3s both !default;
 
+/* Tokyo Night themed buttons */
 .btn--github {
-   color: #ffffff;
-   background-color: #171516;
+   color: #1a1b26;
+   background-color: #c0caf5;
 }
 
 .btn--github:hover {
-   color: #ffffff;
-   background-color: #171516;
- }
+   color: #1a1b26;
+   background-color: #a9b1d6;
+}
 
 .btn--linkedin {
-   color: #ffffff;
-   background-color: #007bb6;
+   color: #1a1b26;
+   background-color: #7aa2f7;
+}
+
+.btn--linkedin:hover {
+   color: #1a1b26;
+   background-color: #5d8ae6;
 }
 
 .btn--calendly {
-   color: #ffffff;
-   background-color: #0054cc;
+   color: #1a1b26;
+   background-color: #7dcfff;
 }
 
 .btn--calendly:hover {
-   color: #ffffff;
-   background-color: #0054cc;
+   color: #1a1b26;
+   background-color: #5fc3f7;
 }
