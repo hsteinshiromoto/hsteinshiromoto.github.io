@@ -88,6 +88,58 @@ $base0f: $tokyo-cyan;      // Deprecated
   color: $tokyo-fg-dark !important;
 }
 
+/* Masthead (top navigation bar) styling */
+.masthead {
+  background-color: #242a3b !important;
+  border-bottom: 1px solid $tokyo-dark-blue;
+}
+
+.masthead__inner-wrap {
+  background-color: #242a3b !important;
+}
+
+.masthead.sticky {
+  background-color: #242a3b !important;
+}
+
+.site-title {
+  color: $tokyo-cyan !important;
+
+  &:hover {
+    color: mix(#fff, $tokyo-cyan, 25%) !important;
+  }
+}
+
+.greedy-nav {
+  background-color: #242a3b !important;
+
+  a {
+    color: $tokyo-cyan !important;
+    text-decoration: none;
+
+    &:hover {
+      color: mix(#fff, $tokyo-cyan, 25%) !important;
+      text-decoration: underline;
+    }
+  }
+
+  .visible-links a {
+    color: $tokyo-cyan !important;
+
+    &:before {
+      background: $tokyo-cyan;
+    }
+
+    &:hover {
+      color: mix(#fff, $tokyo-cyan, 25%) !important;
+    }
+  }
+
+  button {
+    background-color: #242a3b;
+  }
+}
+
 /* Button overrides for Tokyo Night Dark */
 .btn--primary {
   background-color: $tokyo-blue;
